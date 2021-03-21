@@ -4,10 +4,16 @@ const orderSchema = mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
-    status: { type: String, enum: ["pending", "paid"], default: "pending" },
+    status: {
+      type: String,
+      enum: ["pending", "paid", "delivering", "delivered"],
+      default: "paid",
+    },
     shipping: {
       address: { type: String, required: true },
       city: { type: String, required: true },
+      district: { type: String },
+      ward: { type: String },
       postalCode: { type: Number, required: true },
       country: { type: String, required: true },
     },
