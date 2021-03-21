@@ -18,10 +18,15 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     images: [{ imageUrl: { type: String, required: true } }],
-    reviews: {
-      rating: { type: Number, default: null },
-      comment: { type: String, default: null },
-    },
+    reviews: [
+      {
+        rating: { type: Number, default: null },
+        comment: { type: String, default: null },
+      },
+    ],
+    rating: { type: Number, required: true, default: 0 },
+    numReviews: { type: Number, required: true, default: 0 },
+    countInStock: { type: Number, required: true, default: 0 },
     isDeleted: { type: Boolean, default: false },
   },
   { timestamps: true }
