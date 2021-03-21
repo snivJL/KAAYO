@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: "Karla", sans-serif;
+  /* display: grid;
+  grid-template-rows: auto 1fr auto; */
+}
+* {
+  box-sizing: border-box;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.navbar-nav-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background-color: #047857;
+  transition: all 0.3s ease-in-out;
+}
+.navbar-nav-link:hover::after {
+  width: 100%;
+}
+footer {
+  margin-bottom: 0;
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;
+}
+main {
+  min-height: 80vh;
+}
