@@ -151,3 +151,23 @@ main {
   background-size: cover;
   background-position: center;
 }
+
+/* --------------------------------------------------------------- */
+
+/*--------------------- Sign Form -------------------------*/
+
+.fb-button {
+  background-color: #1877f2;
+}
+.fb-button i {
+  margin-right: 4px;
+}
+.google-button {
+  box-shadow: none !important;
+  font-size: 1.125rem !important;
+  line-height: 1.75rem !important;
+}
+.google-button span {
+  padding: 0.25rem 0.75rem !important;
+}
+/* --------------------------------------------------------------- */

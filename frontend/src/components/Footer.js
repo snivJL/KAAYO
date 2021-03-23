@@ -22,7 +22,7 @@ const Footer = () => {
           rel="noreferrer"
         >
           <li className="hover:text-gray-400 ">
-            <i class="fab fa-facebook-square fa-2x "></i>
+            <i className="fab fa-facebook-square fa-2x "></i>
           </li>
         </a>
         <a
@@ -31,7 +31,7 @@ const Footer = () => {
           rel="noreferrer"
         >
           <li className="hover:text-gray-400">
-            <i class="fab fa-instagram fa-2x"></i>
+            <i className="fab fa-instagram fa-2x"></i>
           </li>
         </a>
       </ul>

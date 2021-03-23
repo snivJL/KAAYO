@@ -42,6 +42,7 @@ passport.use(
       clientSecret: FACEBOOK_APP_SECRET,
     },
     (accessToken, refreshToken, profile, done) => {
+      console.log("PASSPORT");
       User.findOrCreate(
         {
           facebookId: profile.id,

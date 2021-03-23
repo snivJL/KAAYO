@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
+const bcrypt = require("bcryptjs");
 
 const userSchema = mongoose.Schema(
   {
@@ -38,19 +39,27 @@ userSchema.statics.findOrCreate = function findOrCreate(profile, cb) {
 };
 
 userSchema.methods.toJSON = function () {
-  const obj = this._doc;
+  const obj = this.toObject();
+  // delete obj._id;
+  delete obj.__v;
+  delete obj.googleId;
   delete obj.password;
-  delete obj.emailVerified;
-  delete obj.emailVerificationCode;
-  delete obj.isDeleted;
+  delete obj.createdAt;
+  delete obj.updatedAt;
+  delete obj.facebookId;
   return obj;
+};
+
+userSchema.methods.comparePassword = async function (password) {
+  return bcrypt.compare(password, this.password, function (_, isMatch) {
+    return isMatch;
+  });
 };
 
 userSchema.methods.generateToken = async function () {
   const accessToken = await jwt.sign({ _id: this._id }, JWT_SECRET_KEY, {
-    expiresIn: "1d",
+    expiresIn: "365d",
   });
-
   return accessToken;
 };
 

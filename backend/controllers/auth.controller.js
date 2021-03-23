@@ -29,6 +29,9 @@ authController.loginWithEmail = async (req, res, next) => {
 };
 
 authController.loginWithSocial = async ({ user }, res) => {
+  console.log(user);
+  console.log("CONTROLELR");
+
   if (user) {
     user = await User.findByIdAndUpdate(
       user._id,
