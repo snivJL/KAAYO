@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import SearchBar from "./SearchBar";
 
 const PublicNavbar = () => {
   return (
@@ -16,7 +17,7 @@ const PublicNavbar = () => {
           </li>
         </Link>
         <li>
-          <i class="fas fa-search"></i>Search
+          <SearchBar />
         </li>
       </ul>
       <div className="text-4xl justify-self-center mx-auto">KA.A.YO</div>

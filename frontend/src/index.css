@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  padding: 0;
+  /* height: 100%;
+  width: 100%; */
+  font-family: "Karla", sans-serif;
+}
+.app {
+  /* display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "header header header header"
+    "main main main main"
+    "footer footer footer footer"; */
+  min-height: 100vh;
+  padding-bottom: 96px;
+  position: relative;
+}
+
+header {
+  grid-area: header;
+}
+
+img {
+  max-width: 100%;
+}
+* {
+  box-sizing: border-box;
+}
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.navbar-nav-link::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 0;
+  background-color: #047857;
+  transition: all 0.3s ease-in-out;
+}
+.navbar-nav-link:hover::after {
+  width: 100%;
+}
+footer {
+  grid-area: footer;
+  /* margin-bottom: 0;
+  /* position: fixed; */
+  /* bottom: 0px;
+  left: 0px;
+  right: 0px;
+  margin-bottom: 0px;  */
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+main {
+  grid-area: main;
+  grid-template-rows: repeat(2, 1fr);
+  grid-auto-rows: min-content;
+  /* min-height: 100%; */
+}
+
+/*--------------- SearchBar -----------------*/
+
+.search > div {
+  display: inline-block;
+  position: relative;
+  filter: drop-shadow(0 1px #374151);
+}
+
+.search > div:after {
+  content: "";
+  background: #374151;
+  width: 2px;
+  height: 14px;
+  position: absolute;
+  top: 22px;
+  right: 0px;
+  transform: rotate(135deg);
+}
+
+.search > div > input {
+  font-size: 12px;
+  background: transparent;
+  width: 25px;
+  height: 25px;
+  padding: 12px;
+  border: solid 2px #374151;
+  outline: none;
+  border-radius: 35px;
+  transition: width 0.5s;
+}
+
+.search > div > input::placeholder {
+  color: #374151;
+  font-family: "Karla", sans-serif;
+  font-weight: 200;
+  opacity: 0;
+  transition: opacity 150ms ease-out;
+}
+
+.search > div > input:focus::placeholder {
+  opacity: 1;
+}
+
+.search > div > input:focus,
+.search > div > input:not(:placeholder-shown) {
+  width: 250px;
+  background-color: white;
+}
+
+/* --------------------------------------------------------------- */
+
+/*--------------------- Homepage -------------------------*/
+
+.hero {
+  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/c_scale,w_1436/v1616390108/kaayo/background_nhdjva.png");
+  background-size: cover;
+  /* height: someheight; */
+  background-position: center;
+}
+
+.section-soap {
+  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/v1616392512/kaayo/149350938_4074355699250002_15075270272031983_n_x1hy6b.jpg");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+.section-butter {
+  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/v1616392508/kaayo/140021235_252289502934028_9018083373780229419_n_hiqxfa.jpg");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+.section-lip {
+  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/v1616392508/kaayo/139803208_408669853568139_8758991502514270125_n_tvadcv.jpg");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
+.section-shampoo {
+  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/v1616392507/kaayo/131320766_145440737332983_292046707415353122_n_jzcvpu.jpg");
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+}
