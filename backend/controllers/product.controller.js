@@ -73,7 +73,6 @@ productController.createProduct = async (req, res, next) => {
       ingredients,
     } = req.body;
     const ingArray = ingredients.split(",");
-    console.log(ingArray, ingredients);
     const product = await Product.create({
       name,
       description,

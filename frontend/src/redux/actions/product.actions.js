@@ -47,7 +47,7 @@ productActions.createProduct = (product) => async (dispatch) => {
     dispatch({ type: types.CREATE_PRODUCT_REQUEST });
     const { data } = await api.post("/product/add", product);
     dispatch({ type: types.CREATE_PRODUCT_SUCCESS });
-    toast.success("Product created!");
+    toast.info("Product created!");
   } catch (error) {
     console.error(error);
     toast.dark(error.errors.message);
