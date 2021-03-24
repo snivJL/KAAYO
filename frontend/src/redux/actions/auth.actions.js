@@ -30,13 +30,14 @@ authActions.loginFacebook = (user) => async (dispatch) => {
     const name = res.data.user.name;
     toast.success(`Welcome ${name}`);
 
+    api.defaults.headers.common["authorization"] =
+      "Bearer " + res.data.accessToken;
+    localStorage.setItem("token", res.data.accessToken);
+
     dispatch({
       type: types.LOGIN_FACEBOOK_SUCCESS,
       payload: res.data.accessToken,
     });
-    api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
-    localStorage.setItem("accessToken", res.data.accessToken);
   } catch (error) {
     dispatch({ type: types.LOGIN_FACEBOOK_FAIL, payload: error });
   }
@@ -49,20 +50,21 @@ authActions.loginGoogle = (user) => async (dispatch) => {
     const res = await api.post("/auth/google", { access_token });
     const name = res.data.user.name;
     toast.success(`Welcome ${name}`);
+
+    api.defaults.headers.common["authorization"] =
+      "Bearer " + res.data.accessToken;
+    localStorage.setItem("token", res.data.accessToken);
+
     dispatch({
       type: types.LOGIN_GOOGLE_SUCCESS,
       payload: res.data.accessToken,
     });
-    api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
-    localStorage.setItem("accessToken", res.data.accessToken);
   } catch (error) {
     dispatch({ type: types.LOGIN_GOOGLE_FAIL, payload: error });
   }
 };
 
 authActions.logout = () => async (dispatch) => {
-  console.log("LOGOUT");
   localStorage.removeItem("token");
   dispatch({ type: types.LOGOUT_USER });
   toast.success("See you soon!");

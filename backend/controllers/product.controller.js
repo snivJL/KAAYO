@@ -69,15 +69,19 @@ productController.createProduct = async (req, res, next) => {
       price,
       images,
       category,
+      stock,
       ingredients,
     } = req.body;
+    const ingArray = ingredients.split(",");
+    console.log(ingArray, ingredients);
     const product = await Product.create({
       name,
       description,
       price,
       images,
       category,
-      ingredients,
+      ingredients: ingArray,
+      countInStock: stock,
     });
 
     utilsHelper.sendResponse(res, 200, true, product, null, "Product created");

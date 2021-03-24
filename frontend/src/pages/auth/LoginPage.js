@@ -1,10 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import SocialMediaPanel from "../../components/auth/SocialMediaPanel";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import authActions from "../../redux/actions/auth.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
@@ -14,6 +14,9 @@ const LoginPage = () => {
       .required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
   });
+  const auth = useSelector((state) => state.auth);
+  const { isAuthenticated } = auth;
+  if (isAuthenticated) return <Redirect to="/" />;
 
   return (
     <div className="h-screen w-full flex justify-center items-center bg-gradient-to-tr from-green-600 to-green-200">

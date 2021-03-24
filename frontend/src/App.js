@@ -6,6 +6,7 @@ import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import CreateProductPage from "./pages/admin/CreateProductPage";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -27,7 +28,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/login" component={LoginPage} />
-            <Route path="/register" exact component={RegisterPage} />
+            <Route path="/register" component={RegisterPage} />
+            <Route path="/admin/product/create" component={CreateProductPage} />
           </Switch>
         </div>
         <footer>

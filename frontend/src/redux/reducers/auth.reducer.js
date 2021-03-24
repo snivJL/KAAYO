@@ -23,12 +23,18 @@ const authReducer = (state = initialState, action) => {
       };
     case types.LOGIN_GOOGLE_SUCCESS:
     case types.LOGIN_FACEBOOK_SUCCESS:
-      return { ...state, token: payload, loading: false };
+      return {
+        ...state,
+        token: payload,
+        loading: false,
+        isAuthenticated: true,
+      };
     case types.LOGIN_USER_FAIL:
     case types.LOGIN_GOOGLE_FAIL:
     case types.LOGIN_FACEBOOK_FAIL:
       return { ...state, loading: false };
-
+    case types.LOGOUT_USER:
+      return { ...state, isAuthenticated: false };
     default:
       return state;
   }

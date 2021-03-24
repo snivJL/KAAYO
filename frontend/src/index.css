@@ -29,6 +29,12 @@ header {
 img {
   max-width: 100%;
 }
+a {
+  text-decoration: none !important;
+}
+a:hover {
+  color: inherit !important;
+}
 * {
   box-sizing: border-box;
 }
@@ -171,3 +177,10 @@ main {
   padding: 0.25rem 0.75rem !important;
 }
 /* --------------------------------------------------------------- */
+
+.category-label label {
+  margin-right: 0.5rem;
+}
+.category-label input {
+  margin-right: 0.25rem;
+}

@@ -33,9 +33,14 @@ router.post(
     check("name").notEmpty().withMessage("Name is required"),
     check("description").notEmpty().withMessage("Description is required"),
     check("price").notEmpty().withMessage("Price is required"),
+    check("ingredients").notEmpty().withMessage("Ingredient is required"),
+    check("stock").notEmpty().withMessage("Stock is required"),
     check("images")
       .isArray({ min: 1 })
       .withMessage("At least one image is required"),
+    check("categories")
+      .isArray({ min: 1 })
+      .withMessage("At least one category is required"),
   ]),
   productController.createProduct
 );

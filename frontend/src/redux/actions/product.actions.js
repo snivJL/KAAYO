@@ -38,11 +38,11 @@ productActions.getSingleProduct = (id) => async (dispatch) => {
 };
 
 productActions.createProduct = (product) => async (dispatch) => {
-  //temporary fix
-  // const image = { imageUrl: product.image1 };
-  // product.images = [...product.images, image];
   console.log("ACTION", product);
-  product.images.shift();
+  // product.ingredients = product.ingredients.split(",");
+
+  console.log("ACTION", product);
+
   try {
     dispatch({ type: types.CREATE_PRODUCT_REQUEST });
     const { data } = await api.post("/product/add", product);
@@ -50,6 +50,7 @@ productActions.createProduct = (product) => async (dispatch) => {
     toast.success("Product created!");
   } catch (error) {
     console.error(error);
+    toast.dark(error.errors.message);
     dispatch({
       type: types.CREATE_PRODUCT_FAIL,
       payload: error.errors.message,

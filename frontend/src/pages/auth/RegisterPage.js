@@ -1,13 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import SocialMediaPanel from "../../components/auth/SocialMediaPanel";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import userActions from "../../redux/actions/user.actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const RegisterPage = () => {
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const { isAuthenticated } = auth;
+  if (isAuthenticated) return <Redirect to="/" />;
+
   const SignupSchema = Yup.object().shape({
     name: Yup.string()
       .min(1, "Name must contain at least 1 characters")
