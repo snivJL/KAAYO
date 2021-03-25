@@ -3,8 +3,8 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import orderActions from "../redux/actions/order.actions";
-import CheckoutSteps from "../components/CheckoutSteps";
+import orderActions from "../../redux/actions/order.actions";
+import CheckoutSteps from "../../components/CheckoutSteps";
 
 const ShippingPage = () => {
   const history = useHistory();
@@ -35,7 +35,7 @@ const ShippingPage = () => {
     validate,
     onSubmit: (values) => {
       dispatch(orderActions.saveShippingAddress(values));
-      history.push("/payment");
+      history.push("/order/payment");
     },
   });
 

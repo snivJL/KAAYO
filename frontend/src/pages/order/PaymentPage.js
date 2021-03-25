@@ -3,14 +3,14 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import orderActions from "../redux/actions/order.actions";
-import CheckoutSteps from "../components/CheckoutSteps";
+import orderActions from "../../redux/actions/order.actions";
+import CheckoutSteps from "../../components/CheckoutSteps";
 
 const PaymentPage = () => {
   const history = useHistory();
 
   const shippingAddress = useSelector((state) => state.order.shippingAddress);
-  if (!shippingAddress) history.push("/shipping");
+  if (!shippingAddress) history.push("/order/shipping");
   const dispatch = useDispatch();
   const validate = (values) => {
     const errors = {};
@@ -27,7 +27,7 @@ const PaymentPage = () => {
     validate,
     onSubmit: (values) => {
       dispatch(orderActions.savePaymentMethod(values));
-      history.push("/placeorder");
+      history.push("/order/finalize");
     },
   });
 

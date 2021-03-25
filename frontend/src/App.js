@@ -8,7 +8,10 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import CreateProductPage from "./pages/admin/CreateProductPage";
 import ShopPage from "./pages/ShopPage";
-import CartPage from "./pages/CartPage";
+import CartPage from "./pages/order/CartPage";
+import ShippingPage from "./pages/order/ShippingPage";
+import PaymentPage from "./pages/order/PaymentPage";
+import PlaceOrderPage from "./pages/order/PlaceOrderPage";
 import ProductPage from "./pages/ProductPage";
 import ProductListPage from "./pages/admin/ProductListPage";
 import "react-toastify/dist/ReactToastify.css";
@@ -35,6 +38,9 @@ function App() {
             <Route path="/register" component={RegisterPage} />
             <Route path="/shop" component={ShopPage} />
             <Route path="/cart" component={CartPage} />
+            <Route path="/order/shipping" component={ShippingPage} />
+            <Route path="/order/payment" component={PaymentPage} />
+            <Route path="/order/finalize" component={PlaceOrderPage} />
             <Route path="/product/:id" component={ProductPage} />
             <Route path="/admin/product/create" component={CreateProductPage} />
             <Route path="/admin/product/list" component={ProductListPage} />

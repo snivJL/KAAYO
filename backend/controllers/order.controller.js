@@ -8,6 +8,12 @@ const { Error } = require("mongoose");
 
 let orderController = {};
 
+const updateStock = async (productId, qty) => {
+  const product = await Product.findById(productId);
+  if (product) {
+    product.update({ _id: productId }, { $inc: { countInStock: -qty } });
+  }
+};
 orderController.createOrder = async (req, res, next) => {
   try {
     const userId = req.userId;
@@ -15,34 +21,8 @@ orderController.createOrder = async (req, res, next) => {
     const { products, status, shipping, total } = req.body;
     validator.checkObjectId(userId);
     products.map((p) => validator.checkObjectId(p));
-
-    // const user = await User.findById(userId);
-    // console.log(user);
-    // if (user.balance >= total) {
-    //   const order = await Order.create({
-    //     userId,
-    //     products,
-    //     status,
-    //     shipping,
-    //     total,
-    //   });
-    //   const user = await User.findByIdAndUpdate(
-    //     { _id: userId },
-    //     { $inc: { balance: -total } },
-    //     { new: true }
-    //   );
-    //   utilsHelper.sendResponse(
-    //     res,
-    //     200,
-    //     true,
-    //     { order },
-    //     null,
-    //     "Order created"
-    //   );
-    // } else {
-    //   return next(new Error("401 - Insufficient balance, please top up"));
-    // }
-
+    //remove duplicate
+    [...new Set(products)].map((p) => updateStock(p._id, p.qty));
     const order = await Order.create({
       userId,
       products,

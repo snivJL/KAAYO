@@ -9,11 +9,11 @@ const orderSchema = mongoose.Schema(
       city: { type: String, required: true },
       district: { type: String },
       ward: { type: String },
-      postalCode: { type: Number, required: true },
+      postalCode: { type: Number },
       country: { type: String, required: true },
     },
     total: { type: Number, default: 0 },
-    paymentMethod: { type: String, required: true },
+    paymentMethod: { type: String, required: true, default: "Cash" },
     paymentResults: {
       id: { type: String },
       status: { type: String },
