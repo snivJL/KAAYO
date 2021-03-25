@@ -90,7 +90,15 @@ productController.createProduct = async (req, res, next) => {
 };
 
 productController.updateProduct = async (req, res, next) => {
-  const { name, description, price, images } = req.body;
+  const {
+    name,
+    description,
+    price,
+    images,
+    category,
+    countInStock,
+    ingredients,
+  } = req.body;
   const productId = req.params.id;
   let fields = {};
 
@@ -98,6 +106,9 @@ productController.updateProduct = async (req, res, next) => {
   if (description) fields.description = description;
   if (price) fields.price = price;
   if (images) fields.images = images;
+  if (category) fields.category = category;
+  if (countInStock) fields.countInStock = countInStock;
+  if (ingredients) fields.ingredients = ingredients;
   try {
     const product = await Product.findByIdAndUpdate(
       { _id: productId },

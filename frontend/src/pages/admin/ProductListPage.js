@@ -4,6 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import productActions from "../../redux/actions/product.actions";
 import EditProductModal from "./EditProductModal";
+import { Breadcrumb } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 // import Searchbar from "../../components/layout/SearchBar";
 
 const ProductListPage = () => {
@@ -23,6 +26,12 @@ const ProductListPage = () => {
       ) : (
         <div class="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
           <div class="w-full lg:w-5/6">
+            <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
+              <LinkContainer to="/">
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
+              </LinkContainer>
+              <Breadcrumb.Item active>Manage Products</Breadcrumb.Item>
+            </Breadcrumb>
             <div class="bg-white shadow-md rounded my-6">
               <table class="min-w-max w-full table-auto">
                 <thead>

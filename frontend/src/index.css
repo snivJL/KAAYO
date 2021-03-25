@@ -184,3 +184,16 @@ main {
 .category-label input {
   margin-right: 0.25rem;
 }
+
+/*--------------------- Product Card -------------------------*/
+
+.product-card .card-overlay {
+  display: none;
+}
+.product-card:hover .card-overlay {
+  display: flex;
+}
+
+/* .product-card-img {
+  display: none;
+} */
