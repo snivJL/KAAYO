@@ -32,7 +32,19 @@ router.put(
   orderController.updateOrder
 );
 /**
- * @route GET api/order/login
+ * @route GET api/order
+ * @description User can see all orders
+ * @access Admin required
+ */
+router.get(
+  "/",
+  authMiddleware.loginRequired,
+  authMiddleware.adminRequired,
+  orderController.getAllOrders
+);
+
+/**
+ * @route GET api/order/:id
  * @description User can see order detail
  * @access Login required
  */

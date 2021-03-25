@@ -1,6 +1,7 @@
 import React from "react";
 import Rating from "./Rating";
 import { Link } from "react-router-dom";
+import AddToCartButton from "../AddToCartButton";
 
 const Product = ({ p }) => {
   return (
@@ -45,12 +46,7 @@ const Product = ({ p }) => {
             <span className="text-lg">{p.price}</span>
           </p>
         </div>
-        <button
-          className="outline btn-block bg-red-500 rounded-sm py-2 text-white hover:bg-red-400"
-          title="Add to cart"
-        >
-          Add To Cart
-        </button>
+        <AddToCartButton product={p} />
       </div>
     </div>
   );

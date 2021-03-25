@@ -1,14 +1,5 @@
-import React from "react";
-import {
-  Image,
-  Container,
-  Row,
-  Col,
-  ButtonGroup,
-  Card,
-  Button,
-  Spinner,
-} from "react-bootstrap";
+import React, { useEffect } from "react";
+import { ButtonGroup, Button } from "react-bootstrap";
 import { useHistory, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import orderActions from "../../redux/actions/order.actions";
@@ -20,14 +11,16 @@ const PlaceOrderPage = () => {
   const paymentMethod = useSelector((state) => state.order.paymentMethod);
   if (!paymentMethod) history.push("/payment");
   const order = useSelector((state) => state.order);
-  const { cart, loading } = order;
+  const { cart, loading, orderCreated } = order;
   const cartPrice = cart.reduce(
     (acc, item) => acc + item.product.price * item.qty,
     0
   );
 
   const dispatch = useDispatch();
-
+  useEffect(() => {
+    if (orderCreated) history.push("/order/summary");
+  }, [history, orderCreated]);
   return (
     <div className="flex justify-center ">
       <div className="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">

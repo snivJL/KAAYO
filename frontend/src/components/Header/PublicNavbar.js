@@ -30,7 +30,9 @@ const AdminLinks = () => {
         <Dropdown.Item as={Link} to="/admin/product/list">
           List Products
         </Dropdown.Item>
-        <Dropdown.Item href="/">List Orders</Dropdown.Item>
+        <Dropdown.Item as={Link} to="/admin/order/list">
+          List Orders
+        </Dropdown.Item>
       </DropdownButton>
     </li>
   );

@@ -28,6 +28,22 @@ orderActions.savePaymentMethod = (data) => (dispatch) => {
   localStorage.setItem("paymentMethod", JSON.stringify(data.paymentMethod));
 };
 
+orderActions.getAllOrders = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_ALL_ORDERS_REQUEST });
+    const { data } = await api.get("/order");
+    dispatch({ type: types.GET_ALL_ORDERS_SUCCESS, payload: data.data.order });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.GET_ALL_ORDERS_FAIL,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
 orderActions.createOrder = (order, cartPrice) => async (dispatch) => {
   try {
     //creates flattened array, 1 line per product per quantity to match server
@@ -47,12 +63,13 @@ orderActions.createOrder = (order, cartPrice) => async (dispatch) => {
     console.log(formatOrder);
     dispatch({ type: types.CREATE_ORDER_REQUEST });
     const { data } = await api.post("/order/add", formatOrder);
-    localStorage.removeItem("cartItems");
 
     dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: data });
-    toast.warning(`Thanks for ordering!`);
   } catch (error) {
-    dispatch({ type: types.CREATE_ORDER_FAIL, payload: error.errors.message });
+    dispatch({
+      type: types.CREATE_ORDER_FAIL,
+      payload: error.errors.message ? error.errors.message : error,
+    });
     toast.error(error.errors.message);
   }
 };

@@ -31,6 +31,8 @@ const ShippingPage = () => {
       postalCode: "",
       city: "",
       country: "",
+      ward: "",
+      district: "",
     },
     validate,
     onSubmit: (values) => {
@@ -79,19 +81,43 @@ const ShippingPage = () => {
                 <div>{formik.errors.city}</div>
               ) : null}
             </Form.Group>
-            <Form.Group controlId="formGroupText">
-              <Form.Label>Postal Code</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Postal Code"
-                name="postalCode"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.postalCode}
-              />
-              {formik.touched.postalCode && formik.errors.postalCode ? (
-                <div>{formik.errors.postalCode}</div>
-              ) : null}
+            <Form.Group
+              className="flex items-center justify-center"
+              controlId="formGroupText"
+            >
+              <div className="flex flex-col">
+                <Form.Label>Postal Code</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Postal Code"
+                  name="postalCode"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.postalCode}
+                />
+              </div>
+              <div className="flex flex-col">
+                <Form.Label>District</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="District"
+                  name="district"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.district}
+                />
+              </div>
+              <div className="flex flex-col">
+                <Form.Label>Ward (optional)</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ward"
+                  name="ward"
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.ward}
+                />{" "}
+              </div>
             </Form.Group>
             <Form.Group controlId="formGroupText">
               <Form.Label>Country</Form.Label>

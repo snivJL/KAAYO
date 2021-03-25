@@ -12,8 +12,10 @@ import CartPage from "./pages/order/CartPage";
 import ShippingPage from "./pages/order/ShippingPage";
 import PaymentPage from "./pages/order/PaymentPage";
 import PlaceOrderPage from "./pages/order/PlaceOrderPage";
+import OrderPlacedPage from "./pages/order/OrderPlacedPage";
 import ProductPage from "./pages/ProductPage";
 import ProductListPage from "./pages/admin/ProductListPage";
+import OrderListPage from "./pages/admin/OrderListPage";
 import "react-toastify/dist/ReactToastify.css";
 
 function App() {
@@ -41,9 +43,11 @@ function App() {
             <Route path="/order/shipping" component={ShippingPage} />
             <Route path="/order/payment" component={PaymentPage} />
             <Route path="/order/finalize" component={PlaceOrderPage} />
+            <Route path="/order/summary" component={OrderPlacedPage} />
             <Route path="/product/:id" component={ProductPage} />
             <Route path="/admin/product/create" component={CreateProductPage} />
             <Route path="/admin/product/list" component={ProductListPage} />
+            <Route path="/admin/order/list" component={OrderListPage} />
           </Switch>
         </div>
         <footer>

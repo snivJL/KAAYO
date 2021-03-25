@@ -21,14 +21,13 @@ import AddToCartButton from "../components/AddToCartButton";
 
 const ProductPage = () => {
   const [qty, setQty] = useState(1);
-  const productId = useParams();
+  const productId = useParams().id;
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.selectedProduct);
   const loading = useSelector((state) => state.product.loading);
   const images = useSelector((state) => state.product.selectedProduct.images);
-
   useEffect(() => {
-    dispatch(productActions.getSingleProduct(productId.id));
+    dispatch(productActions.getSingleProduct(productId));
   }, [dispatch, productId]);
 
   return (

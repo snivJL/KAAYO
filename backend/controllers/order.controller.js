@@ -76,13 +76,23 @@ orderController.deleteOrder = async (req, res, next) => {
   }
 };
 
+orderController.getAllOrders = async (req, res, next) => {
+  try {
+    const order = await Order.find({}).populate("products").populate("userId");
+    if (!order) return next(new Error("401 - Order not found"));
+    utilsHelper.sendResponse(res, 200, true, { order }, null, "Get all orders");
+  } catch (error) {
+    next(error);
+  }
+};
+
 orderController.getSingleOrder = async (req, res, next) => {
   try {
     const orderId = req.params.id;
     const order = await Order.findById(orderId)
       .populate("products")
       .populate("userId");
-    if (!order) return next(new Error("401 - ORder not found"));
+    if (!order) return next(new Error("401 - Order not found"));
     utilsHelper.sendResponse(
       res,
       200,
