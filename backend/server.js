@@ -1,7 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
 const passport = require("passport");
-const generateData = require("./generateData.js");
 dotenv.config();
 require("./middlewares/passport");
 const PORT = process.env.PORT || 5000;
@@ -20,7 +19,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(cors());
-app.use(express.static(path.join(__dirname, "public")));
 
 app.listen(
   PORT,
@@ -40,9 +38,14 @@ mongoose
   })
   .then(() => console.log(`Mongoose connected to ${mongoURI}`))
   .catch((err) => console.log(err));
-
+const dirname = path.resolve();
 app.use("/api", indexRouter);
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(dirname, "/frontend/build")));
+  app.get("*", (req, res) =>
+    res.sendFile(path.resolve(dirname, "frontend", "build", "index.html"))
+  );
+}
 // catch 404 and forard to error handler
 app.use((req, res, next) => {
   const err = new Error("404 - Resource not found");

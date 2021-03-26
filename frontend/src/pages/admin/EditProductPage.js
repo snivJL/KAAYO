@@ -43,10 +43,7 @@ const CreateProductPage = () => {
         }}
         validationSchema={ProductSchema}
         onSubmit={async (values) => {
-          console.log("IMAGES in SUBMIT", img);
-
           values.images = img;
-          console.log("EDIT", values);
           dispatch(productActions.editProduct(productId, values));
         }}
       >
