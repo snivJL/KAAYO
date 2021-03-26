@@ -38,8 +38,10 @@ mongoose
   })
   .then(() => console.log(`Mongoose connected to ${mongoURI}`))
   .catch((err) => console.log(err));
-const dirname = path.resolve();
 app.use("/api", indexRouter);
+
+const dirname = path.resolve();
+
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.join(dirname, "/frontend/build")));
   app.get("*", (req, res) =>
