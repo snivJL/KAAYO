@@ -2,24 +2,24 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import { Link, useParams } from "react-router-dom";
-import orderActions from "../../redux/actions/order.actions";
+import userActions from "../../redux/actions/user.actions";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Moment from "react-moment";
 // import Searchbar from "../../components/layout/SearchBar";
 
-const OrderListPage = () => {
+const MyOrdersPage = () => {
   const keywords = useParams().keywords;
-  const order = useSelector((state) => state.order);
-  const { loading, orderList } = order;
+  const user = useSelector((state) => state.user);
+  const { loading, userInfo, myOrders } = user;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (loading === "idle") dispatch(orderActions.getAllOrders());
-  }, [dispatch, loading]);
+    dispatch(userActions.getUserOrders(userInfo._id));
+  }, [dispatch, userInfo]);
 
   return (
     <div class="overflow-x-auto">
-      {loading === "loading" || loading === "idle" ? (
+      {loading === "loading" ? (
         <Loader />
       ) : (
         <div class="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
@@ -28,13 +28,14 @@ const OrderListPage = () => {
               <LinkContainer to="/">
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
-              <Breadcrumb.Item active>Manage Orders</Breadcrumb.Item>
+              <Breadcrumb.Item active>My Orders</Breadcrumb.Item>
             </Breadcrumb>
+
             <div class="bg-white shadow-md rounded my-6">
               <table class="min-w-max w-full table-auto">
                 <thead>
                   <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th class="py-3 px-6 text-left">Created At</th>
+                    <th class="py-3 px-6 text-left">Order Date</th>
                     <th class="py-3 px-6 text-left">Customer</th>
                     <th class="py-3 px-6 text-center">Products</th>
                     <th class="py-3 px-6 text-center">Shipping</th>
@@ -45,7 +46,7 @@ const OrderListPage = () => {
                   </tr>
                 </thead>
                 <tbody class="text-gray-600 text-sm font-light">
-                  {orderList.map((o) => (
+                  {myOrders.map((o) => (
                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                       <td class="py-3 px-6 text-left whitespace-nowrap">
                         <div class="flex items-center">
@@ -201,4 +202,4 @@ const OrderListPage = () => {
     </div>
   );
 };
-export default OrderListPage;
+export default MyOrdersPage;

@@ -7,6 +7,7 @@ import RegisterPage from "./pages/auth/RegisterPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import CreateProductPage from "./pages/admin/CreateProductPage";
+import EditProductPage from "./pages/admin/EditProductPage";
 import ShopPage from "./pages/ShopPage";
 import CartPage from "./pages/order/CartPage";
 import ShippingPage from "./pages/order/ShippingPage";
@@ -17,6 +18,7 @@ import ProductPage from "./pages/ProductPage";
 import ProductListPage from "./pages/admin/ProductListPage";
 import OrderListPage from "./pages/admin/OrderListPage";
 import "react-toastify/dist/ReactToastify.css";
+import MyOrdersPage from "./pages/order/MyOrdersPage";
 
 function App() {
   return (
@@ -44,9 +46,11 @@ function App() {
             <Route path="/order/payment" component={PaymentPage} />
             <Route path="/order/finalize" component={PlaceOrderPage} />
             <Route path="/order/summary" component={OrderPlacedPage} />
+            <Route path="/profile/myorders" component={MyOrdersPage} />
             <Route path="/product/:id" component={ProductPage} />
             <Route path="/admin/product/create" component={CreateProductPage} />
             <Route path="/admin/product/list" component={ProductListPage} />
+            <Route path="/admin/product/:id/edit" component={EditProductPage} />
             <Route path="/admin/order/list" component={OrderListPage} />
           </Switch>
         </div>

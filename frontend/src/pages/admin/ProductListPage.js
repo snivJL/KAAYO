@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import Loader from "../../components/layout/Loader";
+import Loader from "../../components/Loader";
 import { Link, useParams } from "react-router-dom";
 import productActions from "../../redux/actions/product.actions";
-import EditProductModal from "./EditProductModal";
+import EditProductModal from "./EditProductPage";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -21,8 +21,8 @@ const ProductListPage = () => {
 
   return (
     <div class="overflow-x-auto">
-      {loading ? (
-        <h1>loading</h1>
+      {loading === "loading" ? (
+        <Loader />
       ) : (
         <div class="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
           <div class="w-full lg:w-5/6">
@@ -128,21 +128,24 @@ const ProductListPage = () => {
                               />
                             </svg>
                           </div>
-                          <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="none"
-                              viewBox="0 0 24 24"
-                              stroke="currentColor"
-                            >
-                              <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                              />
-                            </svg>
-                          </div>
+                          <Link to={`/admin/product/${p._id}/edit`}>
+                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                              >
+                                <path
+                                  stroke-linecap="round"
+                                  stroke-linejoin="round"
+                                  stroke-width="2"
+                                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
+                                />
+                              </svg>
+                            </div>
+                          </Link>
+
                           <div
                             onClick={() =>
                               dispatch(productActions.deleteProduct(p._id))

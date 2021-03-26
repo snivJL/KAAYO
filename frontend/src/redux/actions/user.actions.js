@@ -64,20 +64,6 @@ userActions.makePayment = (userId, orderId) => async (dispatch) => {
   }
 };
 
-userActions.topUpUser = (userId, topup) => async (dispatch) => {
-  try {
-    dispatch({ type: types.TOPUP_USER_REQUEST });
-    const { data } = await api.put(`/user/${userId}/topup`, { topup });
-    dispatch({ type: types.TOPUP_USER_SUCCESS, payload: data.data.user });
-    toast.warning("Balance updated");
-  } catch (error) {
-    console.error(error);
-    dispatch({
-      type: types.TOPUP_USER_FAIL,
-      payload: error.errors.message,
-    });
-  }
-};
 userActions.getUserOrders = (userId) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_USER_ORDER_REQUEST });

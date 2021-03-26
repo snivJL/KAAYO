@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 import productActions from "../redux/actions/product.actions";
 import { LinkContainer } from "react-router-bootstrap";
 
-// import Loader from "../components/layout/Loader";
+import Loader from "../components/Loader";
 import Rating from "../components/product/Rating";
 // import ImagesCarousel from "../components/products/ImagesCarousel";
 import AddToCartButton from "../components/AddToCartButton";
@@ -27,15 +27,16 @@ const ProductPage = () => {
   const loading = useSelector((state) => state.product.loading);
   const images = useSelector((state) => state.product.selectedProduct.images);
   useEffect(() => {
-    dispatch(productActions.getSingleProduct(productId));
-  }, [dispatch, productId]);
+    if (loading === "idle")
+      dispatch(productActions.getSingleProduct(productId));
+  }, [dispatch, productId, loading]);
 
   return (
     <>
-      {loading ? (
+      {loading === "loading" ? (
         <>
           {console.log("loading")}
-          <h1>loading</h1>
+          <Loader />
         </>
       ) : (
         <Container>

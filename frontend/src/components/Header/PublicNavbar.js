@@ -14,7 +14,9 @@ const AuthLinks = ({ name }) => {
         <Dropdown.Item onClick={() => dispatch(authActions.logout())}>
           Logout
         </Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+        <Dropdown.Item as={Link} to="/profile/myorders">
+          My Orders
+        </Dropdown.Item>
         <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
       </DropdownButton>
     </li>
@@ -57,16 +59,18 @@ const GuestLinks = () => {
 const PublicNavbar = () => {
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated } = auth;
-  const user = useSelector((state) => state.user.user);
-  const { role, name, loading } = user;
+  const user = useSelector((state) => state.user.userInfo);
+  const loading = useSelector((state) => state.user.loading);
+
+  const { role, name } = user;
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(userActions.getCurrentUser());
-  }, [dispatch]);
+    if (loading === "idle") dispatch(userActions.getCurrentUser());
+  }, [dispatch, loading]);
   return (
     <div className="h-24 bg-green-100 w-full grid md:grid-cols-3 text-gray-700 items-center justify-center px-4 relative sm:grid-cols-1">
       <ul className="flex space-x-3 font-light">
-        {isAuthenticated && !loading ? (
+        {isAuthenticated && loading === "succeeded" ? (
           <AuthLinks name={name} />
         ) : (
           <GuestLinks />

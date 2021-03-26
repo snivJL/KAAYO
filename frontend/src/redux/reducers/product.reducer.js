@@ -1,7 +1,7 @@
 import * as types from "../constants/product.constants";
 
 const initialState = {
-  loading: true,
+  loading: "idle",
   products: [],
   pageCount: 0,
   deletedProducts: [],
@@ -15,23 +15,23 @@ const productReducer = (state = initialState, action) => {
     case types.EDIT_PRODUCT_REQUEST:
     case types.DELETE_PRODUCT_REQUEST:
     case types.GET_DELETED_PRODUCTS_REQUEST:
-      return { ...state, loading: true };
+      return { ...state, loading: "loading" };
     case types.GET_PRODUCTS_SUCCESS:
       return {
         ...state,
         products: payload.products,
         pageCount: payload.totalPages,
-        loading: false,
+        loading: "succeeded",
       };
     case types.GET_DELETED_PRODUCTS_SUCCESS:
-      return { ...state, deletedProducts: payload, loading: false };
+      return { ...state, deletedProducts: payload, loading: "succeeded" };
     case types.GET_SINGLE_PRODUCT_SUCCESS:
-      return { ...state, selectedProduct: payload, loading: false };
+      return { ...state, selectedProduct: payload, loading: "succeeded" };
     case types.DELETE_PRODUCT_SUCCESS:
       return {
         ...state,
         products: state.products.filter((p) => p._id !== payload),
-        loading: false,
+        loading: "succeeded",
       };
     case types.EDIT_PRODUCT_SUCCESS:
       return {
@@ -40,7 +40,7 @@ const productReducer = (state = initialState, action) => {
           if (p._id === payload._id) return payload;
           else return p;
         }),
-        loading: false,
+        loading: "succeeded",
       };
 
     case types.GET_PRODUCTS_FAIL:
@@ -48,7 +48,7 @@ const productReducer = (state = initialState, action) => {
     case types.DELETE_PRODUCT_FAIL:
     case types.GET_DELETED_PRODUCTS_FAIL:
     case types.EDIT_PRODUCT_FAIL:
-      return { ...state, loading: false, error: payload };
+      return { ...state, loading: "failed", error: payload };
 
     default:
       return state;

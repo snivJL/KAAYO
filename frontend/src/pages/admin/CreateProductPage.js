@@ -57,11 +57,11 @@ const CreateProductPage = () => {
           <div className="container mx-auto">
             <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
               <LinkContainer to="/">
-                <Breadcrumb.Item>Home</Breadcrumb.Item>c{" "}
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
-              <Breadcrumb.Item active>Create Product</Breadcrumb.Item>c{" "}
+              <Breadcrumb.Item active>Create Product</Breadcrumb.Item>
             </Breadcrumb>
-            <div className="max-w-md mx-auto  bg-white p-5 rounded-md shadow-sm">
+            <div className="max-w-xl mx-auto bg-white p-5 rounded-md shadow-sm">
               <div className="text-center">
                 <h1 className="my-2 text-3xl font-semibold text-gray-700 dark:text-gray-200">
                   Create Product

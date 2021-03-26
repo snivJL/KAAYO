@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import Product from "../components/product/Product";
+import Loader from "../components/Loader";
 const ShopPage = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
@@ -12,9 +13,9 @@ const ShopPage = () => {
     dispatch(productActions.getAllProducts());
   }, [dispatch]);
   return (
-    <div>
-      {loading ? (
-        <h1>loading</h1>
+    <div className="h-screen">
+      {loading === "loading" ? (
+        <Loader size={"w-24"} caption={true} />
       ) : (
         <div className="w-full lg:w-5/6 mx-auto ">
           <Breadcrumb className="mx-auto max-w-max bg-opacity-0">

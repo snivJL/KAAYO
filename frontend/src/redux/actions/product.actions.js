@@ -32,7 +32,10 @@ productActions.getSingleProduct = (id) => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.GET_SINGLE_PRODUCT_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -88,10 +91,10 @@ productActions.restoreProduct = (productId) => async (dispatch) => {
   }
 };
 
-productActions.editProduct = (product) => async (dispatch) => {
+productActions.editProduct = (productId, product) => async (dispatch) => {
   try {
     dispatch({ type: types.EDIT_PRODUCT_REQUEST });
-    const { data } = await api.put(`/product/${product._id}/update`, product);
+    const { data } = await api.put(`/product/${productId}/update`, product);
     dispatch({ type: types.EDIT_PRODUCT_SUCCESS, payload: data.data });
     toast.success("Product edited!");
   } catch (error) {
