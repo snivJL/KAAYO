@@ -3,7 +3,7 @@ import productActions from "../redux/actions/product.actions";
 import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Product from "../components/product/Product";
 import Loader from "../components/Loader";
 const ShopPage = () => {

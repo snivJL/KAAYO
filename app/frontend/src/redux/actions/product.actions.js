@@ -75,7 +75,7 @@ productActions.createProduct = (product) => async (dispatch) => {
   try {
     dispatch({ type: types.CREATE_PRODUCT_REQUEST });
     const { data } = await api.post("/product/add", product);
-    dispatch({ type: types.CREATE_PRODUCT_SUCCESS });
+    dispatch({ type: types.CREATE_PRODUCT_SUCCESS, payload: data });
     toast.info("Product created!");
   } catch (error) {
     console.error(error);
@@ -90,7 +90,7 @@ productActions.createProduct = (product) => async (dispatch) => {
 productActions.deleteProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: types.DELETE_PRODUCT_REQUEST });
-    const { data } = await api.delete(`/product/${productId}/delete`);
+    await api.delete(`/product/${productId}/delete`);
     dispatch({ type: types.DELETE_PRODUCT_SUCCESS, payload: productId });
     toast.success("Product deleted!");
   } catch (error) {
@@ -105,7 +105,7 @@ productActions.deleteProduct = (productId) => async (dispatch) => {
 productActions.restoreProduct = (productId) => async (dispatch) => {
   try {
     dispatch({ type: types.RESTORE_PRODUCT_REQUEST });
-    const { data } = await api.put(`/product/${productId}/restore`);
+    await api.put(`/product/${productId}/restore`);
     dispatch({ type: types.RESTORE_PRODUCT_SUCCESS, payload: productId });
     toast.success("Product restored!");
   } catch (error) {

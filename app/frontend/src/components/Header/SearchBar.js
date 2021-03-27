@@ -1,10 +1,7 @@
 import React, { useState } from "react";
-import productActions from "../../redux/actions/product.actions";
-import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 const SearchBar = () => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const [keyword, setKeyword] = useState("");
   const handleSubmit = (e) => {

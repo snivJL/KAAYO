@@ -25,21 +25,20 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.selectedProduct);
   const loading = useSelector((state) => state.product.loading);
-  const images = useSelector((state) => state.product.selectedProduct.images);
+  // const images = useSelector((state) => state.product.selectedProduct.images);
   const category = useSelector(
     (state) => state.product.selectedProduct.category
   );
 
   useEffect(() => {
-    if (loading === "idle")
-      dispatch(productActions.getSingleProduct(productId));
-  }, [dispatch, productId, loading]);
+    dispatch(productActions.getSingleProduct(productId));
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <>
       {loading === "loading" ? (
         <>
-          {console.log("loading")}
           <Loader />
         </>
       ) : (
