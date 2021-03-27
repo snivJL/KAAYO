@@ -75,7 +75,7 @@ const PublicNavbar = () => {
         ) : (
           <GuestLinks />
         )}
-        {role === "admin" && <AdminLinks />}
+        {role === "admin" && isAuthenticated && <AdminLinks />}
         <li>
           <SearchBar />
         </li>

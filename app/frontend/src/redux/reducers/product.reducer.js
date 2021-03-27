@@ -5,7 +5,7 @@ const initialState = {
   products: [],
   pageCount: 0,
   deletedProducts: [],
-  selectedProduct: { images: [{}] },
+  selectedProduct: { images: [{}], category: [] },
 };
 const productReducer = (state = initialState, action) => {
   const { type, payload } = action;

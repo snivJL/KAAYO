@@ -26,6 +26,10 @@ const ProductPage = () => {
   const product = useSelector((state) => state.product.selectedProduct);
   const loading = useSelector((state) => state.product.loading);
   const images = useSelector((state) => state.product.selectedProduct.images);
+  const category = useSelector(
+    (state) => state.product.selectedProduct.category
+  );
+
   useEffect(() => {
     if (loading === "idle")
       dispatch(productActions.getSingleProduct(productId));
@@ -47,7 +51,7 @@ const ProductPage = () => {
             <LinkContainer to="/shop">
               <Breadcrumb.Item>Shop</Breadcrumb.Item>
             </LinkContainer>
-            <Breadcrumb.Item active>{product.category[0]}</Breadcrumb.Item>
+            <Breadcrumb.Item active>{category[0]}</Breadcrumb.Item>
           </Breadcrumb>
           <Link className="btn btn-light my-3 " to="/">
             <i class="far fa-arrow-alt-circle-left"></i> Back
