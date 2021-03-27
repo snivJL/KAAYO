@@ -42,6 +42,7 @@ function App() {
             <Route path="/register" component={RegisterPage} />
             <Route exact path="/shop" component={ShopPage} />
             <Route path="/shop/:cat" component={ShopPage} />
+            <Route path="/search/:keyword" component={ShopPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/order/shipping" component={ShippingPage} />
             <Route path="/order/payment" component={PaymentPage} />

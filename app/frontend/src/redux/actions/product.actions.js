@@ -32,6 +32,7 @@ productActions.getFilteredProducts = (
     const { data } = await api.get(
       `/product?search=${keywords}&page=${page}&cat=${cat}`
     );
+    console.log(data.data);
     dispatch({
       type: types.GET_FILTERED_PRODUCTS_SUCCESS,
       payload: data.data,
