@@ -207,4 +207,40 @@ productController.restoreProduct = async (req, res, next) => {
   }
 };
 
+productController.createReview = async (req, res, next) => {
+  try {
+    const { rating, comment, name } = req.body;
+    const userId = req.userId;
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return next(new Error("Product not found"));
+    } else {
+      const alreadyReviewed = product.reviews.find(
+        (x) => x.user.toString() === req.userId.toString()
+      );
+      if (alreadyReviewed) return next(new Error("Product already reviewed"));
+      const review = { name, comment, rating, userId };
+
+      product.reviews.push(review);
+      product.numReviews = product.reviews.length;
+      product.rating =
+        product.reviews.reduce((acc, product) => product.rating + acc, 0) /
+        product.reviews.length;
+      console.log(product);
+
+      await product.save();
+      utilsHelper.sendResponse(
+        res,
+        201,
+        true,
+        { product },
+        null,
+        "Review added"
+      );
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = productController;

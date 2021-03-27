@@ -29,9 +29,9 @@ const ShopPage = () => {
             </LinkContainer>
             <Breadcrumb.Item active>Shop</Breadcrumb.Item>
           </Breadcrumb>
-          {console.log(filteredProducts)}
+          {console.log(!cat && !keywords)}
           <div className="flex space-x-3">
-            {filteredProducts.length > 0
+            {cat || keywords
               ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
               : products.map((p, i) => <Product key={i} p={p} />)}
           </div>

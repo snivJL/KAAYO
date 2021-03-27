@@ -91,4 +91,21 @@ router.put(
   authMiddleware.adminRequired,
   productController.restoreProduct
 );
+
+/**
+ * @route POST api/product/:id/reviews
+ * @description USer can add a review
+ * @access login Required
+ */
+router.post(
+  "/:id/reviews",
+  authMiddleware.loginRequired,
+  validators.validate([
+    check("name").notEmpty().withMessage("Name is required"),
+    check("rating").notEmpty().withMessage("Description is required"),
+    check("comment").notEmpty().withMessage("Price is required"),
+  ]),
+  productController.createReview
+);
+
 module.exports = router;
