@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { DropdownButton, Dropdown } from "react-bootstrap";
 import authActions from "../../redux/actions/auth.actions";
 import userActions from "../../redux/actions/user.actions";
+import logo from "../../images/logo.png";
 
 const AuthLinks = ({ name }) => {
   const dispatch = useDispatch();
@@ -58,19 +59,19 @@ const GuestLinks = () => {
 
 const PublicNavbar = () => {
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated } = auth;
+  const { isAuthenticated, token } = auth;
   const user = useSelector((state) => state.user.userInfo);
   const loading = useSelector((state) => state.user.loading);
 
   const { role, name } = user;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (loading === "idle") dispatch(userActions.getCurrentUser());
-  }, [dispatch, loading]);
+    if (isAuthenticated && token) dispatch(userActions.getCurrentUser());
+  }, [dispatch, isAuthenticated, token]);
   return (
-    <div className="h-24 bg-green-100 w-full grid md:grid-cols-3 text-gray-700 items-center justify-center px-4 relative sm:grid-cols-1">
+    <div className="h-52 bg-green-600 w-full grid md:grid-cols-3 text-gray-100  justify-center px-4 relative sm:grid-cols-1">
       <ul className="flex space-x-3 font-light">
-        {isAuthenticated && loading === "succeeded" ? (
+        {role === "user" && isAuthenticated ? (
           <AuthLinks name={name} />
         ) : (
           <GuestLinks />
@@ -81,7 +82,9 @@ const PublicNavbar = () => {
         </li>
       </ul>
       <Link className="justify-self-center mx-auto" to="/">
-        <div className="text-4xl ">KA.A.YO</div>
+        <div className="text-4xl ">
+          <img src={logo} alt="" />
+        </div>
       </Link>
       <div className="justify-self-end">
         <Link to="/cart">

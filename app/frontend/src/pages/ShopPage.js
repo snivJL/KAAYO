@@ -18,12 +18,15 @@ const ShopPage = () => {
     else if (!cat) dispatch(productActions.getAllProducts());
   }, [dispatch, cat, keywords]);
   return (
-    <div className="container mx-auto">
+    <div className="container-md mx-auto bg-white">
       {loading === "loading" ? (
         <Loader size={"w-24"} caption={true} />
       ) : (
         <div className="w-full lg:w-5/6 mx-auto ">
-          <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
+          <Breadcrumb
+            className="mx-auto max-w-max bg-transparent	"
+            bsPrefix="breadcrumb-item"
+          >
             <LinkContainer to="/">
               <Breadcrumb.Item>Home</Breadcrumb.Item>
             </LinkContainer>

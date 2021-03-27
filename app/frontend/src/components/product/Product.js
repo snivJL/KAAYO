@@ -5,11 +5,11 @@ import AddToCartButton from "../AddToCartButton";
 
 const Product = ({ p }) => {
   return (
-    <div className="w-56 mr-5">
+    <div className="w-56 mr-4 mb-2 shadow rounded-lg">
       <div className="product-card relative w-full">
         <Link to={`/product/${p._id}`}>
           <img
-            className="product-card-img rounded-lg"
+            className="product-card-img rounded-t-lg"
             src={p.images[0].imageUrl}
             alt=""
           />

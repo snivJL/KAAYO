@@ -36,7 +36,7 @@ authActions.loginFacebook = (user) => async (dispatch) => {
 
     dispatch({
       type: types.LOGIN_FACEBOOK_SUCCESS,
-      payload: res.data.accessToken,
+      payload: res.data,
     });
   } catch (error) {
     dispatch({ type: types.LOGIN_FACEBOOK_FAIL, payload: error });

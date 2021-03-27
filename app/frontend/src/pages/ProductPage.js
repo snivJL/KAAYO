@@ -85,7 +85,7 @@ const ProductPage = () => {
                     <Row>
                       <Col>Price:</Col>
                       <Col>
-                        <strong>${product.price}</strong>
+                        <strong>&#8363;{product.price}</strong>
                       </Col>
                     </Row>
                   </ListGroup.Item>

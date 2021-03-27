@@ -13,7 +13,6 @@ const { check } = require("express-validator");
 router.post(
   "/add",
   authMiddleware.loginRequired,
-  authMiddleware.adminRequired,
   validators.validate([
     check("products")
       .isArray({ min: 1 })

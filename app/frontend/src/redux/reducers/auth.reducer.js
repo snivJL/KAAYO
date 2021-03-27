@@ -25,7 +25,8 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_FACEBOOK_SUCCESS:
       return {
         ...state,
-        token: payload,
+        token: payload.accessToken,
+        user: payload.user,
         loading: false,
         isAuthenticated: true,
       };

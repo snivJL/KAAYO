@@ -1,10 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import logo from "../images/logo.png";
 
 const Footer = () => {
   return (
-    <div className="bg-green-400 h-24 px-4 grid grid-cols-3 items-center text-gray-700">
-      <div className="text-xl">KA.A.YO</div>
+    <div className="bg-green-600 h-24 px-4 grid grid-cols-3 items-center text-gray-100">
+      <div className="text-xl">
+        <img className="w-32" src={logo} alt="" />
+      </div>
       <ul className="flex space-x-2 font-light items-center justify-self-center">
         <Link to="/about">
           <li className="hover:text-gray-400 border-r border-green-600 pr-2 ">

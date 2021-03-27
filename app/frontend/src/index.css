@@ -25,7 +25,16 @@ body {
 header {
   grid-area: header;
 }
-
+.panel-list li {
+  transition: all ease-in-out 50ms;
+}
+.panel-list li:hover {
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+}
+main {
+  background-color: #e6ddd5;
+}
 img {
   max-width: 100%;
 }
@@ -192,4 +201,8 @@ main {
 }
 .product-card:hover .card-overlay {
   display: flex;
+}
+
+.breadcrumb-item-custom {
+  background-color: transparent !important;
 }

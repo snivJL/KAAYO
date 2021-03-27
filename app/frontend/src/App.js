@@ -35,7 +35,7 @@ function App() {
           <PublicNavbar />
           <CategoriesPanel />
         </header>
-        <div className="bg-gray-100">
+        <main>
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/login" component={LoginPage} />
@@ -55,7 +55,7 @@ function App() {
             <Route path="/admin/product/:id/edit" component={EditProductPage} />
             <Route path="/admin/order/list" component={OrderListPage} />
           </Switch>
-        </div>
+        </main>
         <footer>
           <Footer />
         </footer>
