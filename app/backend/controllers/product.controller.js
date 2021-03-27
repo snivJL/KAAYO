@@ -9,9 +9,15 @@ let productController = {};
 productController.getAllProducts = async (req, res, next) => {
   try {
     let { page, limit, sortBy, search, cat, ...filter } = req.query;
-    console.log("CAT", cat);
 
-    const keywords = search ? { name: { $regex: search, $options: "i" } } : {};
+    const keywords = search
+      ? {
+          $or: [
+            { name: { $regex: search, $options: "i" } },
+            { ingredients: { $regex: search, $options: "i" } },
+          ],
+        }
+      : {};
     const category = cat ? { category: { $in: [cat] } } : {};
     page = parseInt(page) || 1;
     limit = parseInt(limit) || 10;
