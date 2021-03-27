@@ -38,7 +38,7 @@ router.post(
     check("images")
       .isArray({ min: 1 })
       .withMessage("At least one image is required"),
-    check("categories")
+    check("category")
       .isArray({ min: 1 })
       .withMessage("At least one category is required"),
   ]),

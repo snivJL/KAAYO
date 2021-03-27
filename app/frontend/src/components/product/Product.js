@@ -5,15 +5,15 @@ import AddToCartButton from "../AddToCartButton";
 
 const Product = ({ p }) => {
   return (
-    <div>
-      <div className="product-card relative w-72 h-80">
+    <div className="w-56 mr-5">
+      <div className="product-card relative w-full">
         <Link to={`/product/${p._id}`}>
           <img
             className="product-card-img rounded-lg"
             src={p.images[0].imageUrl}
             alt=""
           />
-          <div className="card-overlay justify-center items-center absolute w-72 h-16 bottom-0 bg-green-800 opacity-40 text-center text-white ">
+          <div className="card-overlay justify-center items-center absolute w-full h-16 bottom-0 bg-green-800 opacity-40 text-center text-white ">
             <p>See more</p>
           </div>
         </Link>

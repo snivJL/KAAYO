@@ -18,7 +18,7 @@ const ShopPage = () => {
     else if (!cat) dispatch(productActions.getAllProducts());
   }, [dispatch, cat, keywords]);
   return (
-    <div className="h-screen">
+    <div className="container mx-auto">
       {loading === "loading" ? (
         <Loader size={"w-24"} caption={true} />
       ) : (
@@ -30,7 +30,7 @@ const ShopPage = () => {
             <Breadcrumb.Item active>Shop</Breadcrumb.Item>
           </Breadcrumb>
           {console.log(!cat && !keywords)}
-          <div className="flex space-x-3">
+          <div className="flex flex-wrap items-center">
             {cat || keywords
               ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
               : products.map((p, i) => <Product key={i} p={p} />)}
