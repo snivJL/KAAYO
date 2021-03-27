@@ -3,15 +3,18 @@ import productActions from "../redux/actions/product.actions";
 import { useSelector, useDispatch } from "react-redux";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
+import { useParams } from "react-router-dom";
 import Product from "../components/product/Product";
 import Loader from "../components/Loader";
 const ShopPage = () => {
+  const cat = useParams().cat;
+  console.log(cat);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
-  const { products, loading } = product;
+  const { products, loading, filteredProducts } = product;
   useEffect(() => {
-    dispatch(productActions.getAllProducts());
-  }, [dispatch]);
+    if (!cat) dispatch(productActions.getAllProducts());
+  }, [dispatch, cat]);
   return (
     <div className="h-screen">
       {loading === "loading" ? (
@@ -25,9 +28,9 @@ const ShopPage = () => {
             <Breadcrumb.Item active>Shop</Breadcrumb.Item>
           </Breadcrumb>
           <div className="flex space-x-3">
-            {products.map((p, i) => (
-              <Product key={i} p={p} />
-            ))}
+            {cat
+              ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
+              : products.map((p, i) => <Product key={i} p={p} />)}
           </div>
         </div>
       )}

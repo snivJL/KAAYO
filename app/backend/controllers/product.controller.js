@@ -8,14 +8,18 @@ let productController = {};
 
 productController.getAllProducts = async (req, res, next) => {
   try {
-    let { page, limit, sortBy, search, ...filter } = req.query;
+    let { page, limit, sortBy, search, cat, ...filter } = req.query;
+    console.log("CAT", cat);
+
     const keywords = search ? { name: { $regex: search, $options: "i" } } : {};
+    const category = cat ? { category: { $in: [cat] } } : {};
     page = parseInt(page) || 1;
     limit = parseInt(limit) || 10;
 
     const totalProducts = await Product.countDocuments({
       ...filter,
       ...keywords,
+      ...category,
       isDeleted: false,
     });
     console.log("totalproducts", totalProducts);
@@ -26,7 +30,11 @@ productController.getAllProducts = async (req, res, next) => {
     const offset = limit * (page - 1);
     console.log("offset", offset);
 
-    const products = await Product.find({ isDeleted: false, ...keywords })
+    const products = await Product.find({
+      isDeleted: false,
+      ...keywords,
+      ...category,
+    })
       .skip(offset)
       .limit(limit);
 

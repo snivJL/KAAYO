@@ -22,6 +22,29 @@ productActions.getAllProducts = (keywords = "", page = 1, cat = "") => async (
   }
 };
 
+productActions.getFilteredProducts = (
+  keywords = "",
+  page = 1,
+  cat = ""
+) => async (dispatch) => {
+  try {
+    dispatch({ type: types.GET_FILTERED_PRODUCTS_REQUEST });
+    const { data } = await api.get(
+      `/product?search=${keywords}&page=${page}&cat=${cat}`
+    );
+    dispatch({
+      type: types.GET_FILTERED_PRODUCTS_SUCCESS,
+      payload: data.data,
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.GET_FILTERED_PRODUCTS_FAIL,
+      payload: error.errors.message,
+    });
+  }
+};
+
 productActions.getSingleProduct = (id) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_SINGLE_PRODUCT_REQUEST });
