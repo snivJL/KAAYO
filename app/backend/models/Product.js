@@ -20,8 +20,9 @@ const productSchema = new mongoose.Schema(
       {
         type: String,
         enum: [
-          "Face Soap",
-          "Body Soap",
+          "Clay Soap",
+          "Charcoal Soap",
+          "Spice Soap",
           "Baby Soap",
           "Shampoo Bar",
           "Lip balm",

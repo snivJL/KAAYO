@@ -40,7 +40,7 @@ const CategoriesPanel = () => {
               id="dropdown-split-basic"
             />
             <Dropdown.Menu>
-              <Dropdown.Item as={Link} to="/shop/body-soap">
+              <Dropdown.Item as={Link} to="/shop/clay-soap">
                 <div
                   className="transform transition ease hover:scale-110"
                   onClick={() =>
@@ -48,15 +48,15 @@ const CategoriesPanel = () => {
                       productActions.getFilteredProducts(
                         undefined,
                         undefined,
-                        "Body Soap"
+                        "Clay Soap"
                       )
                     )
                   }
                 >
-                  Body Soap
+                  Clay Soap
                 </div>
               </Dropdown.Item>
-              <Dropdown.Item as={Link} to="/shop/face-soap">
+              <Dropdown.Item as={Link} to="/shop/charcoal-soap">
                 <div
                   className="transform transition ease hover:scale-110"
                   onClick={() =>
@@ -64,12 +64,28 @@ const CategoriesPanel = () => {
                       productActions.getFilteredProducts(
                         undefined,
                         undefined,
-                        "Face Soap"
+                        "Charcoal Soap"
                       )
                     )
                   }
                 >
-                  Face Soap
+                  Charcoal Soap
+                </div>
+              </Dropdown.Item>
+              <Dropdown.Item as={Link} to="/shop/spice-soap">
+                <div
+                  className="transform transition ease hover:scale-110"
+                  onClick={() =>
+                    dispatch(
+                      productActions.getFilteredProducts(
+                        undefined,
+                        undefined,
+                        "Spice Soap"
+                      )
+                    )
+                  }
+                >
+                  Spice Soap
                 </div>
               </Dropdown.Item>
               <Dropdown.Item as={Link} to="/shop/baby-soap">
