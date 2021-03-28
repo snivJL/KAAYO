@@ -43,7 +43,7 @@ router.get("/", ingredientController.getAllIngredients);
  * @description User can see ingredient detail
  * @access Public
  */
-router.get("/:id", ingredientController.getSingleingredient);
+// router.get("/:id", ingredientController.getSingleingredient);
 
 /**
  * @route DELETE api/ingredient/login

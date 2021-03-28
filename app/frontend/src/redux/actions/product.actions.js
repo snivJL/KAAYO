@@ -18,7 +18,13 @@ productActions.getAllProducts = (keywords = "", page = 1, cat = "") => async (
     });
   } catch (error) {
     console.error(error);
-    dispatch({ type: types.GET_PRODUCTS_FAIL, payload: error.errors.message });
+    dispatch({
+      type: types.GET_PRODUCTS_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
   }
 };
 
@@ -41,7 +47,10 @@ productActions.getFilteredProducts = (
     console.error(error);
     dispatch({
       type: types.GET_FILTERED_PRODUCTS_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -82,7 +91,10 @@ productActions.createProduct = (product) => async (dispatch) => {
     toast.dark(error.errors.message);
     dispatch({
       type: types.CREATE_PRODUCT_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -97,7 +109,10 @@ productActions.deleteProduct = (productId) => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.DELETE_PRODUCT_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -112,7 +127,10 @@ productActions.restoreProduct = (productId) => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.RESTORE_PRODUCT_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -127,7 +145,10 @@ productActions.editProduct = (productId, product) => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.EDIT_PRODUCT_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -144,7 +165,10 @@ productActions.getDeletedProducts = () => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.GET_DELETED_PRODUCTS_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };

@@ -82,7 +82,7 @@ ingredientController.deleteIngredient = async (req, res, next) => {
   }
 };
 
-ingredientController.getAllIngredient = async (req, res, next) => {
+ingredientController.getAllIngredients = async (req, res, next) => {
   try {
     const ingredient = await Ingredient.find({});
     if (!ingredient) return next(new Error("401 - ingredient not found"));

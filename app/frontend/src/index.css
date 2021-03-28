@@ -210,3 +210,16 @@ main {
   align-items: center;
   width: fit-content;
 }
+
+.carousel-root {
+  height: 460px;
+  margin-bottom: 32px;
+}
+.carousel {
+  height: 100%;
+}
+.slide img {
+  object-fit: cover;
+  height: 460px;
+  /* width: 100%; */
+}

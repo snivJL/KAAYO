@@ -1,11 +1,12 @@
 import React from "react";
 // import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ImagesCarousel from "../components/ImagesCarousel";
 
 const HomePage = () => {
   return (
     <>
-      <div className="h-14  bg-white w-full border-t border-gray-100 grid justify-center md:grid-cols-1 text-gray-800  px-4  sm:grid-cols-1">
+      <div className="h-14  bg-green-600 w-full border-t border-gray-100 grid justify-center md:grid-cols-1 text-gray-100 bg-opacity-50 px-4  sm:grid-cols-1">
         <ul className="flex justify-around w-2/3 mx-auto">
           <li className="my-auto">
             <Link to="/about">Our Story</Link>
@@ -21,6 +22,9 @@ const HomePage = () => {
           </li>
         </ul>
       </div>
+      <section>
+        <ImagesCarousel />
+      </section>
       <Link to="/shop">
         <section
           style={{ height: 500, overflow: "hidden" }}
