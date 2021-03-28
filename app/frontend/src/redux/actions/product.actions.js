@@ -38,7 +38,6 @@ productActions.getFilteredProducts = (
     const { data } = await api.get(
       `/product?search=${keywords}&page=${page}&cat=${cat}`
     );
-    console.log(data.data);
     dispatch({
       type: types.GET_FILTERED_PRODUCTS_SUCCESS,
       payload: data.data,
@@ -76,10 +75,7 @@ productActions.getSingleProduct = (id) => async (dispatch) => {
 };
 
 productActions.createProduct = (product) => async (dispatch) => {
-  console.log("ACTION", product);
   // product.ingredients = product.ingredients.split(",");
-
-  console.log("ACTION", product);
 
   try {
     dispatch({ type: types.CREATE_PRODUCT_REQUEST });

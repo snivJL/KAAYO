@@ -27,7 +27,6 @@ const productReducer = (state = initialState, action) => {
         loading: "succeeded",
       };
     case types.GET_FILTERED_PRODUCTS_SUCCESS:
-      console.log("reducer", payload.products);
       return {
         ...state,
         filteredProducts: payload.products,

@@ -60,7 +60,6 @@ orderActions.createOrder = (order, cartPrice) => async (dispatch) => {
     formatOrder.shipping = order.shippingAddress;
     formatOrder.status = "paid";
     formatOrder.total = cartPrice;
-    console.log(formatOrder);
     dispatch({ type: types.CREATE_ORDER_REQUEST });
     const { data } = await api.post("/order/add", formatOrder);
 

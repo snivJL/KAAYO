@@ -22,7 +22,6 @@ const CreateProductPage = () => {
   const widget = window.cloudinary.createUploadWidget(
     { cloudName: "dilv93gvb", uploadPreset: "kaayo1" },
     (error, result) => {
-      console.log(result, images);
       if (result.event && result.event === "success")
         setImages((images) => [
           ...images,
@@ -45,9 +44,7 @@ const CreateProductPage = () => {
         }}
         validationSchema={ProductSchema}
         onSubmit={async (values) => {
-          console.log("IAGES in SUBMIT", images);
           images.shift();
-          console.log("IAGES after ", images);
 
           values.images = images;
           dispatch(productActions.createProduct(values));

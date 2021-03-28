@@ -23,7 +23,6 @@ const UserListPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(userActions.topUpUser(selectedUser._id, balance));
-    console.log(e);
   };
   useEffect(() => {
     dispatch(userActions.getAllUsers());

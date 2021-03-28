@@ -13,7 +13,14 @@ messageController.createMessage = async (req, res, next) => {
       email,
       content,
     });
-    utilsHelper.sendResponse(res, 200, true, { lala }, null, "Message created");
+    utilsHelper.sendResponse(
+      res,
+      200,
+      true,
+      { message },
+      null,
+      "Message created"
+    );
   } catch (error) {
     next(error);
   }

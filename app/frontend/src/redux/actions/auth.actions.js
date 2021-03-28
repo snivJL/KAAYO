@@ -69,5 +69,4 @@ authActions.logout = () => async (dispatch) => {
   dispatch({ type: types.LOGOUT_USER });
   toast.success("See you soon!");
 };
-console.log(authActions);
 export default authActions;

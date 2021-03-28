@@ -15,7 +15,7 @@ router.post(
   validators.validate([
     check("name").notEmpty().withMessage("Name is required"),
     check("email").notEmpty().withMessage("email is required"),
-    check("message").notEmpty().withMessage("message is required"),
+    check("content").notEmpty().withMessage("content is required"),
   ]),
   messageController.createMessage
 );

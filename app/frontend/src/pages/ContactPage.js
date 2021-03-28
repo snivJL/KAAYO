@@ -1,11 +1,14 @@
 import React from "react";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
+import messageActions from "../redux/actions/message.actions";
+import { useDispatch } from "react-redux";
 
 const ContactPage = () => {
+  const dispatch = useDispatch();
   const ContactSchema = Yup.object().shape({
     name: Yup.string().required("Required"),
-    message: Yup.string().required("Required"),
+    content: Yup.string().required("Required"),
     email: Yup.string().email("Invalid email").required("Required"),
   });
   return (
@@ -18,7 +21,7 @@ const ContactPage = () => {
         }}
         validationSchema={ContactSchema}
         onSubmit={(values) => {
-          console.log(values);
+          dispatch(messageActions.createMessage(values));
         }}
       >
         {({ errors, touched }) => (
@@ -30,7 +33,10 @@ const ContactPage = () => {
                 </h2>
                 <div className="text-gray-700 mt-8">
                   Hate forms? Send us an{" "}
-                  <span className="underline">email</span> instead.
+                  <a href="mailto: abc@example.com">
+                    <span className="underline">email</span>{" "}
+                  </a>
+                  instead.
                 </div>
               </div>
               <div className="mt-8 text-center">

@@ -37,7 +37,6 @@ const ShopPage = () => {
                 </LinkContainer>
                 <Breadcrumb.Item active>Shop</Breadcrumb.Item>
               </Breadcrumb>
-              {console.log(!cat && !keywords)}
               <div className="flex flex-wrap items-center">
                 {cat || keywords
                   ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
