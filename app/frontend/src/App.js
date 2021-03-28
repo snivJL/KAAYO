@@ -33,7 +33,6 @@ function App() {
         />
         <header>
           <PublicNavbar />
-          <CategoriesPanel />
         </header>
         <main>
           <Switch>

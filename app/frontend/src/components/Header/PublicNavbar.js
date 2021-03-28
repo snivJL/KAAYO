@@ -69,7 +69,7 @@ const PublicNavbar = () => {
     if (isAuthenticated && token) dispatch(userActions.getCurrentUser());
   }, [dispatch, isAuthenticated, token]);
   return (
-    <div className="h-52 bg-green-600 w-full grid md:grid-cols-3 text-gray-100  justify-center px-4 relative sm:grid-cols-1">
+    <div className="h-52 bg-white w-full grid md:grid-cols-3 text-gray-700  justify-center px-4 relative sm:grid-cols-1">
       <ul className="flex space-x-3 font-light">
         {role === "user" && isAuthenticated ? (
           <AuthLinks name={name} />

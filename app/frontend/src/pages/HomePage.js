@@ -5,6 +5,22 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <>
+      <div className="h-14  bg-white w-full border-t border-gray-100 grid justify-center md:grid-cols-1 text-gray-800  px-4  sm:grid-cols-1">
+        <ul className="flex justify-around w-2/3 mx-auto">
+          <li className="my-auto">
+            <Link to="/about">Our Story</Link>
+          </li>
+          <li className="my-auto">
+            <Link to="/ingredients">Ingredients</Link>
+          </li>
+          <li className="my-auto">
+            <Link to="/shop">Shop</Link>
+          </li>
+          <li className="my-auto">
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+      </div>
       <Link to="/shop">
         <section
           style={{ height: 500, overflow: "hidden" }}

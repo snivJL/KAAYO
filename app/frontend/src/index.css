@@ -203,6 +203,10 @@ main {
   display: flex;
 }
 
-.breadcrumb-item-custom {
+.breadcrumb-item {
   background-color: transparent !important;
+  display: flex;
+  height: 48px;
+  align-items: center;
+  width: fit-content;
 }

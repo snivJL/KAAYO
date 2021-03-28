@@ -6,6 +6,8 @@ import { LinkContainer } from "react-router-bootstrap";
 import { useParams } from "react-router-dom";
 import Product from "../components/product/Product";
 import Loader from "../components/Loader";
+import CategoriesPanel from "../components/Header/CategoriesPanel";
+
 const ShopPage = () => {
   const cat = useParams().cat;
   const keywords = useParams().keyword;
@@ -18,29 +20,34 @@ const ShopPage = () => {
     else if (!cat) dispatch(productActions.getAllProducts());
   }, [dispatch, cat, keywords]);
   return (
-    <div className="container-md mx-auto bg-white">
+    <>
       {loading === "loading" ? (
         <Loader size={"w-24"} caption={true} />
       ) : (
-        <div className="w-full lg:w-5/6 mx-auto ">
-          <Breadcrumb
-            className="mx-auto max-w-max bg-transparent	"
-            bsPrefix="breadcrumb-item"
-          >
-            <LinkContainer to="/">
-              <Breadcrumb.Item>Home</Breadcrumb.Item>
-            </LinkContainer>
-            <Breadcrumb.Item active>Shop</Breadcrumb.Item>
-          </Breadcrumb>
-          {console.log(!cat && !keywords)}
-          <div className="flex flex-wrap items-center">
-            {cat || keywords
-              ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
-              : products.map((p, i) => <Product key={i} p={p} />)}
+        <>
+          <CategoriesPanel />
+          <div className="container-md mx-auto bg-white">
+            <div className="w-full lg:w-5/6 mx-auto py-4">
+              <Breadcrumb
+                className="mr-auto max-w-max bg-transparent pb-4"
+                bsPrefix="breadcrumb-item"
+              >
+                <LinkContainer to="/">
+                  <Breadcrumb.Item>Home</Breadcrumb.Item>
+                </LinkContainer>
+                <Breadcrumb.Item active>Shop</Breadcrumb.Item>
+              </Breadcrumb>
+              {console.log(!cat && !keywords)}
+              <div className="flex flex-wrap items-center">
+                {cat || keywords
+                  ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
+                  : products.map((p, i) => <Product key={i} p={p} />)}
+              </div>
+            </div>
           </div>
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 
