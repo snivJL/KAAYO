@@ -33,7 +33,7 @@ const ContactPage = () => {
                 </h2>
                 <div className="text-gray-700 mt-8">
                   Hate forms? Send us an{" "}
-                  <a href="mailto: abc@example.com">
+                  <a href="mailto: ka.a.yo.handmadesoaps@gmail.com">
                     <span className="underline">email</span>{" "}
                   </a>
                   instead.

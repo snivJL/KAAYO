@@ -28,7 +28,7 @@ messageController.createMessage = async (req, res, next) => {
 
 messageController.getAllMessages = async (req, res, next) => {
   try {
-    const message = await Message.find({});
+    const message = await Message.find({ isDeleted: false });
     if (!message) return next(new Error("401 - message not found"));
     utilsHelper.sendResponse(
       res,

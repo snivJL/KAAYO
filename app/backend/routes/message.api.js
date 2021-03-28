@@ -27,8 +27,8 @@ router.post(
  */
 router.get(
   "/",
-  authMiddleware.adminRequired,
   authMiddleware.loginRequired,
+  authMiddleware.adminRequired,
   messageController.getAllMessages
 );
 
@@ -39,8 +39,8 @@ router.get(
  */
 router.put(
   "/:id/update",
-  authMiddleware.adminRequired,
   authMiddleware.loginRequired,
+  authMiddleware.adminRequired,
   messageController.updateMessage
 );
 
@@ -49,10 +49,10 @@ router.put(
  * @description Admin can delete a message
  * @access Admin
  */
-router.get(
+router.delete(
   "/:id/delete",
-  authMiddleware.adminRequired,
   authMiddleware.loginRequired,
+  authMiddleware.adminRequired,
   messageController.deleteMessage
 );
 
@@ -63,8 +63,8 @@ router.get(
  */
 router.get(
   "/:id",
-  authMiddleware.adminRequired,
   authMiddleware.loginRequired,
+  authMiddleware.adminRequired,
   messageController.getSingleMessage
 );
 

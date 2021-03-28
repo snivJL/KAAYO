@@ -35,9 +35,9 @@ authMiddleware.loginRequired = async (req, res, next) => {
 authMiddleware.adminRequired = async (req, res, next) => {
   try {
     const userId = req.userId;
-
+    console.log(userId);
     const user = await User.findById(userId);
-
+    console.log(user);
     if (!user) return next(new Error("401 - User not found"));
 
     if (user.role !== "admin")

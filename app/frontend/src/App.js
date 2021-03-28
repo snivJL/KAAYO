@@ -16,6 +16,7 @@ import OrderPlacedPage from "./pages/order/OrderPlacedPage";
 import ProductPage from "./pages/ProductPage";
 import ContactPage from "./pages/ContactPage";
 import ProductListPage from "./pages/admin/ProductListPage";
+import MessagePage from "./pages/admin/MessagePage";
 import OrderListPage from "./pages/admin/OrderListPage";
 import "react-toastify/dist/ReactToastify.css";
 import MyOrdersPage from "./pages/order/MyOrdersPage";
@@ -52,6 +53,7 @@ function App() {
             <Route path="/product/:id" component={ProductPage} />
             <Route path="/admin/product/create" component={CreateProductPage} />
             <Route path="/admin/product/list" component={ProductListPage} />
+            <Route path="/admin/message/list" component={MessagePage} />
             <Route path="/admin/product/:id/edit" component={EditProductPage} />
             <Route path="/admin/order/list" component={OrderListPage} />
           </Switch>

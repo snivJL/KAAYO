@@ -6,6 +6,7 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import authActions from "../../redux/actions/auth.actions";
 import userActions from "../../redux/actions/user.actions";
 import logo from "../../images/logo.png";
+import messageActions from "../../redux/actions/message.actions";
 
 const AuthLinks = ({ name }) => {
   const dispatch = useDispatch();
@@ -24,20 +25,44 @@ const AuthLinks = ({ name }) => {
   );
 };
 const AdminLinks = () => {
+  const dispatch = useDispatch();
+  const message = useSelector((state) => state.message);
+  const { messages } = message;
+  const numNewMessages = messages.reduce((acc, mes) => {
+    console.log(mes);
+    return !mes.isRead ? (acc += 1) : acc;
+  }, 0);
+  console.log(numNewMessages);
+  useEffect(() => {
+    dispatch(messageActions.getAllMessages());
+  }, [dispatch]);
   return (
-    <li>
-      <DropdownButton id="dropdown-basic-button" title="Manage">
-        <Dropdown.Item as={Link} to="/admin/product/create">
-          Create Product
-        </Dropdown.Item>
-        <Dropdown.Item as={Link} to="/admin/product/list">
-          List Products
-        </Dropdown.Item>
-        <Dropdown.Item as={Link} to="/admin/order/list">
-          List Orders
-        </Dropdown.Item>
-      </DropdownButton>
-    </li>
+    <>
+      <li>
+        <DropdownButton id="dropdown-basic-button" title="Manage">
+          <Dropdown.Item as={Link} to="/admin/product/create">
+            Create Product
+          </Dropdown.Item>
+          <Dropdown.Item as={Link} to="/admin/product/list">
+            List Products
+          </Dropdown.Item>
+          <Dropdown.Item as={Link} to="/admin/order/list">
+            List Orders
+          </Dropdown.Item>
+        </DropdownButton>
+      </li>
+      <li>
+        <Link to="/admin/message/list">
+          <i className="far fa-envelope relative fa-2x">
+            <div
+              className={`absolute bg-red-800 w-2 h-2 rounded-full inset-1/2 ${
+                numNewMessages ? "animate-ping" : "d-none"
+              }`}
+            ></div>
+          </i>
+        </Link>
+      </li>
+    </>
   );
 };
 const GuestLinks = () => {
@@ -70,12 +95,14 @@ const PublicNavbar = () => {
   }, [dispatch, isAuthenticated, token]);
   return (
     <div className="h-52 bg-white w-full grid md:grid-cols-3 text-gray-700  justify-center px-4 relative sm:grid-cols-1">
-      <ul className="flex space-x-3 font-light">
-        {isAuthenticated ? <AuthLinks name={name} /> : <GuestLinks />}
-        {role === "admin" && isAuthenticated && <AdminLinks />}
-        <li>
-          <SearchBar />
-        </li>
+      <ul>
+        <div className="flex space-x-3 pt-2 items-center font-light">
+          {isAuthenticated ? <AuthLinks name={name} /> : <GuestLinks />}
+          {role === "admin" && isAuthenticated && <AdminLinks />}
+          <li>
+            <SearchBar />
+          </li>
+        </div>
       </ul>
       <Link className="justify-self-center mx-auto" to="/">
         <div className="text-4xl ">
@@ -84,7 +111,9 @@ const PublicNavbar = () => {
       </Link>
       <div className="justify-self-end">
         <Link to="/cart">
-          <i className="fas fa-shopping-cart hover:text-gray-400"></i>
+          <div className="flex space-x-3 pt-2 items-center font-light">
+            <i className="fas fa-shopping-cart hover:text-gray-400"></i>
+          </div>
         </Link>
       </div>
     </div>

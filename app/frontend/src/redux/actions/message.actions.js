@@ -12,7 +12,7 @@ messageActions.getAllMessages = (keywords = "", page = 1) => async (
     const { data } = await api.get(`/message`);
     dispatch({
       type: types.GET_ALL_MESSAGES_SUCCESS,
-      payload: data,
+      payload: data.data.message,
     });
   } catch (error) {
     console.error(error);
@@ -45,4 +45,37 @@ messageActions.createMessage = (message) => async (dispatch) => {
   }
 };
 
+messageActions.markAsRead = (message) => async (dispatch) => {
+  try {
+    dispatch({ type: types.MARK_AS_READ_REQUEST });
+    api.put(`/message/${message._id}/update`, { ...message, isRead: true });
+    dispatch({ type: types.MARK_AS_READ_SUCCESS, payload: message._id });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.MARK_AS_READ_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
+
+messageActions.deleteMessage = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: types.DELETE_MESSAGE_REQUEST });
+    api.delete(`/message/${id}/delete`);
+    dispatch({ type: types.DELETE_MESSAGE_SUCCESS, payload: id });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.DELETE_MESSAGE_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
 export default messageActions;
