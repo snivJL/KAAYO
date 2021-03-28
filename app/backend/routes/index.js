@@ -21,4 +21,7 @@ router.use("/order", orderApi);
 const ingredientApi = require("./ingredient.api");
 router.use("/ingredient", ingredientApi);
 
+// messageApi
+const messageApi = require("./message.api");
+router.use("/message", messageApi);
 module.exports = router;
