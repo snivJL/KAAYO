@@ -12,8 +12,18 @@ userActions.register = (user) => async (dispatch) => {
     dispatch({ type: types.CREATE_USER_SUCCESS, payload: data.data.user });
   } catch (error) {
     console.error(error);
-    toast.error(error.errors.message);
-    dispatch({ type: types.CREATE_USER_FAIL, payload: error.errors.message });
+    toast.error(
+      error && error.errors && error.errors.message
+        ? error.errors.message
+        : error
+    );
+    dispatch({
+      type: types.CREATE_USER_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
   }
 };
 
@@ -26,7 +36,10 @@ userActions.getCurrentUser = () => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.GET_CURRENT_USER_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
     if (error.errors.message === "Token expired") {
       localStorage.removeItem("token");
@@ -44,7 +57,10 @@ userActions.getAllUsers = () => async (dispatch) => {
     console.error(error);
     dispatch({
       type: types.GET_USERS_FAIL,
-      payload: error.errors.message,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
   }
 };
@@ -71,7 +87,13 @@ userActions.getUserOrders = (userId) => async (dispatch) => {
     dispatch({ type: types.GET_USER_ORDER_SUCCESS, payload: data.data.orders });
   } catch (error) {
     console.error(error);
-    dispatch({ type: types.GET_USER_ORDER_FAIL, error: error.errors.message });
+    dispatch({
+      type: types.GET_USER_ORDER_FAIL,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
   }
 };
 
@@ -83,7 +105,13 @@ userActions.cancelOrder = (orderId) => async (dispatch) => {
     toast.dark("Order canceled!");
   } catch (error) {
     console.error(error);
-    dispatch({ type: types.DELETE_ORDER_FAIL, payload: error.errors.message });
+    dispatch({
+      type: types.DELETE_ORDER_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
   }
 };
 userActions.selectUser = (user) => (dispatch) => {

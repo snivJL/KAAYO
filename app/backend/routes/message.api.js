@@ -32,4 +32,40 @@ router.get(
   messageController.getAllMessages
 );
 
+/**
+ * @route Put api/message/:id/update
+ * @description Admin update a message
+ * @access Admin
+ */
+router.put(
+  "/:id/update",
+  authMiddleware.adminRequired,
+  authMiddleware.loginRequired,
+  messageController.updateMessage
+);
+
+/**
+ * @route DELETE api/message/:id/delete
+ * @description Admin can delete a message
+ * @access Admin
+ */
+router.get(
+  "/:id/delete",
+  authMiddleware.adminRequired,
+  authMiddleware.loginRequired,
+  messageController.deleteMessage
+);
+
+/**
+ * @route GET api/message/:id
+ * @description Admin can see a single message
+ * @access Admin
+ */
+router.get(
+  "/:id",
+  authMiddleware.adminRequired,
+  authMiddleware.loginRequired,
+  messageController.getSingleMessage
+);
+
 module.exports = router;
