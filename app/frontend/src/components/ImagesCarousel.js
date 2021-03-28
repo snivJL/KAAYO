@@ -1,6 +1,7 @@
 import React from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Link } from "react-router-dom";
 
 const ImagesCarousel = () => {
   const onChange = (e) => {
@@ -17,27 +18,51 @@ const ImagesCarousel = () => {
         // onClickItem={onClickItem}
         // onClickThumb={onClickThumb}
       >
-        <div>
-          <img
-            src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830139/kaayo/products/Body_Butter_aoyjq1.png"
-            alt="pic"
-          />
-          <p className="legend">Legend 1</p>
-        </div>
-        <div>
-          <img
-            src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830137/kaayo/products/cucumber_ujcp9s.png"
-            alt="pic"
-          />
-          <p className="legend">Legend 2</p>
-        </div>
-        <div>
-          <img
-            src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830148/kaayo/products/Tet_collection_1_mjjphc.png"
-            alt="pic"
-          />
-          <p className="legend">Legend 3</p>
-        </div>
+        <Link to="/about">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830139/kaayo/products/Body_Butter_aoyjq1.png"
+              alt="pic"
+            />
+            <p className="legend-custom relative">
+              <span className="absolute -left-72 top-40  w-full h-full">
+                Our
+              </span>
+              <span className="absolute -left-52 top-64 h-full w-full">
+                Story
+              </span>
+            </p>
+          </div>
+        </Link>
+        <Link to="/ingredients">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830137/kaayo/products/cucumber_ujcp9s.png"
+              alt="pic"
+            />
+            <p className="legend-custom relative">
+              <span className="absolute -left-72 top-44  w-full h-full">
+                Ingredients
+              </span>
+            </p>
+          </div>
+        </Link>
+        <Link to="/shop">
+          <div>
+            <img
+              src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830148/kaayo/products/Tet_collection_1_mjjphc.png"
+              alt="pic"
+            />
+            <p className="legend-custom relative">
+              <span className="absolute -left-72 top-40  w-full h-full">
+                What's
+              </span>
+              <span className="absolute -left-52 top-64 h-full w-full">
+                New ?
+              </span>
+            </p>
+          </div>
+        </Link>
       </Carousel>
     </>
   );

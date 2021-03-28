@@ -35,7 +35,7 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_FACEBOOK_FAIL:
       return { ...state, loading: false };
     case types.LOGOUT_USER:
-      return { ...state, isAuthenticated: false };
+      return { ...state, isAuthenticated: false, userInfo: [] };
     default:
       return state;
   }

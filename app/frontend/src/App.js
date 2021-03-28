@@ -1,5 +1,4 @@
 import PublicNavbar from "./components/Header/PublicNavbar";
-import CategoriesPanel from "./components/Header/CategoriesPanel";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/auth/LoginPage";
@@ -15,6 +14,7 @@ import PaymentPage from "./pages/order/PaymentPage";
 import PlaceOrderPage from "./pages/order/PlaceOrderPage";
 import OrderPlacedPage from "./pages/order/OrderPlacedPage";
 import ProductPage from "./pages/ProductPage";
+import ContactPage from "./pages/ContactPage";
 import ProductListPage from "./pages/admin/ProductListPage";
 import OrderListPage from "./pages/admin/OrderListPage";
 import "react-toastify/dist/ReactToastify.css";
@@ -43,6 +43,7 @@ function App() {
             <Route path="/shop/:cat" component={ShopPage} />
             <Route path="/search/:keyword" component={ShopPage} />
             <Route path="/cart" component={CartPage} />
+            <Route path="/contact" component={ContactPage} />
             <Route path="/order/shipping" component={ShippingPage} />
             <Route path="/order/payment" component={PaymentPage} />
             <Route path="/order/finalize" component={PlaceOrderPage} />
