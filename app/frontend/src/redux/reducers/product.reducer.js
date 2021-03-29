@@ -23,6 +23,7 @@ const productReducer = (state = initialState, action) => {
     case types.EDIT_PRODUCT_REQUEST:
     case types.DELETE_PRODUCT_REQUEST:
     case types.GET_DELETED_PRODUCTS_REQUEST:
+    case types.CREATE_REVIEW_REQUEST:
       return { ...state, loading: "loading" };
     case types.GET_PRODUCTS_SUCCESS:
       return {
@@ -57,6 +58,8 @@ const productReducer = (state = initialState, action) => {
         }),
         loading: "succeeded",
       };
+    case types.CREATE_REVIEW_SUCCESS:
+      return { ...state, loading: "succeeded", selectedProduct: payload };
 
     case types.GET_PRODUCTS_FAIL:
     case types.GET_FILTERED_PRODUCTS_FAIL:
@@ -64,6 +67,7 @@ const productReducer = (state = initialState, action) => {
     case types.DELETE_PRODUCT_FAIL:
     case types.GET_DELETED_PRODUCTS_FAIL:
     case types.EDIT_PRODUCT_FAIL:
+    case types.CREATE_REVIEW_FAIL:
       return { ...state, loading: "failed", error: payload };
 
     default:

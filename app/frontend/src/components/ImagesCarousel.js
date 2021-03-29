@@ -27,7 +27,7 @@ const ImagesCarousel = () => {
                 Our
               </span>
               <span className="absolute -left-48 top-60 h-full w-full">
-                Story
+                Beginning
               </span>
             </p>
           </div>

@@ -8,6 +8,7 @@ import { ToastContainer } from "react-toastify";
 import CreateProductPage from "./pages/admin/CreateProductPage";
 import EditProductPage from "./pages/admin/EditProductPage";
 import ShopPage from "./pages/ShopPage";
+import IngredientsPage from "./pages/IngredientsPage";
 import CartPage from "./pages/order/CartPage";
 import ShippingPage from "./pages/order/ShippingPage";
 import PaymentPage from "./pages/order/PaymentPage";
@@ -45,6 +46,7 @@ function App() {
             <Route path="/search/:keyword" component={ShopPage} />
             <Route path="/cart" component={CartPage} />
             <Route path="/contact" component={ContactPage} />
+            <Route path="/ingredients" component={IngredientsPage} />
             <Route path="/order/shipping" component={ShippingPage} />
             <Route path="/order/payment" component={PaymentPage} />
             <Route path="/order/finalize" component={PlaceOrderPage} />

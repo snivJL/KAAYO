@@ -168,4 +168,24 @@ productActions.getDeletedProducts = () => async (dispatch) => {
     });
   }
 };
+
+productActions.createReview = (review, productId) => async (dispatch) => {
+  try {
+    dispatch({ type: types.CREATE_REVIEW_REQUEST });
+    const { data } = await api.post(`/product/${productId}/reviews`, review);
+    dispatch({ type: types.CREATE_REVIEW_SUCCESS, payload: data.product });
+    toast.info("Review created!");
+  } catch (error) {
+    console.error(error);
+    toast.dark(error.errors.message);
+    dispatch({
+      type: types.CREATE_REVIEW_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
+
 export default productActions;

@@ -43,7 +43,7 @@ const ContactPage = () => {
             <div className="flex flex-col justify-between">
               <div>
                 <h2 className="text-4xl lg:text-5xl font-bold leading-tight">
-                  Lets talk about everything!
+                  Let's talk it out!
                 </h2>
                 <div className="text-gray-700 mt-8">
                   Hate forms? Send us an{" "}

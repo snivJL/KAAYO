@@ -12,15 +12,20 @@ const AuthLinks = ({ name }) => {
   const dispatch = useDispatch();
   return (
     <li>
-      <DropdownButton id="dropdown-basic-button" title={name}>
-        <Dropdown.Item onClick={() => dispatch(authActions.logout())}>
-          Logout
-        </Dropdown.Item>
-        <Dropdown.Item as={Link} to="/profile/myorders">
-          My Orders
-        </Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </DropdownButton>
+      <Dropdown>
+        <Dropdown.Toggle variant="light" id="dropdown-basic">
+          {name}
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item onClick={() => dispatch(authActions.logout())}>
+            Logout
+          </Dropdown.Item>
+          <Dropdown.Item as={Link} to="/profile/myorders">
+            My Orders
+          </Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </li>
   );
 };
@@ -39,17 +44,23 @@ const AdminLinks = () => {
   return (
     <>
       <li>
-        <DropdownButton id="dropdown-basic-button" title="Manage">
-          <Dropdown.Item as={Link} to="/admin/product/create">
-            Create Product
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to="/admin/product/list">
-            List Products
-          </Dropdown.Item>
-          <Dropdown.Item as={Link} to="/admin/order/list">
-            List Orders
-          </Dropdown.Item>
-        </DropdownButton>
+        <Dropdown>
+          <Dropdown.Toggle variant="light" id="dropdown-basic">
+            Manage
+          </Dropdown.Toggle>
+
+          <Dropdown.Menu>
+            <Dropdown.Item as={Link} to="/admin/product/create">
+              Create Product
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to="/admin/product/list">
+              List Products
+            </Dropdown.Item>
+            <Dropdown.Item as={Link} to="/admin/order/list">
+              List Orders
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </li>
       <li>
         <Link to="/admin/message/list">
