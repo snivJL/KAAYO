@@ -7,7 +7,12 @@ const initialState = {
   pageCount: 0,
   filteredPageCount: 0,
   deletedProducts: [],
-  selectedProduct: { images: [{}], category: [] },
+  selectedProduct: {
+    images: [{}],
+    category: [],
+    ingredients: [],
+    reviews: [{}],
+  },
 };
 const productReducer = (state = initialState, action) => {
   const { type, payload } = action;

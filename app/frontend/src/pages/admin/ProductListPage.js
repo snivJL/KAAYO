@@ -24,7 +24,7 @@ const ProductListPage = () => {
       {loading === "loading" ? (
         <Loader />
       ) : (
-        <div class="min-w-screen bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
+        <div class="min-w-screen bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
           <div class="w-full lg:w-5/6">
             <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"

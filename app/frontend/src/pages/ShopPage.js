@@ -22,7 +22,7 @@ const ShopPage = () => {
   return (
     <>
       {loading === "loading" ? (
-        <Loader size={"w-24"} caption={true} />
+        <Loader size={"w-56"} caption={true} />
       ) : (
         <>
           <CategoriesPanel />

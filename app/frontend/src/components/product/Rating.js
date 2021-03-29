@@ -1,8 +1,9 @@
 import React from "react";
 
 const Rating = ({ value, text }) => {
+  console.log(value, text);
   return (
-    <div className="rating">
+    <div className="rating flex">
       <span style={{ color: "#FFE234" }}>
         <i
           className={
@@ -58,6 +59,14 @@ const Rating = ({ value, text }) => {
           }
         ></i>
       </span>
+      {text ? (
+        <div className="pl-2 underline">
+          {text > 0 ? text : ""}
+          {text > 0 ? (text > 1 ? " reviews" : " review") : "No reviews yet"}
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

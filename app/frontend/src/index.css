@@ -33,7 +33,7 @@ header {
   font-weight: bold;
 }
 main {
-  background-color: #e6ddd5;
+  /* background-color: #e6ddd5; */
 }
 img {
   max-width: 100%;
@@ -136,7 +136,7 @@ main {
 /*--------------------- Homepage -------------------------*/
 
 .hero {
-  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/c_scale,w_1436/v1616390108/kaayo/background_nhdjva.png");
+  background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/v1616830135/kaayo/products/Monica_orcpk1.png");
   background-size: cover;
   /* height: someheight; */
   background-position: center;
