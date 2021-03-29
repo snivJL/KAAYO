@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { Row, Col, Card, ListGroup, Form, Breadcrumb } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +14,8 @@ import AddToCartButton from "../components/AddToCartButton";
 import ReviewList from "../components/review/ReviewList";
 
 const ProductPage = () => {
+  const reviewsRef = useRef();
+  const [showReviews, setShowReviews] = useState(false);
   const [qty, setQty] = useState(1);
   const productId = useParams().id;
   const dispatch = useDispatch();
@@ -56,7 +58,12 @@ const ProductPage = () => {
             <div className="flex-flex-col w-1/2">
               <div className="text-xl font-bold pb-4">{product.name}</div>
               <div className="text-lg italic pb-4">{product.category[0]}</div>
-              <div className="pb-4">
+              <div
+                onClick={() =>
+                  reviewsRef.current?.scrollIntoView({ behavior: "smooth" })
+                }
+                className="pb-4"
+              >
                 <Rating value={product.rating} text={product.numReviews} />
               </div>
               <div className="pb-4 font-bold">Short Description</div>
@@ -148,7 +155,19 @@ const ProductPage = () => {
               </div>
             </div>
           </div>
-          <ReviewList reviews={product.reviews} />
+          <div className="flex justify-center py-5">
+            <button
+              ref={reviewsRef}
+              onClick={() => setShowReviews(!showReviews)}
+              className="border-2 border-green-500 rounded-full font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white"
+            >
+              {showReviews ? "Hide Reviews" : "Show reviews"}
+            </button>
+          </div>
+
+          <div className={!showReviews ? "d-none" : ""}>
+            <ReviewList reviews={product.reviews} />
+          </div>
         </div>
       )}
     </>

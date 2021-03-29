@@ -213,24 +213,21 @@ productController.restoreProduct = async (req, res, next) => {
 
 productController.createReview = async (req, res, next) => {
   try {
-    const { rating, comment, name } = req.body;
+    const { rating, comment, name, title } = req.body;
     const userId = req.userId;
     const product = await Product.findById(req.params.id);
     if (!product) {
       return next(new Error("Product not found"));
     } else {
-      const alreadyReviewed = product.reviews.find(
-        (x) => x.user.toString() === req.userId.toString()
-      );
+      const alreadyReviewed = product.reviews.find((x) => x.userId);
       if (alreadyReviewed) return next(new Error("Product already reviewed"));
-      const review = { name, comment, rating, userId };
+      const review = { name, comment, rating, title, userId };
 
       product.reviews.push(review);
       product.numReviews = product.reviews.length;
       product.rating =
         product.reviews.reduce((acc, product) => product.rating + acc, 0) /
         product.reviews.length;
-      console.log(product);
 
       await product.save();
       utilsHelper.sendResponse(
@@ -242,6 +239,42 @@ productController.createReview = async (req, res, next) => {
         "Review added"
       );
     }
+  } catch (error) {
+    next(error);
+  }
+};
+
+productController.deleteReview = async (req, res, next) => {
+  const userId = req.userId;
+  const productId = req.params.productId;
+  const reviewId = req.params.reviewId;
+  try {
+    validator.checkObjectId(productId);
+
+    let product = await Product.findById(productId);
+    if (!product) {
+      return next(new Error("Product not found"));
+    }
+    const review = product.reviews.filter(
+      (r) => r._id.toString() === reviewId.toString()
+    );
+    if (review.length === 0) return next(new Error("Review not found"));
+    if (review[0].userId.toString() !== userId.toString()) {
+      return next(
+        new Error("Unauthorized - Only author can delete his review")
+      );
+    }
+    product.reviews = product.reviews.filter(
+      (r) => r._id.toString() !== reviewId.toString()
+    );
+    product.numReviews = product.reviews.length;
+    if (product.numReviews > 0)
+      product.rating =
+        product.reviews.reduce((acc, product) => product.rating + acc, 0) /
+        product.reviews.length;
+    else product.rating = 0;
+    product.save();
+    utilsHelper.sendResponse(res, 200, true, product, null, "Review deleted");
   } catch (error) {
     next(error);
   }

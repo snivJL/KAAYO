@@ -108,4 +108,15 @@ router.post(
   productController.createReview
 );
 
+/**
+ * @route DELETE api/product/:productId/reviews/:reviewId/delete
+ * @description USer can delete a review
+ * @access login Required
+ */
+router.delete(
+  "/:productId/reviews/:reviewId/delete",
+  authMiddleware.loginRequired,
+  productController.deleteReview
+);
+
 module.exports = router;
