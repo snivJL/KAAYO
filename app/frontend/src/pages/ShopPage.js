@@ -27,9 +27,9 @@ const ShopPage = () => {
         <>
           <CategoriesPanel />
           <div className="container-md mx-auto bg-white">
-            <div className="w-full lg:w-5/6 mx-auto py-4">
+            <div className="w-full container-xl mx-auto py-4">
               <Breadcrumb
-                className="mr-auto max-w-max bg-transparent pb-4"
+                className="mr-auto max-w-max bg-transparent pb-4 pl-10"
                 bsPrefix="breadcrumb-item"
               >
                 <LinkContainer to="/">
@@ -37,10 +37,18 @@ const ShopPage = () => {
                 </LinkContainer>
                 <Breadcrumb.Item active>Shop</Breadcrumb.Item>
               </Breadcrumb>
-              <div className="flex flex-wrap items-center">
-                {cat || keywords
-                  ? filteredProducts.map((p, i) => <Product key={i} p={p} />)
-                  : products.map((p, i) => <Product key={i} p={p} />)}
+              <div className="flex flex-wrap items-center justify-around">
+                {cat || keywords ? (
+                  filteredProducts.length > 0 ? (
+                    filteredProducts.map((p, i) => <Product key={i} p={p} />)
+                  ) : (
+                    <h2>No results</h2>
+                  )
+                ) : products.length > 0 ? (
+                  products.map((p, i) => <Product key={i} p={p} />)
+                ) : (
+                  <h2>No results</h2>
+                )}
               </div>
             </div>
           </div>

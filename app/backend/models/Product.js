@@ -25,7 +25,7 @@ const productSchema = new mongoose.Schema(
           "Spice Soap",
           "Baby Soap",
           "Shampoo Bar",
-          "Lip balm",
+          "Lip Balm",
           "Body Butter",
         ],
         required: true,

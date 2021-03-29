@@ -195,12 +195,18 @@ main {
 }
 
 /*--------------------- Product Card -------------------------*/
-
+.product-card {
+  height: 298px;
+}
 .product-card .card-overlay {
   display: none;
 }
 .product-card:hover .card-overlay {
   display: flex;
+}
+.product-card-img {
+  height: 100%;
+  object-fit: cover;
 }
 
 .breadcrumb-item {
@@ -241,4 +247,11 @@ main {
   line-height: 3rem;
   text-align: center;
   transition: opacity 0.35s ease-in-out;
+}
+
+.breadcrumb-item .active {
+  color: inherit;
+}
+.breadcrumb-item .active:last-child {
+  color: #80a97d;
 }

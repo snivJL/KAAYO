@@ -31,7 +31,18 @@ const CategoriesPanel = () => {
         </li>
         <li className="flex items-center space-x-3 pl-3 ">
           <Dropdown as={ButtonGroup}>
-            <Button className="bg-transparent border-none outline-none focus:outline-none focus:border-none">
+            <Button
+              onClick={() =>
+                dispatch(
+                  productActions.getFilteredProducts(
+                    undefined,
+                    undefined,
+                    "soap"
+                  )
+                )
+              }
+              className="bg-transparent border-none outline-none focus:outline-none focus:border-none"
+            >
               Soaps
             </Button>
             <Dropdown.Toggle

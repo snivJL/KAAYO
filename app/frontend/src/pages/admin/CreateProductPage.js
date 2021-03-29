@@ -31,7 +31,7 @@ const CreateProductPage = () => {
   );
 
   return (
-    <>
+    <div className="min-w-screen w-full lg:w-5/6 mt-24 px-16 mx-auto bg-white">
       <Formik
         initialValues={{
           name: "",
@@ -52,13 +52,16 @@ const CreateProductPage = () => {
       >
         {({ values, touched, errors }) => (
           <div className="container mx-auto">
-            <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
+            <Breadcrumb
+              className="mr-auto max-w-max bg-transparent py-2"
+              bsPrefix="breadcrumb-item"
+            >
               <LinkContainer to="/">
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
               <Breadcrumb.Item active>Create Product</Breadcrumb.Item>
             </Breadcrumb>
-            <div className="max-w-xl mx-auto bg-white p-5 rounded-md shadow-sm">
+            <div className="max-w-xl mx-auto bg-white pb-6 rounded-md shadow-sm">
               <div className="text-center">
                 <h1 className="my-2 text-3xl font-semibold text-gray-700 dark:text-gray-200">
                   Create Product
@@ -147,18 +150,18 @@ const CreateProductPage = () => {
                       <Field
                         type="checkbox"
                         name="category"
-                        value="Face Soap"
+                        value="Charcoal Soap"
                       />
-                      Face Soap
+                      Charcoal Soap
                     </label>
 
                     <label>
                       <Field
                         type="checkbox"
                         name="category"
-                        value="Body Soap"
+                        value="Spice Soap"
                       />
-                      Body Soap
+                      Spice Soap
                     </label>
                     <label>
                       <Field
@@ -167,6 +170,10 @@ const CreateProductPage = () => {
                         value="Baby Soap"
                       />
                       Baby Soap
+                    </label>
+                    <label>
+                      <Field type="checkbox" name="category" value="Lip Balm" />
+                      Lip Balm
                     </label>
                     <label>
                       <Field
@@ -237,7 +244,7 @@ const CreateProductPage = () => {
           </div>
         )}
       </Formik>
-    </>
+    </div>
   );
 };
 

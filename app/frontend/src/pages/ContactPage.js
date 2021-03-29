@@ -3,6 +3,8 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import messageActions from "../redux/actions/message.actions";
 import { useDispatch } from "react-redux";
+import { Breadcrumb } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const ContactPage = () => {
   const dispatch = useDispatch();
@@ -13,6 +15,18 @@ const ContactPage = () => {
   });
   return (
     <>
+      <div className="max-w-screen-xl mt-24 px-16 mx-auto bg-white">
+        <Breadcrumb
+          className="mr-auto max-w-max bg-transparent pb-4"
+          bsPrefix="breadcrumb-item"
+        >
+          <LinkContainer to="/">
+            <Breadcrumb.Item>Home</Breadcrumb.Item>
+          </LinkContainer>
+          <Breadcrumb.Item active>Contact</Breadcrumb.Item>
+        </Breadcrumb>
+      </div>
+
       <Formik
         initialValues={{
           name: "",
@@ -25,7 +39,7 @@ const ContactPage = () => {
         }}
       >
         {({ errors, touched }) => (
-          <Form className="max-w-screen-xl mt-24 px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-white text-gray-900 rounded-lg shadow-lg">
+          <Form className="max-w-screen-xl  px-8 grid gap-8 grid-cols-1 md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 py-16 mx-auto bg-white text-gray-900 rounded-lg shadow-lg">
             <div className="flex flex-col justify-between">
               <div>
                 <h2 className="text-4xl lg:text-5xl font-bold leading-tight">

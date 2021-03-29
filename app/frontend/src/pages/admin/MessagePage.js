@@ -25,13 +25,16 @@ const MessagePage = () => {
       ) : (
         <div className="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
           <div className="w-full lg:w-5/6">
-            <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
+            <Breadcrumb
+              className="mr-auto max-w-max bg-transparent py-2"
+              bsPrefix="breadcrumb-item"
+            >
               <LinkContainer to="/">
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
               <Breadcrumb.Item active>Message List</Breadcrumb.Item>
             </Breadcrumb>
-            <div className="bg-white shadow-md rounded my-6">
+            <div className="bg-white shadow-md rounded mb-6">
               <table className="min-w-max w-full table-auto">
                 <thead>
                   <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">

@@ -18,7 +18,11 @@ productController.getAllProducts = async (req, res, next) => {
           ],
         }
       : {};
-    const category = cat ? { category: { $in: [cat] } } : {};
+    const category = cat
+      ? cat === "soap"
+        ? { category: { $regex: cat, $options: "i" } }
+        : { category: { $in: [cat] } }
+      : {};
     page = parseInt(page) || 1;
     limit = parseInt(limit) || 10;
 

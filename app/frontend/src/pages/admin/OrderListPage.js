@@ -24,13 +24,16 @@ const OrderListPage = () => {
       ) : (
         <div class="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
           <div class="w-full lg:w-5/6">
-            <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
+            <Breadcrumb
+              className="mr-auto max-w-max bg-transparent py-2"
+              bsPrefix="breadcrumb-item"
+            >
               <LinkContainer to="/">
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
               <Breadcrumb.Item active>Manage Orders</Breadcrumb.Item>
             </Breadcrumb>
-            <div class="bg-white shadow-md rounded my-6">
+            <div class="bg-white shadow-md rounded my-2">
               <table class="min-w-max w-full table-auto">
                 <thead>
                   <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
