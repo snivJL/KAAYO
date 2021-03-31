@@ -84,21 +84,27 @@ productController.createProduct = async (req, res, next) => {
     const {
       name,
       description,
+      shortDesc,
       price,
       images,
       category,
       stock,
       ingredients,
+      collection,
+      target,
     } = req.body;
     const ingArray = ingredients.split(",");
     const product = await Product.create({
       name,
+      shortDesc,
       description,
       price,
       images,
       category,
       ingredients: ingArray,
       countInStock: stock,
+      collection,
+      target,
     });
 
     utilsHelper.sendResponse(res, 200, true, product, null, "Product created");
@@ -111,22 +117,28 @@ productController.updateProduct = async (req, res, next) => {
   const {
     name,
     description,
+    shortDesc,
     price,
     images,
     category,
     countInStock,
     ingredients,
+    product_collection,
+    target,
   } = req.body;
   const productId = req.params.id;
   let fields = {};
 
   if (name) fields.name = name;
   if (description) fields.description = description;
+  if (shortDesc) fields.shortDesc = shortDesc;
   if (price) fields.price = price;
   if (images) fields.images = images;
   if (category) fields.category = category;
   if (countInStock) fields.countInStock = countInStock;
   if (ingredients) fields.ingredients = ingredients;
+  if (product_collection) fields.product_collection = product_collection;
+  if (target) fields.target = target;
   try {
     const product = await Product.findByIdAndUpdate(
       { _id: productId },

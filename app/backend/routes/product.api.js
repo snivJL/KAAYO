@@ -35,6 +35,7 @@ router.post(
     check("price").notEmpty().withMessage("Price is required"),
     check("ingredients").notEmpty().withMessage("Ingredient is required"),
     check("stock").notEmpty().withMessage("Stock is required"),
+    check("target").notEmpty().withMessage("Target is required"),
     check("images")
       .isArray({ min: 1 })
       .withMessage("At least one image is required"),

@@ -34,10 +34,13 @@ const CreateProductPage = () => {
         enableReinitialize
         initialValues={{
           name: selectedProduct.name,
+          shortDesc: selectedProduct.shortDesc,
           description: selectedProduct.description,
           price: selectedProduct.price,
           ingredients: selectedProduct.ingredients,
           category: selectedProduct.category,
+          target: selectedProduct.target,
+          collection: selectedProduct.collection,
           countInStock: selectedProduct.countInStock,
           images: [],
         }}
@@ -79,6 +82,20 @@ const CreateProductPage = () => {
                       {errors.name && touched.name ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
                           {errors.name}
+                        </div>
+                      ) : null}
+                      <label className="block mb-2  text-lg text-gray-600">
+                        Short Description
+                      </label>
+                      <Field
+                        name="shortDesc"
+                        type="text"
+                        placeholder="The fierce..."
+                        className="px-4 py-2 mb-3 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                      />
+                      {errors.shortDesc && touched.shortDesc ? (
+                        <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
+                          {errors.shortDesc}
                         </div>
                       ) : null}
                       <label className="block mb-2  text-lg text-gray-600">
@@ -196,6 +213,33 @@ const CreateProductPage = () => {
                       {errors.countInStock && touched.countInStock ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
                           {errors.countInStock}
+                        </div>
+                      ) : null}
+                      <label className="block mb-2 text-lg text-gray-600">
+                        Target
+                      </label>
+                      <Field as="select" name="target" className="mb-3">
+                        <option value="Oily Skin">Oily Skin</option>
+                        <option value="Dry Skin">Dry Skin</option>
+                        <option value="Sensitive Skin">Sensitive Skin</option>
+                      </Field>
+                      {errors.target && touched.target ? (
+                        <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
+                          {errors.target}
+                        </div>
+                      ) : null}
+                      <label className="block mb-2 text-lg text-gray-600">
+                        Collection (optional)
+                      </label>
+                      <Field
+                        name="productCollection"
+                        type="text"
+                        placeholder="Tet Collection"
+                        className="px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                      />
+                      {errors.productCollection && touched.productCollection ? (
+                        <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
+                          {errors.productCollection}
                         </div>
                       ) : null}
                       <label className="block mb-2 text-lg text-gray-600">

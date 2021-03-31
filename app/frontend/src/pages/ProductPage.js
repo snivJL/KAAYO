@@ -66,7 +66,9 @@ const ProductPage = () => {
               >
                 <Rating value={product.rating} text={product.numReviews} />
               </div>
-              <div className="pb-4 font-bold">Short Description</div>
+              <div className="pb-4 font-bold">
+                {product.shortDesc ? product.shortDesc : "Short Description"}
+              </div>
               <div className="pb-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
                 ab. Molestias accusamus quasi quo consectetur amet impedit
@@ -78,16 +80,43 @@ const ProductPage = () => {
               <div className="mb-4">
                 <div className="font-bold mb-2">Recommended For</div>
                 <div className="flex items-center w-5/6 justify-between">
-                  <div className="flex items-center w-1/3 ">
+                  <div
+                    className={`flex items-center relative w-1/3 ${
+                      product.target === "Dry Skin"
+                        ? "border p-2 bg-gray-300"
+                        : "opacity-50"
+                    }`}
+                  >
                     <img className="w-10 pr-2" src={dryImage} alt="" /> Dry skin
+                    {product.target === "Dry Skin" && (
+                      <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                    )}
                   </div>
-                  <div className="flex items-center w-1/3 ">
+                  <div
+                    className={`flex items-center relative w-1/3 ${
+                      product.target === "Oily Skin"
+                        ? "border p-2 bg-gray-300"
+                        : "opacity-50"
+                    }`}
+                  >
                     <img className="w-10 pr-2" src={oilyImage} alt="" /> Oily
                     skin
+                    {product.target === "Oily Skin" && (
+                      <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                    )}
                   </div>
-                  <div className="flex items-center w-1/3 ">
+                  <div
+                    className={`flex items-center relative w-1/3 ${
+                      product.target === "Sensitive Skin"
+                        ? "border p-2 bg-gray-300"
+                        : "opacity-50"
+                    }`}
+                  >
                     <img className="w-10 pr-2" src={sensitiveImage} alt="" />{" "}
                     Sensitive skin
+                    {product.target === "Sensitive Skin" && (
+                      <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                    )}
                   </div>
                 </div>
               </div>
