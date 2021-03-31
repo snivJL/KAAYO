@@ -10,41 +10,25 @@ const CategoriesPanel = () => {
   return (
     <div className="h-14 bg-green-600 w-full border-t border-gray-100 grid md:grid-cols-1 text-gray-100 items-center justify-center px-4  sm:grid-cols-1">
       <ul className="flex justify-self-center panel-list">
-        <li className="flex items-center space-x-3">
-          <Link to={`/shop/body-butter`}>
-            <div
-              className="transform transition ease "
-              onClick={() =>
-                dispatch(
-                  productActions.getFilteredProducts(
-                    undefined,
-                    undefined,
-                    "Body Butter"
-                  )
-                )
-              }
-            >
-              Body Butter
-            </div>
-          </Link>
-          <div>/</div>
-        </li>
-        <li className="flex items-center space-x-3 pl-3 ">
+        <li className="flex items-center space-x-3 ">
           <Dropdown as={ButtonGroup}>
-            <Button
-              onClick={() =>
-                dispatch(
-                  productActions.getFilteredProducts(
-                    undefined,
-                    undefined,
-                    "soap"
+            <Link to="/shop/soap">
+              <Button
+                onClick={() =>
+                  dispatch(
+                    productActions.getFilteredProducts(
+                      undefined,
+                      undefined,
+                      "soap"
+                    )
                   )
-                )
-              }
-              className="bg-transparent border-none outline-none focus:outline-none focus:border-none"
-            >
-              Soaps
-            </Button>
+                }
+                className="bg-transparent border-none outline-none focus:outline-none focus:border-none"
+              >
+                Soaps
+              </Button>
+            </Link>
+
             <Dropdown.Toggle
               split
               className="bg-transparent border-none outline-none focus:outline-none"
@@ -120,6 +104,26 @@ const CategoriesPanel = () => {
 
           <div>/</div>
         </li>
+        <li className="flex items-center space-x-3  pl-3">
+          <Link to={`/shop/body-butter`}>
+            <div
+              className="transform transition ease "
+              onClick={() =>
+                dispatch(
+                  productActions.getFilteredProducts(
+                    undefined,
+                    undefined,
+                    "Body Butter"
+                  )
+                )
+              }
+            >
+              Body Butter
+            </div>
+          </Link>
+          <div>/</div>
+        </li>
+
         <li className="flex items-center space-x-3 pl-3 ">
           <Link to="/shop/lip-balm">
             <div

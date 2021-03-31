@@ -11,7 +11,7 @@ import CategoriesPanel from "../components/Header/CategoriesPanel";
 const ShopPage = () => {
   const cat = useParams().cat;
   const keywords = useParams().keyword;
-
+  console.log(cat);
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
   const { products, loading, filteredProducts } = product;
@@ -35,7 +35,18 @@ const ShopPage = () => {
                 <LinkContainer to="/">
                   <Breadcrumb.Item>Home</Breadcrumb.Item>
                 </LinkContainer>
-                <Breadcrumb.Item active>Shop</Breadcrumb.Item>
+                <LinkContainer to="/shop">
+                  {cat ? (
+                    <Breadcrumb.Item>Shop</Breadcrumb.Item>
+                  ) : (
+                    <Breadcrumb.Item active>Shop</Breadcrumb.Item>
+                  )}
+                </LinkContainer>
+                {cat && (
+                  <Breadcrumb.Item className="capitalize" active>
+                    {cat.replace("-", " ")}
+                  </Breadcrumb.Item>
+                )}
               </Breadcrumb>
               <div className="flex flex-wrap items-center justify-around">
                 {cat || keywords ? (

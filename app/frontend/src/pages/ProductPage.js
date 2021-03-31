@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { Row, Col, Card, ListGroup, Form, Breadcrumb } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import productActions from "../redux/actions/product.actions";
@@ -22,6 +22,8 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.selectedProduct);
   const loading = useSelector((state) => state.product.loading);
+  const auth = useSelector((state) => state.auth);
+  const { isAuthenticated } = auth;
 
   // const images = useSelector((state) => state.product.selectedProduct.images);
   const category = useSelector(
@@ -194,7 +196,17 @@ const ProductPage = () => {
 
           <div className={!showReviews ? "d-none" : ""}>
             <ReviewList reviews={product.reviews} />
-            <ReviewInput productId={product._id} />
+            {isAuthenticated ? (
+              <ReviewInput productId={product._id} />
+            ) : (
+              <p className="my-3">
+                Please{" "}
+                <Link to="/login" className="font-bold underline">
+                  Log in
+                </Link>
+                to post a review
+              </p>
+            )}
           </div>
         </div>
       )}

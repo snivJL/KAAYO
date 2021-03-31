@@ -37,12 +37,12 @@ passport.use(
 passport.use(
   new FacebookTokenStrategy(
     {
-      fbGraphVersion: "v3.0",
+      fbGraphVersion: "v10.0",
       clientID: FACEBOOK_APP_ID,
       clientSecret: FACEBOOK_APP_SECRET,
     },
     (accessToken, refreshToken, profile, done) => {
-      console.log("PASSPORT");
+      console.log("PROFILE", profile);
       User.findOrCreate(
         {
           facebookId: profile.id,

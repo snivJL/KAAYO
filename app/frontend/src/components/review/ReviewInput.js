@@ -30,7 +30,7 @@ const ReviewInput = ({ productId }) => {
         <input
           onChange={(e) => setTitle(e.target.value)}
           className=" px-4 w-full py-2 border-t mr-0 border-b border-l text-gray-800 border-gray-200 bg-white"
-          placeholder="title"
+          placeholder="title (*)"
         />
         <input
           onChange={(e) => setComment(e.target.value)}

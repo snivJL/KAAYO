@@ -103,8 +103,8 @@ router.post(
   authMiddleware.loginRequired,
   validators.validate([
     check("name").notEmpty().withMessage("Name is required"),
-    check("rating").notEmpty().withMessage("Description is required"),
-    check("comment").notEmpty().withMessage("Price is required"),
+    check("rating").notEmpty().withMessage("Rating is required"),
+    check("title").notEmpty().withMessage("Title is required"),
   ]),
   productController.createReview
 );

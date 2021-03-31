@@ -47,7 +47,7 @@ productController.getAllProducts = async (req, res, next) => {
     })
       .skip(offset)
       .limit(limit);
-
+    console.log(products);
     utilsHelper.sendResponse(
       res,
       200,
