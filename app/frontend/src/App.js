@@ -21,6 +21,7 @@ import MessagePage from "./pages/admin/MessagePage";
 import OrderListPage from "./pages/admin/OrderListPage";
 import "react-toastify/dist/ReactToastify.css";
 import MyOrdersPage from "./pages/order/MyOrdersPage";
+import MessengerChat from "./components/MessengerChat";
 
 function App() {
   return (
@@ -59,6 +60,7 @@ function App() {
             <Route path="/admin/product/:id/edit" component={EditProductPage} />
             <Route path="/admin/order/list" component={OrderListPage} />
           </Switch>
+          <MessengerChat />
         </main>
         <footer>
           <Footer />
