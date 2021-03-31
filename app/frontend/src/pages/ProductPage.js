@@ -38,7 +38,7 @@ const ProductPage = () => {
           <Loader />
         </>
       ) : (
-        <div className="bg-white px-12 min-w-screen w-11/12 mx-auto pb-6">
+        <div className="bg-white md:px-12 min-w-screen w-11/12 mx-auto pb-6">
           <Breadcrumb
             className="mr-auto max-w-max bg-transparent py-2"
             bsPrefix="breadcrumb-item"
@@ -51,12 +51,19 @@ const ProductPage = () => {
             </LinkContainer>
             <Breadcrumb.Item active>{category[0]}</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="flex w-full space-x-12">
-            <div className="w-1/2">
+          <div className="flex flex-col items-center w-full md:flex-row md:items-start md:space-x-12">
+            <div className="md:w-1/2">
               <img src={product.images[0].imageUrl} alt="" />
             </div>
-            <div className="flex-flex-col w-1/2">
-              <div className="text-xl font-bold pb-4">{product.name}</div>
+            <div className="flex flex-col items-center md:items-start md:w-1/2">
+              <div className="text-xl font-bold pb-4 relative">
+                {product.productCollection && (
+                  <div className="absolute left-1/2 italic font-medium p-2 border bg-gray-200 rounded-full">
+                    {product.productCollection}
+                  </div>
+                )}
+                {product.name}
+              </div>
               <div className="text-lg italic pb-4">{product.category[0]}</div>
               <div
                 onClick={() =>
@@ -77,111 +84,100 @@ const ProductPage = () => {
                 eveniet quae earum est. Consequuntur illo, quidem quisquam sunt
                 laboriosam ad nemo blanditiis aliquam, porro hic libero.
               </div>
-              <div className="mb-4">
-                <div className="font-bold mb-2">Recommended For</div>
-                <div className="flex items-center w-5/6 justify-between">
-                  <div
-                    className={`flex items-center relative w-1/3 ${
-                      product.target === "Dry Skin"
-                        ? "border p-2 bg-gray-300"
-                        : "opacity-50"
-                    }`}
-                  >
-                    <img className="w-10 pr-2" src={dryImage} alt="" /> Dry skin
-                    {product.target === "Dry Skin" && (
-                      <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
-                    )}
-                  </div>
-                  <div
-                    className={`flex items-center relative w-1/3 ${
-                      product.target === "Oily Skin"
-                        ? "border p-2 bg-gray-300"
-                        : "opacity-50"
-                    }`}
-                  >
-                    <img className="w-10 pr-2" src={oilyImage} alt="" /> Oily
-                    skin
-                    {product.target === "Oily Skin" && (
-                      <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
-                    )}
-                  </div>
-                  <div
-                    className={`flex items-center relative w-1/3 ${
-                      product.target === "Sensitive Skin"
-                        ? "border p-2 bg-gray-300"
-                        : "opacity-50"
-                    }`}
-                  >
-                    <img className="w-10 pr-2" src={sensitiveImage} alt="" />{" "}
-                    Sensitive skin
-                    {product.target === "Sensitive Skin" && (
-                      <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
-                    )}
-                  </div>
+              <div className="font-bold mb-2">Recommended For</div>
+              <div className="flex items-center mb-4 w-5/6 justify-between">
+                <div
+                  className={`flex items-center relative w-1/3 ${
+                    product.target === "Dry Skin"
+                      ? "border p-2 bg-gray-300"
+                      : "opacity-50"
+                  }`}
+                >
+                  <img className="w-10 pr-2" src={dryImage} alt="" /> Dry skin
+                  {product.target === "Dry Skin" && (
+                    <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                  )}
+                </div>
+                <div
+                  className={`flex items-center relative w-1/3 ${
+                    product.target === "Oily Skin"
+                      ? "border p-2 bg-gray-300"
+                      : "opacity-50"
+                  }`}
+                >
+                  <img className="w-10 pr-2" src={oilyImage} alt="" /> Oily skin
+                  {product.target === "Oily Skin" && (
+                    <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                  )}
+                </div>
+                <div
+                  className={`flex items-center relative w-1/3 ${
+                    product.target === "Sensitive Skin"
+                      ? "border p-2 bg-gray-300"
+                      : "opacity-50"
+                  }`}
+                >
+                  <img className="w-10 pr-2" src={sensitiveImage} alt="" />{" "}
+                  Sensitive skin
+                  {product.target === "Sensitive Skin" && (
+                    <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                  )}
                 </div>
               </div>
 
-              <div className="mb-4">
-                <div className="font-bold mb-2 ">Ingredients</div>
-                <ul className="flex flex-wrap items-center space-x-3">
-                  {product.ingredients.map((i, index) => (
-                    <li
-                      className="capitalize px-3 py-2 bg-green-200 text-green-800 rounded-full"
-                      key={index}
-                    >
-                      {i}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pb-4">
-                <Card className="w-5/6">
-                  <ListGroup>
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Price:</Col>
-                        <Col>
-                          <strong>&#8363;{product.price}</strong>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Status:</Col>
-                        <Col>
-                          {product.countInStock > 0
-                            ? "In Stock"
-                            : "Out of Stock"}
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <Row>
-                        <Col>Quantity:</Col>
-                        <Col>
-                          <Form.Control
-                            as="select"
-                            disabled={product.countInStock === 0}
-                            value={qty}
-                            onChange={(e) => setQty(parseInt(e.target.value))}
-                          >
-                            {[...Array(product.countInStock).keys()].map(
-                              (x) => (
-                                <option key={x + 1} value={x + 1}>
-                                  {x + 1}
-                                </option>
-                              )
-                            )}
-                          </Form.Control>
-                        </Col>
-                      </Row>
-                    </ListGroup.Item>
-                    <ListGroup.Item>
-                      <AddToCartButton qty={qty} product={product} />
-                    </ListGroup.Item>
-                  </ListGroup>
-                </Card>
-              </div>
+              <div className="font-bold mb-2 ">Ingredients</div>
+              <ul className="flex flex-wrap items-center space-x-3 mb-4">
+                {product.ingredients.map((i, index) => (
+                  <li
+                    className="capitalize px-3 py-2 bg-green-200 text-green-800 rounded-full"
+                    key={index}
+                  >
+                    {i}
+                  </li>
+                ))}
+              </ul>
+              <Card className="w-full pb-4 md:w-5/6">
+                <ListGroup>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Price:</Col>
+                      <Col>
+                        <strong>&#8363;{product.price}</strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Status:</Col>
+                      <Col>
+                        {product.countInStock > 0 ? "In Stock" : "Out of Stock"}
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
+                      <Col>Quantity:</Col>
+                      <Col>
+                        <Form.Control
+                          as="select"
+                          disabled={product.countInStock === 0}
+                          value={qty}
+                          onChange={(e) => setQty(parseInt(e.target.value))}
+                        >
+                          {[...Array(product.countInStock).keys()].map((x) => (
+                            <option key={x + 1} value={x + 1}>
+                              {x + 1}
+                            </option>
+                          ))}
+                        </Form.Control>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <AddToCartButton qty={qty} product={product} />
+                  </ListGroup.Item>
+                </ListGroup>
+              </Card>
             </div>
           </div>
           <div className="flex justify-center py-5">

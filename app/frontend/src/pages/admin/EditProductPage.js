@@ -40,7 +40,7 @@ const CreateProductPage = () => {
           ingredients: selectedProduct.ingredients,
           category: selectedProduct.category,
           target: selectedProduct.target,
-          collection: selectedProduct.collection,
+          productCollection: selectedProduct.productCollection,
           countInStock: selectedProduct.countInStock,
           images: [],
         }}

@@ -90,7 +90,7 @@ productController.createProduct = async (req, res, next) => {
       category,
       stock,
       ingredients,
-      collection,
+      productCollection,
       target,
     } = req.body;
     const ingArray = ingredients.split(",");
@@ -103,7 +103,7 @@ productController.createProduct = async (req, res, next) => {
       category,
       ingredients: ingArray,
       countInStock: stock,
-      collection,
+      productCollection,
       target,
     });
 
@@ -123,7 +123,7 @@ productController.updateProduct = async (req, res, next) => {
     category,
     countInStock,
     ingredients,
-    product_collection,
+    productCollection,
     target,
   } = req.body;
   const productId = req.params.id;
@@ -137,7 +137,7 @@ productController.updateProduct = async (req, res, next) => {
   if (category) fields.category = category;
   if (countInStock) fields.countInStock = countInStock;
   if (ingredients) fields.ingredients = ingredients;
-  if (product_collection) fields.product_collection = product_collection;
+  if (productCollection) fields.productCollection = productCollection;
   if (target) fields.target = target;
   try {
     const product = await Product.findByIdAndUpdate(
@@ -148,6 +148,7 @@ productController.updateProduct = async (req, res, next) => {
     if (!product) {
       return next(new Error("Product not found"));
     }
+    console.log(product);
     utilsHelper.sendResponse(res, 200, true, product, null, "Product updated");
   } catch (error) {
     next(error);
