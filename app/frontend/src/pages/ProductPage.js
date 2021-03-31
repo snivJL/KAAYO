@@ -12,6 +12,7 @@ import Rating from "../components/product/Rating";
 // import ImagesCarousel from "../components/products/ImagesCarousel";
 import AddToCartButton from "../components/AddToCartButton";
 import ReviewList from "../components/review/ReviewList";
+import ReviewInput from "../components/review/ReviewInput";
 
 const ProductPage = () => {
   const reviewsRef = useRef();
@@ -21,6 +22,7 @@ const ProductPage = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product.selectedProduct);
   const loading = useSelector((state) => state.product.loading);
+
   // const images = useSelector((state) => state.product.selectedProduct.images);
   const category = useSelector(
     (state) => state.product.selectedProduct.category
@@ -85,9 +87,9 @@ const ProductPage = () => {
                 laboriosam ad nemo blanditiis aliquam, porro hic libero.
               </div>
               <div className="font-bold mb-2">Recommended For</div>
-              <div className="flex items-center mb-4 w-5/6 justify-between">
+              <div className="flex items-center mb-4 w-full justify-between">
                 <div
-                  className={`flex items-center relative w-1/3 ${
+                  className={`flex items-center relative  ${
                     product.target === "Dry Skin"
                       ? "border p-2 bg-gray-300"
                       : "opacity-50"
@@ -99,7 +101,7 @@ const ProductPage = () => {
                   )}
                 </div>
                 <div
-                  className={`flex items-center relative w-1/3 ${
+                  className={`flex items-center relative  ${
                     product.target === "Oily Skin"
                       ? "border p-2 bg-gray-300"
                       : "opacity-50"
@@ -107,20 +109,20 @@ const ProductPage = () => {
                 >
                   <img className="w-10 pr-2" src={oilyImage} alt="" /> Oily skin
                   {product.target === "Oily Skin" && (
-                    <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                    <i class="far fa-check-circle absolute left-1/4 bottom-0 text-green-600"></i>
                   )}
                 </div>
                 <div
-                  className={`flex items-center relative w-1/3 ${
+                  className={`flex items-center relative  ${
                     product.target === "Sensitive Skin"
-                      ? "border p-2 bg-gray-300"
+                      ? "border px-2 pt-2 pb-3 bg-gray-300"
                       : "opacity-50"
                   }`}
                 >
                   <img className="w-10 pr-2" src={sensitiveImage} alt="" />{" "}
                   Sensitive skin
                   {product.target === "Sensitive Skin" && (
-                    <i class="far fa-check-circle absolute left-3/4 text-green-600"></i>
+                    <i class="far fa-check-circle absolute left-1/2 bottom-0 mb-1 text-green-600"></i>
                   )}
                 </div>
               </div>
@@ -192,6 +194,7 @@ const ProductPage = () => {
 
           <div className={!showReviews ? "d-none" : ""}>
             <ReviewList reviews={product.reviews} />
+            <ReviewInput productId={product._id} />
           </div>
         </div>
       )}

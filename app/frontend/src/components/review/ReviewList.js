@@ -5,8 +5,8 @@ const ReviewList = ({ reviews }) => {
   return (
     <div>
       <ul>
-        {reviews.map((r) => (
-          <li key={r._id}>
+        {reviews.map((r, index) => (
+          <li key={index}>
             <ReviewCard review={r} />
           </li>
         ))}

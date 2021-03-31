@@ -39,7 +39,7 @@ const Product = ({ p }) => {
             {p.name}
           </a>
         </h3>
-        <Rating />
+        <Rating value={p.rating} text={p.numReviews} />
         <div>
           <p className="py-2 text-gray-500">
             &#8363;
