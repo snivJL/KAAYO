@@ -67,14 +67,38 @@ orderActions.createOrder = (order, cartPrice, user) => async (dispatch) => {
 
     dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: data });
   } catch (error) {
+    console.error(error);
     dispatch({
       type: types.CREATE_ORDER_FAIL,
-      payload: error.errors.message ? error.errors.message : error,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
     });
     toast.error(error.errors.message);
   }
 };
 
+orderActions.updateOrder = (...params) => async (dispatch) => {
+  try {
+    console.log(params[0]);
+    const { id } = params[0];
+    dispatch({ type: types.UPDATE_ORDER_REQUEST });
+    const { data } = await api.put(`/order/${id}/update`, params[0]);
+    console.log("FDP", data);
+    dispatch({ type: types.UPDATE_ORDER_SUCCESS, payload: data.data.order });
+    toast.info("Order updated!");
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.UPDATE_ORDER_FAIL,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
 orderActions.saveLocation = () => (dispatch) =>
   dispatch({ type: types.SAVE_LOCATION });
 

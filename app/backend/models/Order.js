@@ -23,6 +23,8 @@ const orderSchema = mongoose.Schema(
     shippingPrice: { type: Number, default: 0 },
     isPaid: { type: Boolean, required: true, default: false },
     paidAt: { type: Date },
+    isSent: { type: Boolean, required: true, default: false },
+    sentAt: { type: Date },
     isDelivered: { type: Boolean, required: true, default: false },
     deliveredAt: { type: Date },
     isDeleted: { type: Boolean, default: false },

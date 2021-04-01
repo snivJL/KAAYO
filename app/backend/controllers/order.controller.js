@@ -69,13 +69,28 @@ orderController.createOrder = async (req, res, next) => {
 orderController.updateOrder = async (req, res, next) => {
   try {
     const orderId = req.params.id;
-    const { userId, products, status, total, shipping } = req.body;
+    const {
+      userId,
+      products,
+      status,
+      total,
+      shipping,
+      isSent,
+      isDelivered,
+    } = req.body;
     let fields = {};
     if (shipping) fields.shipping = shipping;
     if (products) fields.products = products;
     if (status) fields.status = status;
     if (total) fields.total = total;
-
+    if (isSent) {
+      fields.isSent = isSent;
+      fields.sentAt = Date();
+    }
+    if (isDelivered) {
+      fields.isDelivered = isDelivered;
+      fields.deliveredAt = Date();
+    }
     const order = await Order.findByIdAndUpdate(
       { _id: orderId },
       { $set: fields },

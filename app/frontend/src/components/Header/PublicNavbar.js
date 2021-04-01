@@ -102,7 +102,7 @@ const PublicNavbar = () => {
   const cart = useSelector((state) => state.order.cart);
 
   return (
-    <div className="h-52 bg-white w-full grid grid-flow-row auto-rows-min	grid-cols-3 text-gray-700  justify-center px-4 relative  md:h-64">
+    <div className="h-52 bg-white w-full grid grid-flow-row auto-rows-min	grid-cols-3 text-gray-700 gap-x-0 justify-center px-4 relative  md:h-52">
       <ul className="row-span-1 col-span-3">
         <div className="flex space-x-3 pt-2 items-center font-light">
           {isAuthenticated ? <AuthLinks name={user.name} /> : <GuestLinks />}
@@ -112,9 +112,9 @@ const PublicNavbar = () => {
           </li>
           <li className="justify-self-end">
             <Link to="/cart">
-              <div className="flex space-x-3 pt-2 items-center font-light">
-                <i className="fas fa-shopping-cart hover:text-gray-400 relative">
-                  <div className="flex items-center justify-center bg-red-600 text-white p-2 text-xs border border-white h-4 w-4 rounded-full absolute -right-3 -top-2">
+              <div className="flex space-x-3 pt-2 items-center hover:opacity-70 font-light">
+                <i className="fas fa-shopping-cart  relative">
+                  <div className="flex items-center justify-center bg-red-600  text-white p-2 text-xs border border-white h-4 w-4 rounded-full absolute -right-3 -top-2">
                     {cart.length}
                   </div>
                 </i>
@@ -128,7 +128,7 @@ const PublicNavbar = () => {
         to="/"
       >
         <div>
-          <img src={logo} alt="" />
+          <img className="mt-8 md:-mt-12" src={logo} alt="" />
         </div>
       </Link>
     </div>

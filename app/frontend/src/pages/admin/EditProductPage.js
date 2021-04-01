@@ -55,8 +55,11 @@ const CreateProductPage = () => {
             {loading === "loading" ? (
               <Loader />
             ) : (
-              <>
-                <Breadcrumb className="mx-auto max-w-max bg-opacity-0">
+              <div className="bg-white md:px-12 min-w-screen w-11/12 mx-auto pb-6">
+                <Breadcrumb
+                  className="mr-auto max-w-max bg-transparent py-2"
+                  bsPrefix="breadcrumb-item"
+                >
                   <LinkContainer to="/">
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
                   </LinkContainer>
@@ -277,7 +280,7 @@ const CreateProductPage = () => {
                     </Form>
                   </div>
                 </div>
-              </>
+              </div>
             )}
           </div>
         )}

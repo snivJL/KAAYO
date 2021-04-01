@@ -6,6 +6,7 @@ const initialState = {
   paymentMethod: JSON.parse(localStorage.getItem("paymentMethod")) || [],
   orderCreated: false,
   loading: "idle",
+  orderList: [],
   userFromOrder: false,
 };
 const orderReducer = (state = initialState, action) => {
@@ -53,13 +54,24 @@ const orderReducer = (state = initialState, action) => {
       return { ...state, userFromOrder: true };
     case types.CREATE_ORDER_REQUEST:
     case types.GET_ALL_ORDERS_REQUEST:
+    case types.UPDATE_ORDER_REQUEST:
       return { ...state, loading: "loading" };
     case types.CREATE_ORDER_SUCCESS:
       return { ...state, loading: "succeeded", orderCreated: true, cart: [] };
     case types.GET_ALL_ORDERS_SUCCESS:
       return { ...state, orderList: payload, loading: "succeeded" };
+    case types.UPDATE_ORDER_SUCCESS:
+      return {
+        ...state,
+        loading: "succeeded",
+        orderList: state.orderList.map((o) =>
+          o._id === payload._id ? payload : o
+        ),
+      };
+
     case types.CREATE_ORDER_FAIL:
     case types.GET_ALL_ORDERS_FAIL:
+    case types.UPDATE_ORDER_FAIL:
       return { ...state, loading: "failed" };
     default:
       return state;
