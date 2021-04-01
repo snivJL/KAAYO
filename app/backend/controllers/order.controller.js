@@ -33,6 +33,7 @@ orderController.createOrder = async (req, res, next) => {
 
     utilsHelper.sendResponse(res, 200, true, { order }, null, "Order created");
     email.sendOrderConfirmation(order, user);
+    email.sendAlertEmail(order, user);
   } catch (error) {
     next(error);
   }

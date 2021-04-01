@@ -33,4 +33,19 @@ const sendOrderConfirmation = (order, user) => {
   });
 };
 
-module.exports = { sendTestEmail, sendOrderConfirmation };
+const sendAlertEmail = (order, user) => {
+  const data = {
+    from:
+      "Mailgun Sandbox <postmaster@sandboxc3756592e6204abf9e096e6740c1e39d.mailgun.org>",
+    to: "ka.a.yo.handmadesoaps@gmail.com",
+    subject: "New Order! (test)",
+    template: "order_alert",
+    "v:orderId": order._id,
+    "v:user": user,
+  };
+  mg.messages().send(data, function (error, body) {
+    console.log(body, error);
+  });
+};
+
+module.exports = { sendTestEmail, sendOrderConfirmation, sendAlertEmail };
