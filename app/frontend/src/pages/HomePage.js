@@ -65,7 +65,7 @@ const HomePage = () => {
           </ScrollAnimation>
           <ScrollAnimation delay={500} className="w-5/6" animateIn="slideInUp">
             <div className="section-shampoo w-full relative flex justify-center items-center rounded-2xl	">
-              <p className=" font-bold text-6xl text-white">Shampoo Bars</p>
+              <p className=" font-bold text-6xl  text-white">Shampoo Bars</p>
               <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
             </div>
           </ScrollAnimation>

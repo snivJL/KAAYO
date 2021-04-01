@@ -152,6 +152,8 @@ main {
   background-image: url("https://res.cloudinary.com/dilv93gvb/image/upload/v1616392507/kaayo/131320766_145440737332983_292046707415353122_n_jzcvpu.jpg");
   height: 400px;
   background-size: cover;
+  text-shadow: 2px 2px #ff0000;
+
   background-position: center;
 }
 

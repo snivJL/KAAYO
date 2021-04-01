@@ -97,6 +97,8 @@ const PublicNavbar = () => {
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated, token } = auth;
   const user = useSelector((state) => state.user.userInfo);
+  const cart = useSelector((state) => state.order.cart);
+
   const loading = useSelector((state) => state.user.loading);
 
   const { role, name } = user;
@@ -116,7 +118,11 @@ const PublicNavbar = () => {
           <li className="justify-self-end">
             <Link to="/cart">
               <div className="flex space-x-3 pt-2 items-center font-light">
-                <i className="fas fa-shopping-cart hover:text-gray-400"></i>
+                <i className="fas fa-shopping-cart hover:text-gray-400 relative">
+                  <div className="flex items-center justify-center bg-red-600 text-white p-2 text-xs border border-white h-4 w-4 rounded-full absolute -right-3 -top-2">
+                    {cart.length}
+                  </div>
+                </i>
               </div>
             </Link>
           </li>

@@ -22,6 +22,7 @@ import OrderListPage from "./pages/admin/OrderListPage";
 import "react-toastify/dist/ReactToastify.css";
 import MyOrdersPage from "./pages/order/MyOrdersPage";
 import MessengerChat from "./components/MessengerChat";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -52,13 +53,22 @@ function App() {
             <Route path="/order/payment" component={PaymentPage} />
             <Route path="/order/finalize" component={PlaceOrderPage} />
             <Route path="/order/summary" component={OrderPlacedPage} />
-            <Route path="/profile/myorders" component={MyOrdersPage} />
+            <PrivateRoute path="/profile/myorders" component={MyOrdersPage} />
             <Route path="/product/:id" component={ProductPage} />
-            <Route path="/admin/product/create" component={CreateProductPage} />
-            <Route path="/admin/product/list" component={ProductListPage} />
-            <Route path="/admin/message/list" component={MessagePage} />
-            <Route path="/admin/product/:id/edit" component={EditProductPage} />
-            <Route path="/admin/order/list" component={OrderListPage} />
+            <PrivateRoute
+              path="/admin/product/create"
+              component={CreateProductPage}
+            />
+            <PrivateRoute
+              path="/admin/product/list"
+              component={ProductListPage}
+            />
+            <PrivateRoute path="/admin/message/list" component={MessagePage} />
+            <PrivateRoute
+              path="/admin/product/:id/edit"
+              component={EditProductPage}
+            />
+            <PrivateRoute path="/admin/order/list" component={OrderListPage} />
           </Switch>
           <MessengerChat />
         </main>

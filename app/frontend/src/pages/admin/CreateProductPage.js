@@ -106,6 +106,7 @@ const CreateProductPage = () => {
                     Description
                   </label>
                   <Field
+                    as="textarea"
                     name="description"
                     type="text"
                     placeholder="description.."
