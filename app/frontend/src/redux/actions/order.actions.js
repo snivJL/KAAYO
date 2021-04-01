@@ -44,7 +44,7 @@ orderActions.getAllOrders = () => async (dispatch) => {
     });
   }
 };
-orderActions.createOrder = (order, cartPrice) => async (dispatch) => {
+orderActions.createOrder = (order, cartPrice, user) => async (dispatch) => {
   try {
     //creates flattened array, 1 line per product per quantity to match server
     const productsArray = order.cart
@@ -60,6 +60,8 @@ orderActions.createOrder = (order, cartPrice) => async (dispatch) => {
     formatOrder.shipping = order.shippingAddress;
     formatOrder.status = "paid";
     formatOrder.total = cartPrice;
+    formatOrder.user = user;
+
     dispatch({ type: types.CREATE_ORDER_REQUEST });
     const { data } = await api.post("/order/add", formatOrder);
 

@@ -1,7 +1,8 @@
 const User = require("../models/User");
 const Order = require("../models/Order");
+const Product = require("../models/Product");
 const utilsHelper = require("../helpers/utils.helper");
-
+const email = require("../helpers/email");
 const { validationResult, check } = require("express-validator");
 const validator = require("../middlewares/validation");
 const { Error } = require("mongoose");
@@ -18,7 +19,7 @@ orderController.createOrder = async (req, res, next) => {
   try {
     const userId = req.userId;
     console.log(req.body);
-    const { products, status, shipping, total } = req.body;
+    const { products, status, shipping, total, user } = req.body;
     validator.checkObjectId(userId);
     products.map((p) => validator.checkObjectId(p));
     //remove duplicate
@@ -31,6 +32,7 @@ orderController.createOrder = async (req, res, next) => {
     });
 
     utilsHelper.sendResponse(res, 200, true, { order }, null, "Order created");
+    email.sendOrderConfirmation(order, user);
   } catch (error) {
     next(error);
   }

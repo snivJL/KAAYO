@@ -11,7 +11,8 @@ const PlaceOrderPage = () => {
   const paymentMethod = useSelector((state) => state.order.paymentMethod);
   if (!paymentMethod) history.push("/payment");
   const order = useSelector((state) => state.order);
-  const { cart, loading, orderCreated } = order;
+  const { cart, orderCreated } = order;
+  const user = useSelector((state) => state.user.userInfo);
   const cartPrice = cart.reduce(
     (acc, item) => acc + item.product.price * item.qty,
     0
@@ -206,7 +207,7 @@ const PlaceOrderPage = () => {
                 <button
                   onClick={(e) => {
                     e.preventDefault();
-                    dispatch(orderActions.createOrder(order, cartPrice));
+                    dispatch(orderActions.createOrder(order, cartPrice, user));
                   }}
                   disabled={cart.length === 0}
                   className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"

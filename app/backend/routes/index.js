@@ -24,4 +24,9 @@ router.use("/ingredient", ingredientApi);
 // messageApi
 const messageApi = require("./message.api");
 router.use("/message", messageApi);
+
+// messageApi
+const mailsApi = require("./mails.api");
+router.use("/email", mailsApi);
+
 module.exports = router;
