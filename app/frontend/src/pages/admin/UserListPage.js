@@ -1,15 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
-import {
-  Row,
-  Col,
-  Button,
-  Table,
-  Modal,
-  Form,
-  Breadcrumb,
-} from "react-bootstrap";
+import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import userActions from "../../redux/actions/user.actions";
 

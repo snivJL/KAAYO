@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import Product from "../components/product/Product";
 import Loader from "../components/Loader";
 import CategoriesPanel from "../components/Header/CategoriesPanel";
+import Pagination from "../components/Pagination";
 
 const ShopPage = () => {
   const cat = useParams().cat;
@@ -29,7 +30,7 @@ const ShopPage = () => {
           <div className="container-md mx-auto bg-white">
             <div className="w-full container-xl mx-auto py-4">
               <Breadcrumb
-                className="mr-auto max-w-max bg-transparent pb-4 pl-10"
+                className="mr-auto max-w-max bg-transparent pb-4 "
                 bsPrefix="breadcrumb-item"
               >
                 <LinkContainer to="/">
@@ -48,7 +49,7 @@ const ShopPage = () => {
                   </Breadcrumb.Item>
                 )}
               </Breadcrumb>
-              <div className="flex flex-wrap items-center justify-around">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 ">
                 {cat || keywords ? (
                   filteredProducts.length > 0 ? (
                     filteredProducts.map((p, i) => <Product key={i} p={p} />)
@@ -61,6 +62,7 @@ const ShopPage = () => {
                   <h2>No results</h2>
                 )}
               </div>
+              <Pagination />
             </div>
           </div>
         </>

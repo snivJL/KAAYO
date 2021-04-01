@@ -245,3 +245,57 @@ main {
 .breadcrumb-item .active:last-child {
   color: #80a97d;
 }
+
+/* PAgination */
+
+.pagination {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  margin: 10px auto;
+  padding: 0.5rem 2rem;
+  width: fit-content;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.pagination .active {
+  background-color: green;
+  padding: 0.5rem;
+  color: white;
+  border-radius: 10px;
+  margin: 0 0.2rem;
+}
+
+.pagination > li {
+  padding: 0.5rem;
+}
+a {
+  outline: none;
+}
+.pagination > li:hover {
+  background-color: green;
+  color: white;
+  border-radius: 10px;
+}
+
+.previous,
+.next {
+  background-color: blue;
+  border-radius: 50%;
+  padding: 0px;
+  width: 37px;
+  height: 37px;
+  color: white;
+  text-align: center;
+}
+.previous {
+  margin-right: 6px;
+}
+li .next {
+  margin-left: 6px;
+  padding: 10px;
+}
+
+.previous > a {
+  padding: 0;
+  width: 19px;
+}
