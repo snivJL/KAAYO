@@ -26,6 +26,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useEffect } from "react";
 import userActions from "./redux/actions/user.actions";
 import { useDispatch, useSelector } from "react-redux";
+import UserListPage from "./pages/admin/UserListPage";
 function App() {
   const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
@@ -73,6 +74,7 @@ function App() {
               component={ProductListPage}
             />
             <PrivateRoute path="/admin/message/list" component={MessagePage} />
+            <PrivateRoute path="/admin/user/list" component={UserListPage} />
             <PrivateRoute
               path="/admin/product/:id/edit"
               component={EditProductPage}

@@ -80,14 +80,7 @@ const ProductPage = () => {
               <div className="pb-4 font-bold">
                 {product.shortDesc ? product.shortDesc : "Short Description"}
               </div>
-              <div className="pb-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure,
-                ab. Molestias accusamus quasi quo consectetur amet impedit
-                magnam enim nihil quia iusto et expedita animi vitae ducimus
-                possimus illum, reprehenderit, quaerat doloribus, deleniti
-                eveniet quae earum est. Consequuntur illo, quidem quisquam sunt
-                laboriosam ad nemo blanditiis aliquam, porro hic libero.
-              </div>
+              <div className="pb-4">{product.description}</div>
               <div className="font-bold mb-2">Recommended For</div>
               <div className="flex items-center mb-4 w-full justify-between">
                 <div

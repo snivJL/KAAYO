@@ -20,12 +20,12 @@ const ProductListPage = () => {
   }, [dispatch, keywords]);
 
   return (
-    <div class="overflow-x-auto">
+    <div className="overflow-x-auto">
       {loading === "loading" ? (
         <Loader />
       ) : (
-        <div class="min-w-screen bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
-          <div class="w-full lg:w-5/6">
+        <div className="min-w-screen bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
+          <div className="w-full lg:w-5/6">
             <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"
@@ -35,31 +35,31 @@ const ProductListPage = () => {
               </LinkContainer>
               <Breadcrumb.Item active>Manage Products</Breadcrumb.Item>
             </Breadcrumb>
-            <div class="bg-white shadow-md rounded mb-4">
-              <table class="min-w-max w-full table-auto">
+            <div className="bg-white shadow-md rounded mb-4">
+              <table className="min-w-max w-full table-auto">
                 <thead>
-                  <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th class="py-3 px-6 text-left">Name</th>
-                    <th class="py-3 px-6 text-left">Description</th>
-                    <th class="py-3 px-6 text-center">Price</th>
-                    <th class="py-3 px-6 text-center">Ingredients</th>
-                    <th class="py-3 px-6 text-center">Categories</th>
-                    <th class="py-3 px-6 text-center">Stock</th>
-                    {/* <th class="py-3 px-6 text-center">Status</th> */}
-                    <th class="py-3 px-6 text-center">Images</th>
-                    <th class="py-3 px-6 text-center">Action</th>
+                  <tr className="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                    <th className="py-3 px-6 text-left">Name</th>
+                    <th className="py-3 px-6 text-left">Description</th>
+                    <th className="py-3 px-6 text-center">Price</th>
+                    <th className="py-3 px-6 text-center">Ingredients</th>
+                    <th className="py-3 px-6 text-center">Categories</th>
+                    <th className="py-3 px-6 text-center">Stock</th>
+                    {/* <th className="py-3 px-6 text-center">Status</th> */}
+                    <th className="py-3 px-6 text-center">Images</th>
+                    <th className="py-3 px-6 text-center">Action</th>
                   </tr>
                 </thead>
-                <tbody class="text-gray-600 text-sm font-light">
+                <tbody className="text-gray-600 text-sm font-light">
                   {products.map((p) => (
-                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                      <td class="py-3 px-6 text-left whitespace-nowrap">
-                        <div class="flex items-center">
-                          <span class="font-medium">{p.name}</span>
+                    <tr className="border-b border-gray-200 hover:bg-gray-100">
+                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                        <div className="flex items-center">
+                          <span className="font-medium">{p.name}</span>
                         </div>
                       </td>
-                      <td class="py-3 px-6 text-left">
-                        <div class="flex items-center">
+                      <td className="py-3 px-6 text-left">
+                        <div className="flex items-center">
                           <span>
                             {p.description.length > 15
                               ? p.description.slice(0, 15) + "..."
@@ -67,13 +67,13 @@ const ProductListPage = () => {
                           </span>
                         </div>
                       </td>
-                      <td class="py-3 px-6 text-left whitespace-nowrap">
-                        <div class="flex items-center">
-                          <span class="font-medium">{p.price}</span>
+                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                        <div className="flex items-center">
+                          <span className="font-medium">{p.price}</span>
                         </div>
                       </td>
-                      <td class="py-3 px-6 text-left">
-                        <div class="flex items-center">
+                      <td className="py-3 px-6 text-left">
+                        <div className="flex items-center">
                           <table>
                             {p.ingredients.map((i) => (
                               <tr>{i}</tr>
@@ -81,8 +81,8 @@ const ProductListPage = () => {
                           </table>
                         </div>
                       </td>
-                      <td class="py-3 px-6 text-left">
-                        <div class="flex items-center">
+                      <td className="py-3 px-6 text-left">
+                        <div className="flex items-center">
                           <table>
                             {p.category.map((cat) => (
                               <tr>{cat}</tr>
@@ -90,31 +90,31 @@ const ProductListPage = () => {
                           </table>
                         </div>
                       </td>
-                      <td class="py-3 px-6 text-left whitespace-nowrap">
-                        <div class="flex items-center">
-                          <span class="font-medium">{p.countInStock}</span>
+                      <td className="py-3 px-6 text-left whitespace-nowrap">
+                        <div className="flex items-center">
+                          <span className="font-medium">{p.countInStock}</span>
                         </div>
                       </td>
 
-                      {/* <td class="py-3 px-6 text-center">
-                        <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
+                      {/* <td className="py-3 px-6 text-center">
+                        <span className="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">
                           {p.status}
                         </span>
                       </td> */}
-                      <td class="py-3 px-6 text-center">
-                        <div class="flex items-center justify-center">
+                      <td className="py-3 px-6 text-center">
+                        <div className="flex items-center justify-center">
                           {p.images.map((img) => (
                             <img
-                              class="w-12 h-12 rounded-full border-gray-200 border transform hover:scale-150"
+                              className="w-12 h-12 rounded-full border-gray-200 border transform hover:scale-150"
                               src={img.imageUrl}
                               alt=""
                             />
                           ))}
                         </div>
                       </td>
-                      <td class="py-3 px-6 text-center">
-                        <div class="flex item-center justify-center">
-                          <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                      <td className="py-3 px-6 text-center">
+                        <div className="flex item-center justify-center">
+                          <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -136,7 +136,7 @@ const ProductListPage = () => {
                             </svg>
                           </div>
                           <Link to={`/admin/product/${p._id}/edit`}>
-                            <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                            <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -157,7 +157,7 @@ const ProductListPage = () => {
                             onClick={() =>
                               dispatch(productActions.deleteProduct(p._id))
                             }
-                            class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                            className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"

@@ -45,6 +45,7 @@ productController.getAllProducts = async (req, res, next) => {
       ...keywords,
       ...category,
     })
+      .sort({ createdAt: -1 })
       .skip(offset)
       .limit(limit);
     utilsHelper.sendResponse(
