@@ -177,16 +177,19 @@ const ProductPage = () => {
               </Card>
             </div>
           </div>
-          <div className="flex justify-center py-5">
-            <button
-              ref={reviewsRef}
-              onClick={() => setShowReviews(!showReviews)}
-              className="border-2 border-green-500 rounded-full font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white"
-            >
-              {showReviews ? "Hide Reviews" : "Show reviews"}
-            </button>
-          </div>
-
+          {product.reviews.length ? (
+            <div className="flex justify-center py-5">
+              <button
+                ref={reviewsRef}
+                onClick={() => setShowReviews(!showReviews)}
+                className="border-2 border-green-500 rounded-full font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white"
+              >
+                {showReviews ? "Hide Reviews" : "Show reviews"}
+              </button>
+            </div>
+          ) : (
+            <ReviewInput productId={product._id} />
+          )}
           <div className={!showReviews ? "d-none" : ""}>
             <ReviewList reviews={product.reviews} />
             {isAuthenticated ? (
