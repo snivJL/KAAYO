@@ -10,6 +10,8 @@ const initialState = {
 const userReducer = (state = initialState, action) => {
   const { type, payload } = action;
   switch (type) {
+    case "CLEAR_USER":
+      return { ...state, userInfo: {} };
     case types.CREATE_USER_REQUEST:
     case types.GET_USERS_REQUEST:
     case types.GET_CURRENT_USER_REQUEST:

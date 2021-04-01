@@ -12,7 +12,7 @@ const AddToCartButton = ({ qty = 1, product }) => {
     <Button
       onClick={addToCart}
       className="btn-block"
-      style={{ backgroundColor: "#806A0A", border: "none" }}
+      style={{ backgroundColor: "rgb(31 160 137)", border: "none" }}
       type="button"
       disabled={product.countInStock === 0}
     >

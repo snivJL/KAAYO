@@ -27,11 +27,15 @@ userActions.register = (user) => async (dispatch) => {
   }
 };
 
-userActions.getCurrentUser = () => async (dispatch) => {
+userActions.getCurrentUser = () => async (dispatch, getState) => {
   try {
     dispatch({ type: types.GET_CURRENT_USER_REQUEST });
+    console.log("HERE", getState().auth.token);
     const { data } = await api.get("/user/me");
-    dispatch({ type: types.GET_CURRENT_USER_SUCCESS, payload: data.data.user });
+    dispatch({
+      type: types.GET_CURRENT_USER_SUCCESS,
+      payload: data.data.user,
+    });
   } catch (error) {
     console.error(error);
     dispatch({

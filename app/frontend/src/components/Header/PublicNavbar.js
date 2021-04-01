@@ -95,7 +95,7 @@ const GuestLinks = () => {
 
 const PublicNavbar = () => {
   const auth = useSelector((state) => state.auth);
-  const { isAuthenticated, token } = auth;
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const user = useSelector((state) => state.user.userInfo);
   const cart = useSelector((state) => state.order.cart);
 
@@ -103,15 +103,15 @@ const PublicNavbar = () => {
 
   const { role, name } = user;
   const dispatch = useDispatch();
-  useEffect(() => {
-    if (isAuthenticated && token) dispatch(userActions.getCurrentUser());
-  }, [dispatch, isAuthenticated, token]);
+  // useEffect(() => {
+  //   if (isAuthenticated && token) dispatch(userActions.getCurrentUser());
+  // }, [dispatch, isAuthenticated, token]);
   return (
     <div className="h-52 bg-white w-full grid grid-flow-row auto-rows-min	grid-cols-3 text-gray-700  justify-center px-4 relative  md:h-64">
       <ul className="row-span-1 col-span-3">
         <div className="flex space-x-3 pt-2 items-center font-light">
-          {isAuthenticated ? <AuthLinks name={name} /> : <GuestLinks />}
-          {role === "admin" && isAuthenticated && <AdminLinks />}
+          {isAuthenticated ? <AuthLinks name={user.name} /> : <GuestLinks />}
+          {user.role === "admin" && isAuthenticated && <AdminLinks />}
           <li className="mr-auto">
             <SearchBar />
           </li>

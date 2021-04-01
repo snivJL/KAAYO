@@ -1,19 +1,19 @@
 import api from "../api";
 import * as types from "../constants/auth.constants";
 import { toast } from "react-toastify";
+import userActions from "./user.actions";
 const authActions = {};
 
 authActions.login = (values) => async (dispatch) => {
   try {
     dispatch({ type: types.LOGIN_USER_REQUEST });
     const { data } = await api.post(`/auth`, values);
-
-    api.defaults.headers.common["authorization"] = "Bearer " + data.data.token;
-
+    console.log("data aaa:", data);
     localStorage.setItem("token", data.data.token);
 
     dispatch({ type: types.LOGIN_USER_SUCCESS, payload: data.data });
     toast.success(`Welcome ${data.data.user.name}`);
+    // dispatch(userActions.getCurrentUser());
   } catch (error) {
     console.error(error);
     dispatch({ type: types.LOGIN_USER_FAIL, payload: error.errors.message });
@@ -30,9 +30,9 @@ authActions.loginFacebook = (user) => async (dispatch) => {
     const name = res.data.user.name;
     toast.success(`Welcome ${name}`);
 
-    api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
+    // api.defaults.headers.common["authorization"] = "Bearer " + res.data.accessToken;
     localStorage.setItem("token", res.data.accessToken);
+    // dispatch(userActions.getCurrentUser());
 
     dispatch({
       type: types.LOGIN_FACEBOOK_SUCCESS,
@@ -51,9 +51,10 @@ authActions.loginGoogle = (user) => async (dispatch) => {
     const name = res.data.user.name;
     toast.success(`Welcome ${name}`);
 
-    api.defaults.headers.common["authorization"] =
-      "Bearer " + res.data.accessToken;
+    // api.defaults.headers.common["authorization"] =
+    //   "Bearer " + res.data.accessToken;
     localStorage.setItem("token", res.data.accessToken);
+    // dispatch(userActions.getCurrentUser());
 
     dispatch({
       type: types.LOGIN_GOOGLE_SUCCESS,
@@ -67,6 +68,7 @@ authActions.loginGoogle = (user) => async (dispatch) => {
 authActions.logout = () => async (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: types.LOGOUT_USER });
+  dispatch({ type: "CLEAR_USER" });
   toast.success("See you soon!");
 };
 export default authActions;

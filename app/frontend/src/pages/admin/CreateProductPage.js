@@ -44,15 +44,16 @@ const CreateProductPage = () => {
           category: [],
           stock: "",
           images: [],
-          target: "",
+          target: "Oily Skin",
           productCollection: "",
         }}
         validationSchema={ProductSchema}
         onSubmit={async (values) => {
-          images[0] === "" ? images.shift() : console.log("");
-
+          !Object.keys(images[0]).length ? images.shift() : console.log("");
+          console.log("FDP", images, Object.keys(images[0]).length);
           values.images = images;
           dispatch(productActions.createProduct(values));
+          setImages([{}]);
         }}
       >
         {({ touched, errors }) => (

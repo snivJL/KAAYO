@@ -4,7 +4,7 @@ const initialState = {
   user: {},
   isAuthenticated: !!localStorage.getItem("token"),
   loading: false,
-  token: localStorage.getItem("token"),
+  token: localStorage.getItem("token") ? localStorage.getItem("token") : null,
 };
 const authReducer = (state = initialState, action) => {
   const { type, payload } = action;
@@ -35,7 +35,7 @@ const authReducer = (state = initialState, action) => {
     case types.LOGIN_FACEBOOK_FAIL:
       return { ...state, loading: false };
     case types.LOGOUT_USER:
-      return { ...state, isAuthenticated: false, userInfo: [] };
+      return { ...state, isAuthenticated: false, userInfo: [], token: null };
     default:
       return state;
   }

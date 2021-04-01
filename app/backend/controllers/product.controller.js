@@ -47,7 +47,6 @@ productController.getAllProducts = async (req, res, next) => {
     })
       .skip(offset)
       .limit(limit);
-    console.log(products);
     utilsHelper.sendResponse(
       res,
       200,
@@ -93,6 +92,7 @@ productController.createProduct = async (req, res, next) => {
       productCollection,
       target,
     } = req.body;
+    console.log("IMAGES", images);
     const ingArray = ingredients.split(",");
     const product = await Product.create({
       name,
@@ -148,7 +148,6 @@ productController.updateProduct = async (req, res, next) => {
     if (!product) {
       return next(new Error("Product not found"));
     }
-    console.log(product);
     utilsHelper.sendResponse(res, 200, true, product, null, "Product updated");
   } catch (error) {
     next(error);

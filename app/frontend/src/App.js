@@ -23,8 +23,17 @@ import "react-toastify/dist/ReactToastify.css";
 import MyOrdersPage from "./pages/order/MyOrdersPage";
 import MessengerChat from "./components/MessengerChat";
 import PrivateRoute from "./components/PrivateRoute";
-
+import { useEffect } from "react";
+import userActions from "./redux/actions/user.actions";
+import { useDispatch, useSelector } from "react-redux";
 function App() {
+  const dispatch = useDispatch();
+  // const token = localStorage.getItem("token");
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    if (token) dispatch(userActions.getCurrentUser());
+  }, [token, dispatch]);
   return (
     <Router>
       <div className="app">
