@@ -13,7 +13,8 @@ const CartPage = () => {
 
   const checkoutHandler = (e) => {
     e.preventDefault();
-    isAuthenticated ? history.push("/order/shipping") : history.push("/login");
+    // isAuthenticated ? history.push("/order/shipping") : history.push("/login");
+    history.push("/order/shipping");
   };
   return (
     <div className="flex justify-center ">

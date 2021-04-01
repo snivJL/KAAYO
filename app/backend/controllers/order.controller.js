@@ -18,22 +18,49 @@ const updateStock = async (productId, qty) => {
 orderController.createOrder = async (req, res, next) => {
   try {
     const userId = req.userId;
-    console.log(req.body);
-    const { products, status, shipping, total, user } = req.body;
-    validator.checkObjectId(userId);
-    products.map((p) => validator.checkObjectId(p));
-    //remove duplicate
-    [...new Set(products)].map((p) => updateStock(p._id, p.qty));
-    const order = await Order.create({
-      userId,
-      products,
-      shipping,
-      total,
-    });
+    const guestOrder = userId === undefined ? true : false;
+    console.log("GUEST??", guestOrder, userId);
+    if (guestOrder) {
+      const { products, shipping, total } = req.body;
+      //remove duplicate
+      [...new Set(products)].map((p) => updateStock(p._id, p.qty));
+      const order = await Order.create({
+        products,
+        shipping,
+        total,
+      });
+      utilsHelper.sendResponse(
+        res,
+        200,
+        true,
+        { order },
+        null,
+        "Order created"
+      );
+    } else {
+      const { products, shipping, total, user } = req.body;
+      validator.checkObjectId(userId);
+      products.map((p) => validator.checkObjectId(p));
+      //remove duplicate
+      [...new Set(products)].map((p) => updateStock(p._id, p.qty));
+      const order = await Order.create({
+        userId,
+        products,
+        shipping,
+        total,
+      });
 
-    utilsHelper.sendResponse(res, 200, true, { order }, null, "Order created");
-    email.sendOrderConfirmation(order, user);
-    email.sendAlertEmail(order, user);
+      utilsHelper.sendResponse(
+        res,
+        200,
+        true,
+        { order },
+        null,
+        "Order created"
+      );
+      email.sendOrderConfirmation(order, user);
+      email.sendAlertEmail(order, user);
+    }
   } catch (error) {
     next(error);
   }

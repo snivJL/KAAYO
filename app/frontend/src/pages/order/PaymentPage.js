@@ -1,6 +1,6 @@
 import React from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
-import { useFormik } from "formik";
+import { Button } from "react-bootstrap";
+import { Formik, Field, Form } from "formik";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import orderActions from "../../redux/actions/order.actions";
@@ -20,72 +20,69 @@ const PaymentPage = () => {
 
     return errors;
   };
-  const formik = useFormik({
-    initialValues: {
-      paymentMethod: "test",
-    },
-    validate,
-    onSubmit: (values) => {
-      dispatch(orderActions.savePaymentMethod(values));
-      history.push("/order/finalize");
-    },
-  });
-
   return (
-    <Container>
-      <CheckoutSteps step1 step2 step3 />
-      <Row className="justify-content-center ">
-        <Col md={6}>
-          <Form
-            onSubmit={formik.handleSubmit}
-            className="align-items-center border rounded p-4"
-          >
-            <h2 className="text-center">Payment Method</h2>
-            <Form.Group>
-              <Form.Label as="legend">Select Method</Form.Label>
-              <Col>
-                <Form.Check
-                  type="radio"
-                  label="Test"
-                  id="test"
-                  name="paymentMethod"
-                  value="test"
-                  checked
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></Form.Check>
-                <Form.Check
-                  type="radio"
-                  label="Paypal or credit card"
-                  id="paypal"
-                  name="paymentMethod"
-                  value="paypal"
-                  checked
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></Form.Check>
-                <Form.Check
-                  type="radio"
-                  label="Zalo Pay"
-                  id="zalo"
-                  name="paymentMethod"
-                  value={formik.values.paymentMethod}
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                ></Form.Check>
-              </Col>
-              {formik.touched.paymentMethod && formik.errors.paymentMethod ? (
-                <div>{formik.errors.paymentMethod}</div>
-              ) : null}
-            </Form.Group>
+    <Formik
+      initialValues={{
+        paymentMethod: "",
+      }}
+      onSubmit={async (values) => {
+        dispatch(orderActions.savePaymentMethod(values));
+        history.push("/order/finalize");
+      }}
+    >
+      {({ touched, errors }) => (
+        <div className="container mx-auto">
+          <CheckoutSteps step1 step2 />
+          <div className="max-w-xl mx-auto bg-white pb-6 rounded-md shadow-sm">
+            <div className="text-center">
+              <h1 className="my-4 text-3xl font-semibold text-gray-700 dark:text-gray-200">
+                Payment Method
+              </h1>
+            </div>
+            <div className="m-7">
+              <Form>
+                <div
+                  className="category-label mb-3 flex flex-col "
+                  role="group"
+                  aria-labelledby="checkbox-group"
+                >
+                  <label>
+                    <Field type="checkbox" name="paymentMethod" value="Cash" />
+                    Cash
+                  </label>
 
-            <Button type="submit" block>
-              Continue
-            </Button>
-          </Form>
-        </Col>
-      </Row>
-    </Container>
+                  <label>
+                    <Field
+                      type="checkbox"
+                      name="paymentMethod"
+                      value="Paypal"
+                    />
+                    Paypal
+                  </label>
+
+                  <label>
+                    <Field
+                      type="checkbox"
+                      name="paymentMethod"
+                      value="Zalo Pay"
+                    />
+                    Zalo Pay
+                  </label>
+                </div>
+                {errors.paymentMethod && touched.paymentMethod ? (
+                  <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
+                    {errors.paymentMethod}
+                  </div>
+                ) : null}
+                <Button type="submit" block>
+                  Continue
+                </Button>
+              </Form>
+            </div>
+          </div>
+        </div>
+      )}
+    </Formik>
   );
 };
 

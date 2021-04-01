@@ -75,4 +75,7 @@ orderActions.createOrder = (order, cartPrice, user) => async (dispatch) => {
   }
 };
 
+orderActions.saveLocation = () => (dispatch) =>
+  dispatch({ type: types.SAVE_LOCATION });
+
 export default orderActions;

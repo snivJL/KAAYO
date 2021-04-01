@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const LoginPage = () => {
   const dispatch = useDispatch();
+  const userFromOrder = useSelector((state) => state.order.userFromOrder);
   const SignupSchema = Yup.object().shape({
     password: Yup.string()
       .min(2, "Password must contain at least 6 characters")
@@ -16,7 +17,9 @@ const LoginPage = () => {
   });
   const auth = useSelector((state) => state.auth);
   const { isAuthenticated } = auth;
-  if (isAuthenticated) return <Redirect to="/" />;
+  if (isAuthenticated && !userFromOrder) return <Redirect to="/" />;
+  if (isAuthenticated && userFromOrder)
+    return <Redirect to="/order/finalize" />;
 
   return (
     <div className="h-screen w-full flex justify-center items-center bg-gradient-to-tr from-green-600 to-green-200">

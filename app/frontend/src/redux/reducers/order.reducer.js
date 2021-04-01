@@ -6,6 +6,7 @@ const initialState = {
   paymentMethod: JSON.parse(localStorage.getItem("paymentMethod")) || [],
   orderCreated: false,
   loading: "idle",
+  userFromOrder: false,
 };
 const orderReducer = (state = initialState, action) => {
   const { type, payload } = action;
@@ -48,6 +49,8 @@ const orderReducer = (state = initialState, action) => {
       return { ...state, shippingAddress: payload };
     case types.SAVE_PAYMENT_METHOD:
       return { ...state, paymentMethod: payload, orderCreated: false };
+    case types.SAVE_LOCATION:
+      return { ...state, userFromOrder: true };
     case types.CREATE_ORDER_REQUEST:
     case types.GET_ALL_ORDERS_REQUEST:
       return { ...state, loading: "loading" };
