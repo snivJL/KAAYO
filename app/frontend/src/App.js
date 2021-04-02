@@ -27,6 +27,7 @@ import { useEffect } from "react";
 import userActions from "./redux/actions/user.actions";
 import { useDispatch, useSelector } from "react-redux";
 import UserListPage from "./pages/admin/UserListPage";
+import AboutPage from "./pages/AboutPage";
 function App() {
   const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
@@ -59,6 +60,7 @@ function App() {
             <Route path="/cart" component={CartPage} />
             <Route path="/contact" component={ContactPage} />
             <Route path="/ingredients" component={IngredientsPage} />
+            <Route path="/about" component={AboutPage} />
             <Route path="/order/shipping" component={ShippingPage} />
             <Route path="/order/payment" component={PaymentPage} />
             <Route path="/order/finalize" component={PlaceOrderPage} />

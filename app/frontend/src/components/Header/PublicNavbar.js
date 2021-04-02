@@ -22,7 +22,6 @@ const AuthLinks = ({ name }) => {
           <Dropdown.Item as={Link} to="/profile/myorders">
             My Orders
           </Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
     </li>
