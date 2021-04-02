@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
-import { useParams } from "react-router-dom";
 import messageActions from "../../redux/actions/message.actions";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -10,7 +9,6 @@ import MessageDetailModal from "./MessageDetailModal";
 // import Searchbar from "../../components/layout/SearchBar";
 
 const MessagePage = () => {
-  const keywords = useParams().keywords;
   const message = useSelector((state) => state.message);
   const { loading, messages } = message;
   const dispatch = useDispatch();

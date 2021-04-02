@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
-import { Link, useParams } from "react-router-dom";
 import orderActions from "../../redux/actions/order.actions";
 import { Breadcrumb } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
@@ -9,7 +8,7 @@ import Moment from "react-moment";
 // import Searchbar from "../../components/layout/SearchBar";
 
 const OrderListPage = () => {
-  const keywords = useParams().keywords;
+  // const keywords = useParams().keywords;
   const order = useSelector((state) => state.order);
   const { loading } = order;
   const { orderList } = order;

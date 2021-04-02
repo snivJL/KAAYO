@@ -1,7 +1,6 @@
 import React from "react";
 
 const Rating = ({ value, text }) => {
-  console.log(value, text);
   return (
     <div className="rating flex">
       <span style={{ color: "#FFE234" }}>

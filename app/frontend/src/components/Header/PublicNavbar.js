@@ -4,7 +4,6 @@ import SearchBar from "./SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { Dropdown } from "react-bootstrap";
 import authActions from "../../redux/actions/auth.actions";
-import userActions from "../../redux/actions/user.actions";
 import logo from "../../images/logo.png";
 import messageActions from "../../redux/actions/message.actions";
 
@@ -34,10 +33,8 @@ const AdminLinks = () => {
   const message = useSelector((state) => state.message);
   const { messages } = message;
   const numNewMessages = messages.reduce((acc, mes) => {
-    console.log(mes);
     return !mes.isRead ? (acc += 1) : acc;
   }, 0);
-  console.log(numNewMessages);
   useEffect(() => {
     dispatch(messageActions.getAllMessages());
   }, [dispatch]);

@@ -69,7 +69,7 @@ const orderReducer = (state = initialState, action) => {
           o._id === payload._id ? payload : o
         ),
       };
-    case types.ORDER_PAY_RESET:
+    // case types.ORDER_PAY_RESET:
 
     case types.CREATE_ORDER_FAIL:
     case types.GET_ALL_ORDERS_FAIL:

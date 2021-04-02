@@ -1,19 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Button, ButtonGroup } from "react-bootstrap";
 import orderActions from "../../redux/actions/order.actions";
 
 const CartPage = () => {
-  const productId = useParams();
   const history = useHistory();
   const cart = useSelector((state) => state.order.cart);
-  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   const checkoutHandler = (e) => {
     e.preventDefault();
-    // isAuthenticated ? history.push("/order/shipping") : history.push("/login");
     history.push("/order/shipping");
   };
   return (

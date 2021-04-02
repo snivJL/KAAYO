@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import { Breadcrumb } from "react-bootstrap";
@@ -7,7 +7,7 @@ import userActions from "../../redux/actions/user.actions";
 
 const UserListPage = () => {
   const users = useSelector((state) => state.user.users);
-  const selectedUser = useSelector((state) => state.user.selectedUser);
+  // const selectedUser = useSelector((state) => state.user.selectedUser);
   const loading = useSelector((state) => state.user.loading);
   const dispatch = useDispatch();
 

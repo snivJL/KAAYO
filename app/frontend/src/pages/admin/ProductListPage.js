@@ -11,7 +11,7 @@ import Pagination from "../../components/Pagination";
 const ProductListPage = () => {
   const keywords = useParams().keywords;
   const products = useSelector((state) => state.product.products);
-  const deletedProducts = useSelector((state) => state.product.deletedProducts);
+  // const deletedProducts = useSelector((state) => state.product.deletedProducts);
   const loading = useSelector((state) => state.product.loading);
   const dispatch = useDispatch();
   useEffect(() => {

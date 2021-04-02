@@ -43,8 +43,10 @@ const PlaceOrderPage = () => {
       script.async = true;
       script.onload = () => setSdk(true);
       document.body.appendChild(script);
+      console.log(sdk);
     };
     if (paymentMethod === "Paypal") addPaypalScript();
+    //eslint-disable-next-line
   }, [isAuthenticated]);
 
   return (

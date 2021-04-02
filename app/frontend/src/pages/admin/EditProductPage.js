@@ -14,7 +14,6 @@ const CreateProductPage = () => {
   const state = useSelector((state) => state.product);
   const { selectedProduct, loading } = state;
   const [img, setImg] = useState(selectedProduct.images);
-  console.log(img);
   const ProductSchema = Yup.object().shape({});
   const widget = window.cloudinary.createUploadWidget(
     { cloudName: "dilv93gvb", uploadPreset: "kaayo1" },

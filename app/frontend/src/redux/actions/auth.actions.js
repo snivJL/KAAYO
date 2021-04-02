@@ -1,7 +1,6 @@
 import api from "../api";
 import * as types from "../constants/auth.constants";
 import { toast } from "react-toastify";
-import userActions from "./user.actions";
 const authActions = {};
 
 authActions.login = (values) => async (dispatch) => {

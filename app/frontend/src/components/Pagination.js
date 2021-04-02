@@ -10,8 +10,8 @@ const Pagination = () => {
   };
   return (
     <ReactPaginate
-      previousLabel={<i class="fas fa-chevron-left"></i>}
-      nextLabel={<i class="fas fa-chevron-right"></i>}
+      previousLabel={<i className="fas fa-chevron-left"></i>}
+      nextLabel={<i className="fas fa-chevron-right"></i>}
       breakLabel={"..."}
       breakClassName={"break-me"}
       pageCount={pageCount}

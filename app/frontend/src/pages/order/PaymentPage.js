@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import { Formik, Field, Form } from "formik";
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,14 +11,7 @@ const PaymentPage = () => {
   const shippingAddress = useSelector((state) => state.order.shippingAddress);
   if (!shippingAddress) history.push("/order/shipping");
   const dispatch = useDispatch();
-  const validate = (values) => {
-    const errors = {};
-    if (!values.paymentMethod) {
-      errors.paymentMethod = "Required";
-    }
 
-    return errors;
-  };
   return (
     <Formik
       initialValues={{
