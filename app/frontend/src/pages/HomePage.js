@@ -41,35 +41,31 @@ const HomePage = () => {
         </Link>
       </ScrollAnimation>
 
-      <section className="flex flex-wrap items-center mx-auto w-11/12 mt-12 ">
-        <div className="flex justify-between h-full w-full mb-12 ">
-          <ScrollAnimation className="w-5/6 mr-12" animateIn="slideInUp">
-            <div className="section-soap w-full relative flex justify-center items-center rounded">
-              <p className=" font-bold text-6xl text-white">Soaps</p>
-              <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
-            </div>
-          </ScrollAnimation>
-          <ScrollAnimation delay={500} className="w-5/6" animateIn="slideInUp">
-            <div className="section-butter w-full relative flex justify-center items-center rounded-lg">
-              <p className=" font-bold text-6xl text-white">Body Butter</p>
-              <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
-            </div>
-          </ScrollAnimation>
-        </div>
-        <div className="flex justify-between h-full w-full  pb-12">
-          <ScrollAnimation className="w-5/6 mr-12" animateIn="slideInUp">
-            <div className="section-lip  w-full relative flex justify-center items-center rounded-xl">
-              <p className=" font-bold text-6xl text-white">Lip Balms</p>
-              <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
-            </div>
-          </ScrollAnimation>
-          <ScrollAnimation delay={500} className="w-5/6" animateIn="slideInUp">
-            <div className="section-shampoo w-full relative flex justify-center items-center rounded-2xl	">
-              <p className=" font-bold text-6xl  text-white">Shampoo Bars</p>
-              <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
-            </div>
-          </ScrollAnimation>
-        </div>
+      <section className="grid gap-8 grid-cols-1 md:grid-cols-2 items-center mx-auto w-11/12 mt-12 ">
+        <ScrollAnimation className=" " animateIn="slideInUp">
+          <div className="section-soap w-full relative flex justify-center items-center rounded">
+            <p className=" font-bold text-6xl text-white">Soaps</p>
+            <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
+          </div>
+        </ScrollAnimation>
+        <ScrollAnimation delay={500} className="" animateIn="slideInUp">
+          <div className="section-butter w-full relative flex justify-center items-center rounded-lg">
+            <p className=" font-bold text-6xl text-white">Body Butter</p>
+            <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
+          </div>
+        </ScrollAnimation>
+        <ScrollAnimation className=" " animateIn="slideInUp">
+          <div className="section-lip  w-full relative flex justify-center items-center rounded-xl">
+            <p className=" font-bold text-6xl text-white">Lip Balms</p>
+            <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
+          </div>
+        </ScrollAnimation>
+        <ScrollAnimation delay={500} className="" animateIn="slideInUp">
+          <div className="section-shampoo w-full relative flex justify-center items-center rounded-2xl	">
+            <p className=" font-bold text-6xl  text-white">Shampoo Bars</p>
+            <div className="w-full  h-full absolute transition-opacity duration-500 ease opacity-0 hover:opacity-30 hover:bg-green-300 transition-all"></div>
+          </div>
+        </ScrollAnimation>
       </section>
     </div>
   );
