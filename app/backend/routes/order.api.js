@@ -63,4 +63,10 @@ router.delete(
   orderController.deleteOrder
 );
 
+/**
+ * @route PUT api/order/:id/pay
+ * @description Update order to paid
+ * @access Public
+ */
+router.put("/:id/pay", orderController.updateOrderToPay);
 module.exports = router;

@@ -67,7 +67,7 @@ const CreateProductPage = () => {
                 </Breadcrumb>
                 <div className="max-w-xl mx-auto bg-white p-5 rounded-md shadow-sm">
                   <div className="text-center">
-                    <h1 className="my-2 text-3xl font-semibold text-gray-700 dark:text-gray-200">
+                    <h1 className="mb-2 text-3xl font-semibold text-gray-700 dark:text-gray-200">
                       Edit Product
                     </h1>
                   </div>
@@ -105,6 +105,7 @@ const CreateProductPage = () => {
                         Description
                       </label>
                       <Field
+                        as="textarea"
                         name="description"
                         type="text"
                         placeholder="description.."
@@ -169,18 +170,42 @@ const CreateProductPage = () => {
                           <Field
                             type="checkbox"
                             name="category"
-                            value="Face Soap"
+                            value="Spice Soap"
                           />
-                          Face Soap
+                          Spice Soap
                         </label>
 
                         <label>
                           <Field
                             type="checkbox"
                             name="category"
-                            value="Body Soap"
+                            value="Charcoal Soap"
                           />
-                          Body Soap
+                          Charcoal Soap
+                        </label>
+                        <label>
+                          <Field
+                            type="checkbox"
+                            name="category"
+                            value="Butter Soap"
+                          />
+                          Butter Soap
+                        </label>
+                        <label>
+                          <Field
+                            type="checkbox"
+                            name="category"
+                            value="Clay Soap"
+                          />
+                          Clay Soap
+                        </label>
+                        <label>
+                          <Field
+                            type="checkbox"
+                            name="category"
+                            value="Milk Soap"
+                          />
+                          Milk Soap
                         </label>
                         <label>
                           <Field
@@ -189,6 +214,15 @@ const CreateProductPage = () => {
                             value="Baby Soap"
                           />
                           Baby Soap
+                        </label>
+
+                        <label>
+                          <Field
+                            type="checkbox"
+                            name="category"
+                            value="Lip Balm"
+                          />
+                          Lip Balm
                         </label>
                         <label>
                           <Field

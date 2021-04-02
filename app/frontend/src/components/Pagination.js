@@ -6,12 +6,12 @@ const Pagination = () => {
   const dispatch = useDispatch();
   const pageCount = useSelector((state) => state.product.pageCount);
   const handlePageClick = (e) => {
-    dispatch(productActions.getAllProducts(undefined, e.selected + 1));
+    dispatch(productActions.getAllProducts(e.selected + 1));
   };
   return (
     <ReactPaginate
-      previousLabel={"<"}
-      nextLabel={">"}
+      previousLabel={<i class="fas fa-chevron-left"></i>}
+      nextLabel={<i class="fas fa-chevron-right"></i>}
       breakLabel={"..."}
       breakClassName={"break-me"}
       pageCount={pageCount}

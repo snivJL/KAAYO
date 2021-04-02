@@ -37,7 +37,7 @@ const CategoriesPanel = () => {
             <Dropdown.Menu>
               <Dropdown.Item as={Link} to="/shop/clay-soap">
                 <div
-                  className="transform transition ease hover:scale-110"
+                  className="transform transition ease "
                   onClick={() =>
                     dispatch(
                       productActions.getFilteredProducts(
@@ -53,7 +53,7 @@ const CategoriesPanel = () => {
               </Dropdown.Item>
               <Dropdown.Item as={Link} to="/shop/charcoal-soap">
                 <div
-                  className="transform transition ease hover:scale-110"
+                  className="transform transition ease"
                   onClick={() =>
                     dispatch(
                       productActions.getFilteredProducts(
@@ -69,7 +69,7 @@ const CategoriesPanel = () => {
               </Dropdown.Item>
               <Dropdown.Item as={Link} to="/shop/spice-soap">
                 <div
-                  className="transform transition ease hover:scale-110"
+                  className="transform transition ease "
                   onClick={() =>
                     dispatch(
                       productActions.getFilteredProducts(
@@ -85,7 +85,7 @@ const CategoriesPanel = () => {
               </Dropdown.Item>
               <Dropdown.Item as={Link} to="/shop/baby-soap">
                 <div
-                  className="transform transition ease hover:scale-110"
+                  className="transform transition ease "
                   onClick={() =>
                     dispatch(
                       productActions.getFilteredProducts(
@@ -127,7 +127,7 @@ const CategoriesPanel = () => {
         <li className="flex items-center space-x-3 pl-3 ">
           <Link to="/shop/lip-balm">
             <div
-              className="transform transition ease hover:scale-110"
+              className="transform transition ease"
               onClick={() =>
                 dispatch(
                   productActions.getFilteredProducts(
@@ -146,7 +146,7 @@ const CategoriesPanel = () => {
         <li className="flex items-center space-x-3 pl-3 ">
           <Link to="/shop/shampoo-bar">
             <div
-              className="transform transition ease hover:scale-110"
+              className="transform transition ease"
               onClick={() =>
                 dispatch(
                   productActions.getFilteredProducts(

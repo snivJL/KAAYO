@@ -133,9 +133,12 @@ const ShippingPage = () => {
                 <div>{formik.errors.country}</div>
               ) : null}
             </Form.Group>
-            <Button type="submit" block>
+            <button
+              type="submit"
+              className="uppercase text-sm font-bold tracking-wide bg-green-300 text-gray-700 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+            >
               Continue
-            </Button>
+            </button>
           </Form>
         </Col>
       </Row>

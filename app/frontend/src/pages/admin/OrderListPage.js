@@ -11,7 +11,9 @@ import Moment from "react-moment";
 const OrderListPage = () => {
   const keywords = useParams().keywords;
   const order = useSelector((state) => state.order);
-  const { loading, orderList } = order;
+  const { loading } = order;
+  const { orderList } = order;
+
   const dispatch = useDispatch();
   useEffect(() => {
     if (loading === "idle") dispatch(orderActions.getAllOrders());
@@ -22,8 +24,8 @@ const OrderListPage = () => {
       {loading === "loading" || loading === "idle" ? (
         <Loader />
       ) : (
-        <div class="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
-          <div class="w-full lg:w-5/6">
+        <div class="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans">
+          <div class="w-full lg:w-11/12">
             <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"
@@ -110,7 +112,7 @@ const OrderListPage = () => {
                         </div>
                       </td>
 
-                      <td class="py-3 px-6 text-center">
+                      <td class="py-3 px-6 text-left">
                         <table>
                           <tr className="mb-2 flex">
                             {o.isPaid ? (
@@ -123,7 +125,7 @@ const OrderListPage = () => {
                               </span>
                             )}
                           </tr>
-                          <tr>
+                          <tr className="mb-2 flex">
                             {o.isSent ? (
                               <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">
                                 Sent
@@ -133,21 +135,8 @@ const OrderListPage = () => {
                                 Not Sent
                               </span>
                             )}
-                            <input
-                              type="checkbox"
-                              onChange={() =>
-                                dispatch(
-                                  orderActions.updateOrder({
-                                    id: o._id,
-                                    isSent: !o.isSent,
-                                  })
-                                )
-                              }
-                              name="sent"
-                              id=""
-                            />
                           </tr>
-                          <tr>
+                          <tr className="mb-2 flex">
                             {o.isDelivered ? (
                               <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">
                                 Delivered
@@ -161,9 +150,61 @@ const OrderListPage = () => {
                         </table>
                       </td>
 
-                      <td class="py-3 px-6 text-center">
-                        <div class="flex item-center justify-center">
-                          <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                      <td class="py-3 px-6 text-left">
+                        <div class="flex flex-col item-center justify-center">
+                          <div className="flex justify-between items-center">
+                            <label>Mark as Paid</label>
+                            <input
+                              className="mb-2"
+                              type="checkbox"
+                              checked={o.isPaid}
+                              onChange={() =>
+                                dispatch(
+                                  orderActions.updateOrder({
+                                    id: o._id,
+                                    isPaid: !o.isPaid,
+                                  })
+                                )
+                              }
+                              name="paid"
+                            />
+                          </div>
+
+                          <div className="flex justify-between items-center">
+                            <label>Mark as Sent</label>
+                            <input
+                              className="mb-2"
+                              type="checkbox"
+                              checked={o.isSent}
+                              onChange={() =>
+                                dispatch(
+                                  orderActions.updateOrder({
+                                    id: o._id,
+                                    isSent: !o.isSent,
+                                  })
+                                )
+                              }
+                              name="sent"
+                            />
+                          </div>
+                          <div className="flex justify-between items-center">
+                            <label>Mark as Delivered</label>
+                            <input
+                              className="mb-2"
+                              type="checkbox"
+                              checked={o.isDelivered}
+                              onChange={() =>
+                                dispatch(
+                                  orderActions.updateOrder({
+                                    id: o._id,
+                                    isDelivered: !o.isDelivered,
+                                  })
+                                )
+                              }
+                              name="delivered"
+                            />
+                          </div>
+                          {/* <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
                               fill="none"
@@ -218,7 +259,7 @@ const OrderListPage = () => {
                                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                               />
                             </svg>
-                          </div>
+                          </div> */}
                         </div>
                       </td>
                     </tr>

@@ -25,8 +25,11 @@ router.use("/ingredient", ingredientApi);
 const messageApi = require("./message.api");
 router.use("/message", messageApi);
 
-// messageApi
+// mailApi
 const mailsApi = require("./mails.api");
 router.use("/email", mailsApi);
 
+// paypalApi
+const paypalApi = require("./paypal.api");
+router.use("/config/paypal", paypalApi);
 module.exports = router;

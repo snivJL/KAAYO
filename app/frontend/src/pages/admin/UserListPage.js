@@ -19,8 +19,8 @@ const UserListPage = () => {
       {loading === "loading" ? (
         <Loader />
       ) : (
-        <div class="min-w-screen bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
-          <div class="w-full lg:w-5/6">
+        <div class="min-w-screen bg-gray-100 flex items-center justify-center font-sans">
+          <div class="w-full lg:w-11/12">
             <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"

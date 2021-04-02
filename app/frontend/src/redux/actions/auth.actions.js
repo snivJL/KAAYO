@@ -12,7 +12,7 @@ authActions.login = (values) => async (dispatch) => {
     localStorage.setItem("token", data.data.token);
 
     dispatch({ type: types.LOGIN_USER_SUCCESS, payload: data.data });
-    toast.success(`Welcome ${data.data.user.name}`);
+    toast.dark(`Welcome ${data.data.user.name}`);
     // dispatch(userActions.getCurrentUser());
   } catch (error) {
     console.error(error);
@@ -28,7 +28,7 @@ authActions.loginFacebook = (user) => async (dispatch) => {
     const res = await api.post("/auth/facebook", { access_token });
     console.log("response token", res.data.accessToken);
     const name = res.data.user.name;
-    toast.success(`Welcome ${name}`);
+    toast.dark(`Welcome ${name}`);
 
     // api.defaults.headers.common["authorization"] = "Bearer " + res.data.accessToken;
     localStorage.setItem("token", res.data.accessToken);
@@ -49,7 +49,7 @@ authActions.loginGoogle = (user) => async (dispatch) => {
   try {
     const res = await api.post("/auth/google", { access_token });
     const name = res.data.user.name;
-    toast.success(`Welcome ${name}`);
+    toast.dark(`Welcome ${name}`);
 
     // api.defaults.headers.common["authorization"] =
     //   "Bearer " + res.data.accessToken;
@@ -69,6 +69,6 @@ authActions.logout = () => async (dispatch) => {
   localStorage.removeItem("token");
   dispatch({ type: types.LOGOUT_USER });
   dispatch({ type: "CLEAR_USER" });
-  toast.success("See you soon!");
+  toast.dark("See you soon!");
 };
 export default authActions;

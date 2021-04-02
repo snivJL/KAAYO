@@ -23,8 +23,8 @@ const ProductListPage = () => {
       {loading === "loading" ? (
         <Loader />
       ) : (
-        <div className="min-w-screen bg-gray-100 flex items-center justify-center font-sans overflow-hidden">
-          <div className="w-full lg:w-5/6">
+        <div className="min-w-screen bg-gray-100 flex items-center justify-center font-sans ">
+          <div className="w-full lg:w-11/12">
             <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"
@@ -137,7 +137,12 @@ const ProductListPage = () => {
                             </div>
                           </Link>
                           <Link to={`/admin/product/${p._id}/edit`}>
-                            <div className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
+                            <div
+                              onClick={() =>
+                                dispatch(productActions.getSingleProduct(p._id))
+                              }
+                              className="w-4 mr-2 transform hover:text-purple-500 hover:scale-110"
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"

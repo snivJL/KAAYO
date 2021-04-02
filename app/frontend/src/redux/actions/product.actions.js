@@ -100,7 +100,7 @@ productActions.deleteProduct = (productId) => async (dispatch) => {
     dispatch({ type: types.DELETE_PRODUCT_REQUEST });
     await api.delete(`/product/${productId}/delete`);
     dispatch({ type: types.DELETE_PRODUCT_SUCCESS, payload: productId });
-    toast.success("Product deleted!");
+    toast.info("Product deleted!");
   } catch (error) {
     console.error(error);
     dispatch({
@@ -118,7 +118,7 @@ productActions.restoreProduct = (productId) => async (dispatch) => {
     dispatch({ type: types.RESTORE_PRODUCT_REQUEST });
     await api.put(`/product/${productId}/restore`);
     dispatch({ type: types.RESTORE_PRODUCT_SUCCESS, payload: productId });
-    toast.success("Product restored!");
+    toast.info("Product restored!");
   } catch (error) {
     console.error(error);
     dispatch({
@@ -136,7 +136,7 @@ productActions.editProduct = (productId, product) => async (dispatch) => {
     dispatch({ type: types.EDIT_PRODUCT_REQUEST });
     const { data } = await api.put(`/product/${productId}/update`, product);
     dispatch({ type: types.EDIT_PRODUCT_SUCCESS, payload: data.data });
-    toast.success("Product edited!");
+    toast.info("Product edited!");
   } catch (error) {
     console.error(error);
     dispatch({

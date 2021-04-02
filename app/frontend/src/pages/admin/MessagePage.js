@@ -23,8 +23,8 @@ const MessagePage = () => {
       {loading === "loading" || loading === "idle" ? (
         <Loader />
       ) : (
-        <div className="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans overflow-hidden">
-          <div className="w-full lg:w-5/6">
+        <div className="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans ">
+          <div className="w-full lg:w-11/12">
             <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"

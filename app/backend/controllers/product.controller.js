@@ -24,7 +24,7 @@ productController.getAllProducts = async (req, res, next) => {
         : { category: { $in: [cat] } }
       : {};
     page = parseInt(page) || 1;
-    limit = parseInt(limit) || 10;
+    limit = parseInt(limit) || 12;
 
     const totalProducts = await Product.countDocuments({
       ...filter,
@@ -34,7 +34,7 @@ productController.getAllProducts = async (req, res, next) => {
     });
     console.log("totalproducts", totalProducts);
 
-    const totalPages = Math.ceil(totalProducts / limit);
+    const totalPages = Math.floor(totalProducts / limit);
     console.log("totalpages", totalPages);
 
     const offset = limit * (page - 1);

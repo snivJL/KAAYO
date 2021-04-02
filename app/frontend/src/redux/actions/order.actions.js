@@ -66,6 +66,8 @@ orderActions.createOrder = (order, cartPrice, user) => async (dispatch) => {
     const { data } = await api.post("/order/add", formatOrder);
 
     dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: data });
+
+    localStorage.removeItem("cartItems");
   } catch (error) {
     console.error(error);
     dispatch({
@@ -101,5 +103,24 @@ orderActions.updateOrder = (...params) => async (dispatch) => {
 };
 orderActions.saveLocation = () => (dispatch) =>
   dispatch({ type: types.SAVE_LOCATION });
+
+orderActions.payOrder = (orderId, paymentResult) => async (dispatch) => {
+  try {
+    dispatch({ type: types.ORDER_PAY_REQUEST });
+    const { data } = await api.put(`/order/${orderId}/pay`, paymentResult);
+    console.log("FDP", data);
+    dispatch({ type: types.ORDER_PAY_SUCCESS });
+    toast.info("Order paid!");
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.ORDER_PAY_FAIL,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
 
 export default orderActions;

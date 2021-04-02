@@ -76,6 +76,7 @@ orderController.updateOrder = async (req, res, next) => {
       total,
       shipping,
       isSent,
+      isPaid,
       isDelivered,
     } = req.body;
     let fields = {};
@@ -91,11 +92,15 @@ orderController.updateOrder = async (req, res, next) => {
       fields.isDelivered = isDelivered;
       fields.deliveredAt = Date();
     }
+    if (isPaid) {
+      fields.isPaid = isPaid;
+      fields.paidAt = Date();
+    }
     const order = await Order.findByIdAndUpdate(
       { _id: orderId },
       { $set: fields },
       { new: true }
-    );
+    ).populate("products");
 
     if (!order) return next(new Error("401 - Order not found"));
     utilsHelper.sendResponse(res, 200, true, { order }, null, "Order updated");
@@ -123,7 +128,10 @@ orderController.deleteOrder = async (req, res, next) => {
 
 orderController.getAllOrders = async (req, res, next) => {
   try {
-    const order = await Order.find({}).populate("products").populate("userId");
+    const order = await Order.find({})
+      .populate("products")
+      .populate("userId")
+      .sort({ createdAt: -1 });
     if (!order) return next(new Error("401 - Order not found"));
     utilsHelper.sendResponse(res, 200, true, { order }, null, "Get all orders");
   } catch (error) {
@@ -145,6 +153,47 @@ orderController.getSingleOrder = async (req, res, next) => {
       { order },
       null,
       "Get single order"
+    );
+  } catch (error) {
+    next(error);
+  }
+};
+
+orderController.getAllOrders = async (req, res, next) => {
+  try {
+    const order = await Order.find({})
+      .populate("products")
+      .populate("userId")
+      .sort({ createdAt: -1 });
+    if (!order) return next(new Error("401 - Order not found"));
+    utilsHelper.sendResponse(res, 200, true, { order }, null, "Get all orders");
+  } catch (error) {
+    next(error);
+  }
+};
+
+orderController.updateOrderToPay = async (req, res, next) => {
+  try {
+    const orderId = req.params.id;
+    const order = await Order.findById(orderId);
+    if (!order) return next(new Error("401 - Order not found"));
+    order.isPaid = true;
+    order.paidAt = Date.now();
+    order.paymentResult = {
+      id: req.body.id,
+      status: req.body.status,
+      update_time: req.body.update_time,
+      email_address: req.body.email_address,
+    };
+
+    const updatedOrder = await order.save();
+    utilsHelper.sendResponse(
+      res,
+      200,
+      true,
+      { updatedOrder },
+      null,
+      "Order updated to paid"
     );
   } catch (error) {
     next(error);

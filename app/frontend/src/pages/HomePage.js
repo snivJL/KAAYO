@@ -6,7 +6,7 @@ import ImagesCarousel from "../components/ImagesCarousel";
 const HomePage = () => {
   return (
     <div className="pb-12">
-      <div className="h-14 bg-white mx-2 w-full border-t border-green-100 grid justify-center text-gray-700 grid-cols-1 md:px-4 ">
+      <div className="h-14  w-full border-t border-green-100 bg-green-100 grid justify-center text-gray-700 grid-cols-1 md:px-4 ">
         <ul className="flex justify-around w-full mx-auto md:w-2/3">
           <li className="my-auto">
             <Link to="/about">Our Beginning</Link>

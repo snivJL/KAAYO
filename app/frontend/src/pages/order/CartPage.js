@@ -53,11 +53,12 @@ const CartPage = () => {
                       <form action="" method="POST">
                         <button
                           type="button"
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.preventDefault();
                             dispatch(
                               orderActions.deleteFromCart(item.product._id)
-                            )
-                          }
+                            );
+                          }}
                           className="text-gray-700 md:ml-4"
                         >
                           <small>(Remove item)</small>

@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { ButtonGroup, Button } from "react-bootstrap";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import orderActions from "../../redux/actions/order.actions";
 import CheckoutSteps from "../../components/CheckoutSteps";
 import SignUpNowModal from "./SignUpNowModal";
+import api from "../../redux/api";
+import { PayPalButton } from "react-paypal-button-v2";
 
 const PlaceOrderPage = () => {
   const history = useHistory();
   const [show, setShow] = useState(false);
-
+  const [sdk, setSdk] = useState(false);
   const paymentMethod = useSelector((state) => state.order.paymentMethod);
   if (!paymentMethod) history.push("/payment");
   const order = useSelector((state) => state.order);
@@ -22,13 +24,27 @@ const PlaceOrderPage = () => {
   );
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
-
+  const successPaymentHandler = (paymentResult) => {
+    dispatch(orderActions.payOrder(order._id, paymentResult));
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     if (orderCreated) history.push("/order/summary");
   }, [history, orderCreated]);
   useEffect(() => {
     if (!isAuthenticated) handleShow();
+
+    //adding paypal script dynamically
+    const addPaypalScript = async () => {
+      const { data: clientId } = await api.get("/config/paypal");
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://www.paypal.com/sdk/js?client-id=${clientId}`;
+      script.async = true;
+      script.onload = () => setSdk(true);
+      document.body.appendChild(script);
+    };
+    if (paymentMethod === "Paypal") addPaypalScript();
   }, [isAuthenticated]);
 
   return (
@@ -48,7 +64,7 @@ const PlaceOrderPage = () => {
             </h1>
           </div>
           <div className="flex">
-            <table className="w-2/3 text-sm lg:text-base" cellspacing="0">
+            <table className="w-2/3 text-sm lg:text-base" cellSpacing="0">
               <thead>
                 <tr className="h-12 uppercase">
                   <th className="hidden md:table-cell"></th>
@@ -64,8 +80,8 @@ const PlaceOrderPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item) => (
-                  <tr>
+                {cart.map((item, index) => (
+                  <tr key={index}>
                     <td className="text-center">
                       <a href="/">
                         <img
@@ -220,7 +236,8 @@ const PlaceOrderPage = () => {
                     ) + 40000}
                   </div>
                 </div>
-                <a href="/">
+
+                {paymentMethod.toString() !== "Paypal" ? (
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -229,7 +246,7 @@ const PlaceOrderPage = () => {
                       );
                     }}
                     disabled={cart.length === 0}
-                    className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                    className="flex justify-center w-full px-10 py-3 my-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
                   >
                     <svg
                       aria-hidden="true"
@@ -246,7 +263,13 @@ const PlaceOrderPage = () => {
                     </svg>
                     <span className="ml-2 mt-5px">Place Order</span>
                   </button>
-                </a>
+                ) : (
+                  <PayPalButton
+                    amount={cartPrice}
+                    // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
+                    onSuccess={successPaymentHandler}
+                  />
+                )}
               </div>
             </div>
             <hr className="pb-6 mt-6" />

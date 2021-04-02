@@ -60,9 +60,9 @@ const ProductPage = () => {
               <img src={product.images[0].imageUrl} alt="" />
             </div>
             <div className="flex flex-col items-center md:items-start md:w-1/2">
-              <div className="text-xl font-bold pb-4 relative">
+              <div className="text-xl font-bold pb-4 w-full relative">
                 {product.productCollection && (
-                  <div className="absolute left-1/2 italic font-medium p-2 border bg-gray-200 rounded-full">
+                  <div className="absolute w-max left-3/4 italic font-medium p-2 border bg-gray-200 rounded-full">
                     {product.productCollection}
                   </div>
                 )}
@@ -123,10 +123,11 @@ const ProductPage = () => {
               </div>
 
               <div className="font-bold mb-2 ">Ingredients</div>
-              <ul className="flex flex-wrap items-center space-x-3 mb-4">
+              <ul className="flex flex-wrap items-center space-x-3 space-y-2 mb-4">
+                {/* <ul className="grid grid-cols-4 mb-4"> */}
                 {product.ingredients.map((i, index) => (
                   <li
-                    className="capitalize px-3 py-2 bg-green-200 text-green-800 rounded-full"
+                    className="capitalize px-3 py-1 bg-green-200 text-green-800 rounded-full"
                     key={index}
                   >
                     {i}

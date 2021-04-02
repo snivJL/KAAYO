@@ -188,6 +188,30 @@ const CreateProductPage = () => {
                       <Field
                         type="checkbox"
                         name="category"
+                        value="Butter Soap"
+                      />
+                      Butter Soap
+                    </label>
+                    <label>
+                      <Field
+                        type="checkbox"
+                        name="category"
+                        value="Clay Soap"
+                      />
+                      Clay Soap
+                    </label>
+                    <label>
+                      <Field
+                        type="checkbox"
+                        name="category"
+                        value="Milk Soap"
+                      />
+                      Milk Soap
+                    </label>
+                    <label>
+                      <Field
+                        type="checkbox"
+                        name="category"
                         value="Baby Soap"
                       />
                       Baby Soap

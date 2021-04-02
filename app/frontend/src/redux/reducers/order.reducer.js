@@ -55,6 +55,7 @@ const orderReducer = (state = initialState, action) => {
     case types.CREATE_ORDER_REQUEST:
     case types.GET_ALL_ORDERS_REQUEST:
     case types.UPDATE_ORDER_REQUEST:
+    case types.ORDER_PAY_REQUEST:
       return { ...state, loading: "loading" };
     case types.CREATE_ORDER_SUCCESS:
       return { ...state, loading: "succeeded", orderCreated: true, cart: [] };
@@ -68,11 +69,13 @@ const orderReducer = (state = initialState, action) => {
           o._id === payload._id ? payload : o
         ),
       };
+    case types.ORDER_PAY_RESET:
 
     case types.CREATE_ORDER_FAIL:
     case types.GET_ALL_ORDERS_FAIL:
     case types.UPDATE_ORDER_FAIL:
-      return { ...state, loading: "failed" };
+    case types.ORDER_PAY_FAIL:
+      return { ...state, loading: "failed", error: payload };
     default:
       return state;
   }

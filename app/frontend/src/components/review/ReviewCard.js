@@ -36,7 +36,7 @@ const ReviewCard = ({ review }) => {
           <span className="ml-2 text-green-600 text-xs">Verified Buyer</span>
         </p>
         <div className="flex items-center mt-1">
-          <Rating value={review.rating} />
+          <Rating value={review.rating} text={false} />
         </div>
 
         <div className="mt-3">
