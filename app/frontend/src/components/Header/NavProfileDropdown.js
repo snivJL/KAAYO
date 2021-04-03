@@ -2,7 +2,6 @@ import React, { useState } from "react";
 
 const NavProfileDropdown = () => {
   const [show, setShow] = useState(false);
-  console.log(show);
   return (
     <div className="relative flex flex-col ">
       <button

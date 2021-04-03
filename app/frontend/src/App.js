@@ -1,4 +1,5 @@
 import PublicNavbar from "./components/Header/PublicNavbar";
+import Navbar2 from "./components/Header/Navbar2";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/auth/LoginPage";
@@ -47,7 +48,7 @@ function App() {
           autoClose={1500}
         />
         <header>
-          <PublicNavbar />
+          <Navbar2 />
         </header>
         <main>
           <Switch>

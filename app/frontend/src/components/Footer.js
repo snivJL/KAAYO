@@ -7,14 +7,14 @@ const Footer = () => {
       {/* <div className="text-xl">
         <img className="w-32" src={logo} alt="" />
       </div> */}
-      <ul className="flex space-x-2 md:col-span-2 md:w-fullmd:justify-around font-light items-center justify-self-center">
+      <ul className="flex space-x-2 md:col-span-2 md:w-full md:justify-around font-light items-center justify-self-center">
         <Link to="/about">
           <li className="hover:text-gray-400 border-r border-green-600 pr-2 ">
             About Us
           </li>
         </Link>
         <Link to="/policy">
-          <li className="hover:text-gray-400 border-r border-green-600 pr-2">
+          <li className="hover:text-gray-400 border-r border-green-600 pr-2 ">
             Privacy Policy
           </li>{" "}
         </Link>

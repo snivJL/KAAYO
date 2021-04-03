@@ -45,7 +45,7 @@ code {
   display: block;
   height: 2px;
   width: 0;
-  background-color: #047857;
+  background-color: #6ee7b7;
   transition: all 0.3s ease-in-out;
 }
 .navbar-nav-link:hover::after {
@@ -71,6 +71,11 @@ main {
 }
 
 /*--------------- SearchBar -----------------*/
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgb(110 231 183 / 25%);
+  border-color: #34d399;
+}
 
 .search > div {
   display: inline-block;
