@@ -5,17 +5,17 @@ import AddToCartButton from "../AddToCartButton";
 
 const Product = ({ p }) => {
   return (
-    <div className="w-72  mb-16 shadow rounded-lg">
+    <div className="w-64  mb-16 mx-auto  ">
       <div className="product-card relative w-full">
         <Link to={`/product/${p._id}`}>
           <img
-            className="product-card-img rounded-t-lg w-full"
+            className=" product-card-img w-full h-full object-cover"
             src={p.images[0].imageUrl}
             alt=""
           />
-          <div className="card-overlay justify-center items-center absolute w-full h-16 bottom-0 bg-green-800 opacity-40 text-center text-white ">
+          {/* <div className="card-overlay justify-center items-center absolute w-full h-16 bottom-0 bg-green-800 opacity-40 text-center text-white ">
             <p>See more</p>
-          </div>
+          </div> */}
         </Link>
         {/* <div className="absolute bottom-0 mb-2 ml-3 px-2 py-1 rounded text-sm text-white">
           $ 16.80
@@ -31,20 +31,18 @@ const Product = ({ p }) => {
         </div> */}
       </div>
       <div className="p-3">
-        <h3 className="mr-10 text-lg py-2 truncate-2nd">
-          <a
-            className="hover:text-blue-500"
-            href="/huawwei-p20-pro-complete-set-with-box-a.7186128376"
-          >
-            {p.name}
-          </a>
+        <h3 className=" text-center text-green-400 text-lg uppercase py-2 truncate-2nd">
+          <p className="hover:text-green-600">{p.name}</p>
         </h3>
-        <Rating value={p.rating} text={p.numReviews} />
-        <div>
-          <p className="py-2 text-gray-500">
-            &#8363;
-            <span className="text-lg">{p.price}</span>
-          </p>
+        <h3 className=" text-center text-green-500 text-sm italic  truncate-2nd">
+          <p className="hover:text-green-600">{p.category}</p>
+        </h3>
+        <p className="py-2 text-center text-gray-600">
+          &#8363;
+          <span className="text-lg">{p.price}</span>
+        </p>
+        <div className="flex items-center pb-2">
+          <Rating value={p.rating} />
         </div>
         <AddToCartButton product={p} />
       </div>

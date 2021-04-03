@@ -35,7 +35,7 @@ const Navbar2 = (props) => {
             <Nav.Link className="navbar-nav-link" as={Link} to="/about">
               Our Ingredients
             </Nav.Link>
-            <Nav.Link className="navbar-nav-link" as={Link} to="/about">
+            <Nav.Link className="navbar-nav-link" as={Link} to="/shop">
               Shop
             </Nav.Link>
             <NavDropdown

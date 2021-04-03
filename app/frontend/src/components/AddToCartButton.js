@@ -9,15 +9,14 @@ const AddToCartButton = ({ qty = 1, product }) => {
     dispatch(orderActions.addToCart(qty, product));
   };
   return (
-    <Button
+    <button
       onClick={addToCart}
-      className="btn-block text-gray-900"
-      style={{ backgroundColor: "#Dee5c5", border: "none" }}
+      className="uppercase add-cart-button block py-2 w-full border-2 bg-white border-green-500 font-bold text-green-800 hover:text-white"
       type="button"
       disabled={product.countInStock === 0}
     >
       {product.countInStock === 0 ? "Out of Stock" : "Add to cart"}
-    </Button>
+    </button>
   );
 };
 

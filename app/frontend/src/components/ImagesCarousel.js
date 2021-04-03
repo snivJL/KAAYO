@@ -26,7 +26,7 @@ const ImagesCarousel = () => {
               ingredients
             </div>
             <Link to="/ingredients">
-              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
+              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	font-light text-sm md:text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
                 Discover More
               </button>
             </Link>
@@ -42,7 +42,7 @@ const ImagesCarousel = () => {
               Enjoy the benefits of natural ingredients for your body
             </div>
             <Link to="/ingredients">
-              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
+              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-sm md:text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
                 Learn More
               </button>
             </Link>
@@ -60,7 +60,7 @@ const ImagesCarousel = () => {
               natural products
             </div>
             <Link to="/shop">
-              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
+              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-sm md:text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
                 Shop Now
               </button>
             </Link>

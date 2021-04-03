@@ -193,15 +193,17 @@ main {
 .product-card {
   height: 298px;
 }
-.product-card .card-overlay {
+/* .product-card .card-overlay {
   display: none;
 }
 .product-card:hover .card-overlay {
   display: flex;
-}
+}*/
 .product-card-img {
-  height: 100%;
-  object-fit: cover;
+  transition: all ease-in-out 500ms;
+}
+.product-card-img:hover {
+  border-radius: 30%;
 }
 
 .breadcrumb-item {
@@ -227,11 +229,15 @@ main {
   box-shadow: none !important;
 }
 .dot.selected {
-  background-color: #80a97d !important;
+  background-color: #34d399 !important;
+
   outline: none !important;
 }
 .dot:focus {
   outline: none !important;
+}
+.carousel-status {
+  display: none !important;
 }
 .carousel.carousel-slider .control-arrow:hover {
   background: #80a97d !important;
@@ -250,10 +256,19 @@ main {
   border-radius: 10px;
   /* background: #000; */
   padding: 10px;
-  font-size: 4rem;
-  line-height: 4rem;
+  font-size: 2rem;
+  line-height: 2rem;
   text-align: center;
   transition: opacity 0.35s ease-in-out;
+}
+
+.hero-panel-title::after {
+  content: "";
+  display: block;
+  height: 2px;
+  width: 3rem;
+  margin: 10px auto;
+  background-color: white;
 }
 
 .breadcrumb-item .active {
@@ -316,4 +331,22 @@ li .next {
 .previous > a {
   padding: 0;
   width: 19px;
+}
+
+.add-cart-button {
+  background-image: linear-gradient(to right, rgb(16, 185, 129) 50%, white 0);
+  background-position: right;
+  background-size: 200% 200%;
+  transition: 250ms;
+}
+
+.add-cart-button:hover {
+  background-position: left;
+}
+
+@media only screen and (min-width: 768px) {
+  .carousel .slide .legend-custom {
+    font-size: 4rem;
+    line-height: 4rem;
+  }
 }
