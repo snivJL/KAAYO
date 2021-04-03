@@ -5,7 +5,7 @@ import AddToCartButton from "../AddToCartButton";
 
 const Product = ({ p }) => {
   return (
-    <div className="w-64  mb-16 mx-auto  ">
+    <div className="w-64  mx-auto  ">
       <div className="product-card relative w-full">
         <Link to={`/product/${p._id}`}>
           <img

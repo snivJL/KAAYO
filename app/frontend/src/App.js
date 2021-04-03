@@ -85,7 +85,7 @@ function App() {
             />
             <PrivateRoute path="/admin/order/list" component={OrderListPage} />
           </Switch>
-          <MessengerChat />
+          {/* <MessengerChat /> */}
         </main>
         <footer>
           <Footer />

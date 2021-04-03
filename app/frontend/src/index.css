@@ -333,17 +333,57 @@ li .next {
   width: 19px;
 }
 
-.add-cart-button {
-  background-image: linear-gradient(to right, rgb(16, 185, 129) 50%, white 0);
+.add-cart-button,
+.animated-button {
+  background-image: linear-gradient(
+    to right,
+    rgb(16, 185, 129) 50%,
+    rgb(216, 210, 202) 0
+  );
   background-position: right;
   background-size: 200% 200%;
   transition: 250ms;
 }
 
-.add-cart-button:hover {
+.add-cart-button:hover,
+.animated-button:hover {
   background-position: left;
 }
 
+.review-section {
+  background-image: url(https://cleanskin.ancorathemes.com/wp-content/uploads/2018/09/bg-3-nocopyright.jpg?id=1275) !important;
+}
+
+.carousel-review-card::before {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: #34d399;
+  height: 2px;
+  left: -2px;
+  width: 44%;
+  top: 0px;
+}
+.carousel-review-card::after {
+  content: "";
+  position: absolute;
+  display: block;
+  background-color: #34d399;
+  height: 2px;
+  width: 44%;
+  right: 0;
+  top: 0px;
+}
+.carousel-review-content::before {
+  content: url("https://res.cloudinary.com/dilv93gvb/image/upload/c_scale,w_150/v1617415483/kaayo/logo_whty9b.png");
+  /* font-family: fontello; */
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  width: 150px;
+  height: auto;
+}
 @media only screen and (min-width: 768px) {
   .carousel .slide .legend-custom {
     font-size: 4rem;

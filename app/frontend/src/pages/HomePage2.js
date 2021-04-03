@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import ImagesCarousel from "../components/ImagesCarousel";
+import ReviewsCarousel from "../components/ReviewsCarousel";
 import Product from "../components/product/Product";
 import { useSelector, useDispatch } from "react-redux";
 import productActions from "../redux/actions/product.actions";
+import { Link } from "react-router-dom";
 const HomePage2 = () => {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.product);
@@ -44,7 +46,7 @@ const HomePage2 = () => {
           </li>
         </ul>
       </section>
-      <section className="w-10/12 mx-auto py-24">
+      <section className="w-full md:w-10/12 mx-auto py-24">
         <h2 className="text-gray-700 font-extralight text-5xl	 text-center">
           New products
         </h2>
@@ -59,6 +61,99 @@ const HomePage2 = () => {
             ))
           )}
         </ul>
+      </section>
+      <section className="w-full md:w-10/12 mx-auto pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2">
+          <div
+            style={{ backgroundColor: "#D8D2CA" }}
+            className="bg-opacity-50 flex"
+          >
+            <div className="flex flex-col justify-around items-center p-4 w-10/12 md-w-3/4 mx-auto">
+              <h2 className="text-gray-600 font-extralight text-5xl	 text-center">
+                THE BEST OF CLEANSKIN
+              </h2>
+              <p className="text-center text-gray-600">
+                Handmade soap is exactly that made by hand. They are made with
+                vegetable oil and/or animals fats for their skin care
+                properties. The soapmaker will often include additives to the
+                soap for their healing, exfoliating and esthetic properties.
+              </p>
+              <button className="animated-button  uppercase block py-2 px-4 w-max  border-2 bg-transparent border-green-500 font-semi-bold text-gray-600 mx-auto hover:text-white">
+                Shop best product
+              </button>
+            </div>
+          </div>
+          <div className="">
+            <div className="relative w-full h-full">
+              <img
+                className="object-cover w-full object-bottom"
+                style={{ height: "562px" }}
+                src="https://res.cloudinary.com/dilv93gvb/image/upload/v1617282938/kaayo/hecpb4faifpjotbmckqf.png"
+                alt=""
+              />
+              <div className="test absolute inset-1/2	w-1/3 h-1/3 bg-green-100 rounded-full text-gray-700	flex flex-col items-center justify-around py-10 opacity-0 transform -translate-y-2/4 -translate-x-2/4 hover:scale-125	 transition-all ease-in-out duration-300 hover:opacity-100 hover:bg-opacity-50">
+                <div className=" text-center text-gray-600 text-md uppercase truncate-2nd hover:text-gray-400">
+                  {products && products[0] && products[0].name}
+                </div>
+                <div className="font-bold">
+                  &#8363;
+                  {products && products[0] && products[0].price}
+                </div>
+                <i className="fas fa-shopping-bag opacity-70 hover:text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div className="relative w-full h-full">
+              <img
+                className="object-cover w-full object-bottom"
+                style={{ height: "562px" }}
+                src="https://res.cloudinary.com/dilv93gvb/image/upload/v1617282938/kaayo/hecpb4faifpjotbmckqf.png"
+                alt=""
+              />
+              <div className="test absolute inset-1/2	w-1/3 h-1/3 bg-green-100 rounded-full text-gray-700	flex flex-col items-center justify-around py-10 opacity-0 transform -translate-y-2/4 -translate-x-2/4 hover:scale-125	 transition-all ease-in-out duration-300 hover:opacity-100 hover:bg-opacity-50">
+                <div className=" text-center text-gray-600 text-md uppercase truncate overflow-ellipsis w-32 hover:text-gray-400">
+                  <Link to="/">
+                    {products && products[1] && products[1].name}
+                  </Link>
+                </div>
+                <div className="font-bold">
+                  &#8363;
+                  {products && products[1] && products[1].price}
+                </div>
+                <i className="fas fa-shopping-bag opacity-70 hover:text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <div
+            style={{ backgroundColor: "#D8D2CA" }}
+            className="bg-opacity-50 flex"
+          >
+            <div className="flex flex-col justify-around items-center p-4 w-3/4 mx-auto">
+              <h2 className="text-gray-600 font-extralight text-5xl	 text-center">
+                BALANCE FOR SENSITIVE SKIN
+              </h2>
+              <p className="text-center text-gray-600">
+                Handmade soap is exactly that made by hand. They are made with
+                vegetable oil and/or animals fats for their skin care
+                properties. The soapmaker will often include additives to the
+                soap for their healing, exfoliating and esthetic properties
+              </p>
+              <button className="animated-button  uppercase block py-2 px-4 w-max  border-2 bg-transparent border-green-500 font-semi-bold text-gray-600 mx-auto hover:text-white">
+                Shop best product
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section className="review-section w-full h-auto">
+        <div className="w-5/6 mx-auto py-24 ">
+          <h2 className="text-gray-700 uppercase mb-8 font-extralight text-5xl text-center">
+            clients about us
+          </h2>
+          <ReviewsCarousel />
+        </div>
       </section>
     </div>
   );
