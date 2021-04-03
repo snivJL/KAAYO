@@ -10,57 +10,62 @@ const ImagesCarousel = () => {
       <Carousel
         showArrows={true}
         onChange={onChange}
-        autoPlay={true}
+        autoPlay={false}
         infiniteLoop={true}
         showThumbs={false}
-        // onClickItem={onClickItem}
-        // onClickThumb={onClickThumb}
+        transitionTime={1000}
       >
-        <Link to="/about">
-          <div>
-            <img
-              src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830139/kaayo/products/Body_Butter_aoyjq1.png"
-              alt="pic"
-            />
-            <p className="legend-custom relative italic">
-              <span className="absolute -left-72 top-40  w-full h-full">
-                Our
-              </span>
-              <span className="absolute -left-48 top-60 h-full w-full">
-                Beginning
-              </span>
-            </p>
-          </div>
-        </Link>
-        <Link to="/ingredients">
-          <div>
-            <img
-              src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830137/kaayo/products/cucumber_ujcp9s.png"
-              alt="pic"
-            />
-            <p className="legend-custom relative italic">
-              <span className="absolute -left-72 top-44  w-full h-full">
-                Ingredients
-              </span>
-            </p>
-          </div>
-        </Link>
-        <Link to="/shop">
-          <div>
-            <img
-              src="https://res.cloudinary.com/dilv93gvb/image/upload/v1616830148/kaayo/products/Tet_collection_1_mjjphc.png"
-              alt="pic"
-            />
-            <p className="legend-custom relative italic">
-              <span className="absolute -left-72 top-40  w-full h-full">
-                What's
-              </span>
-              <span className="absolute -left-44 top-60 h-full w-full">
-                New ?
-              </span>
-            </p>
-          </div>
-        </Link>
+        <div>
+          <img
+            src="https://image.freepik.com/free-photo/natural-soap-with-herbs-skin-care-white-background-top-view-copy-space_114106-530.jpg"
+            alt="pic"
+          />
+          <p className="legend-custom relative">
+            <div className="flex w-5/6 mx-auto h-3/5 justify-center items-center text-gray-700 font-extralight		">
+              Handmade soap and skincare products made with nature's finest
+              ingredients
+            </div>
+            <Link to="/ingredients">
+              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
+                Discover More
+              </button>
+            </Link>
+          </p>
+        </div>
+        <div>
+          <img
+            src="https://image.freepik.com/free-photo/natural-soap-with-herbs-skin-care-white-background-top-view-copy-space_114106-530.jpg"
+            alt="pic"
+          />
+          <p className="legend-custom relative">
+            <div className="flex w-3/5 mx-auto h-3/5 justify-center items-center text-gray-700 font-extralight		">
+              Enjoy the benefits of natural ingredients for your body
+            </div>
+            <Link to="/ingredients">
+              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
+                Learn More
+              </button>
+            </Link>
+          </p>
+        </div>
+
+        <div>
+          <img
+            src="https://image.freepik.com/free-photo/natural-soap-with-herbs-skin-care-white-background-top-view-copy-space_114106-530.jpg"
+            alt="pic"
+          />
+          <p className="legend-custom relative">
+            <div className="flex w-5/6 mx-auto h-3/5 justify-center items-center text-gray-700 font-extralight		">
+              You owe yourself a moment of relaxation with our collection of
+              natural products
+            </div>
+            <Link to="/shop">
+              <button className="border-2 border-gray-700 py-3 px-10 uppercase tracking-wider	 font-light text-xl hover:text-green-600 hover:border-green-600 transition ease-in-out">
+                Shop Now
+              </button>
+            </Link>
+          </p>
+        </div>
       </Carousel>
     </>
   );

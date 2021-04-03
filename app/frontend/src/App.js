@@ -2,6 +2,7 @@ import PublicNavbar from "./components/Header/PublicNavbar";
 import Navbar2 from "./components/Header/Navbar2";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
+import HomePage2 from "./pages/HomePage2";
 import LoginPage from "./pages/auth/LoginPage";
 import RegisterPage from "./pages/auth/RegisterPage";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -52,7 +53,7 @@ function App() {
         </header>
         <main>
           <Switch>
-            <Route path="/" exact component={HomePage} />
+            <Route path="/" exact component={HomePage2} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <Route exact path="/shop" component={ShopPage} />

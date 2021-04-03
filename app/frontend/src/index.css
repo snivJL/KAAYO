@@ -212,34 +212,46 @@ main {
   width: fit-content;
 }
 
-.carousel-root {
-  height: 460px;
-  margin-bottom: 32px;
+.carousel-root > * {
+  height: 700px;
 }
 .carousel {
   height: 100%;
 }
 .slide img {
   object-fit: cover;
-  height: 460px;
   /* width: 100%; */
 }
-
+.dot {
+  border: 1px #80a97d solid !important;
+  box-shadow: none !important;
+}
+.dot.selected {
+  background-color: #80a97d !important;
+  outline: none !important;
+}
+.dot:focus {
+  outline: none !important;
+}
+.carousel.carousel-slider .control-arrow:hover {
+  background: #80a97d !important;
+  opacity: 30% !important;
+}
 .carousel .slide .legend-custom {
   transition: all 0.5s ease-in-out;
   position: absolute;
   /* bottom: 40px; */
-  left: 0%;
-  top: 0%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   height: 100%;
   width: 90%;
   /* font-weight: bold; */
   border-radius: 10px;
   /* background: #000; */
-  color: #fff;
   padding: 10px;
-  font-size: 5rem;
-  line-height: 3rem;
+  font-size: 4rem;
+  line-height: 4rem;
   text-align: center;
   transition: opacity 0.35s ease-in-out;
 }
