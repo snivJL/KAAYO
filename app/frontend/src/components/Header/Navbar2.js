@@ -1,17 +1,15 @@
 import React from "react";
-import {
-  Container,
-  Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Button,
-  Image,
-} from "react-bootstrap";
+import { Container, Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
-
-const Navbar2 = (props) => {
+import authActions from "../../redux/actions/auth.actions";
+import { useSelector, useDispatch } from "react-redux";
+import SearchBar from "./SearchBar";
+const Navbar2 = () => {
+  const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth);
+  const order = useSelector((state) => state.order);
+  const { cart } = order;
+  const { isAuthenticated, userInfo } = auth;
   return (
     <Navbar expand="lg" className="font-semibold	bg-white uppercase">
       <Container>
@@ -26,21 +24,19 @@ const Navbar2 = (props) => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="tracking-wide ml-6">
-            <Nav.Link className="navbar-nav-link" as={Link} to="/">
+            {/* <Nav.Link className="navbar-nav-link" as={Link} to="/">
               Home
-            </Nav.Link>
+            </Nav.Link> */}
             <Nav.Link className="navbar-nav-link" as={Link} to="/about">
               Our beginning
             </Nav.Link>
             <Nav.Link className="navbar-nav-link" as={Link} to="/about">
-              Our Ingredients
+              Ingredients
             </Nav.Link>
-            <Nav.Link className="navbar-nav-link" as={Link} to="/shop">
-              Shop
-            </Nav.Link>
+
             <NavDropdown
               className="navbar-nav-link"
-              title="Dropdown"
+              title="Shop"
               id="basic-nav-dropdown"
             >
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -54,14 +50,42 @@ const Navbar2 = (props) => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form inline className="ml-auto ">
-            <FormControl
-              type="text"
-              placeholder="Search"
-              className="mr-sm-2 focus:outline-green-300 ring-green-300"
-            />
-            {/* <Button variant="outline-success">Search</Button> */}
-          </Form>
+
+          <Nav.Link>
+            <NavDropdown
+              title={<i className="fas fa-user"></i>}
+              id="basic-nav-dropdown"
+            >
+              {isAuthenticated ? (
+                <>
+                  {userInfo.role === "admin" ? (
+                    <NavDropdown.Item as={Link} to="/myorders">
+                      Admin Dashboard
+                    </NavDropdown.Item>
+                  ) : (
+                    <NavDropdown.Item as={Link} to="/myorders">
+                      My orders
+                    </NavDropdown.Item>
+                  )}
+                  <NavDropdown.Item
+                    onClick={() => dispatch(authActions.logout())}
+                  >
+                    Logout
+                  </NavDropdown.Item>
+                </>
+              ) : (
+                <>
+                  <NavDropdown.Item as={Link} to="/login">
+                    Login
+                  </NavDropdown.Item>
+                  <NavDropdown.Item as={Link} to="/register">
+                    Create Account
+                  </NavDropdown.Item>
+                </>
+              )}
+            </NavDropdown>
+          </Nav.Link>
+          <SearchBar />
           <Nav className="text-sm">
             <Nav.Link
               as={Link}
@@ -73,20 +97,9 @@ const Navbar2 = (props) => {
               <div className="relative">
                 My bag
                 <div className="flex items-center justify-center bg-green-500  text-white p-2 text-xs border border-white h-5 w-5 rounded-full absolute -right-5 -top-3">
-                  0
+                  {cart.reduce((acc, item) => acc + item.qty, 0)}
                 </div>
               </div>
-            </Nav.Link>
-            <Nav.Link>
-              <NavDropdown
-                title={<i className="fas fa-user"></i>}
-                id="basic-nav-dropdown"
-              >
-                <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Create Account
-                </NavDropdown.Item>
-              </NavDropdown>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

@@ -26,7 +26,7 @@ import MyOrdersPage from "./pages/order/MyOrdersPage";
 import MessengerChat from "./components/MessengerChat";
 import PrivateRoute from "./components/PrivateRoute";
 import { useEffect } from "react";
-import userActions from "./redux/actions/user.actions";
+import authActions from "./redux/actions/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import UserListPage from "./pages/admin/UserListPage";
 import AboutPage from "./pages/AboutPage";
@@ -36,7 +36,7 @@ function App() {
   const token = useSelector((state) => state.auth.token);
 
   useEffect(() => {
-    if (token) dispatch(userActions.getCurrentUser());
+    if (token) dispatch(authActions.getCurrentUser());
   }, [token, dispatch]);
   return (
     <Router>

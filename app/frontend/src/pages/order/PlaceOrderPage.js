@@ -59,7 +59,7 @@ const PlaceOrderPage = () => {
           handleClose={handleClose}
           show={show}
         />
-        <div className="flex flex-col w-full p-8 text-gray-800 bg-white shadow-lg pin-r pin-y md:w-4/5 lg:w-4/5">
+        <div className="flex flex-col w-full p-8 text-gray-700  pin-r pin-y md:w-4/5 lg:w-4/5">
           <div className="p-4 bg-gray-100 rounded-full mb-3">
             <h1 className="ml-2 text-center font-bold uppercase ">
               Order Summary

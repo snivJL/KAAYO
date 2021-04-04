@@ -27,31 +27,6 @@ userActions.register = (user) => async (dispatch) => {
   }
 };
 
-userActions.getCurrentUser = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: types.GET_CURRENT_USER_REQUEST });
-    console.log("HERE", getState().auth.token);
-    const { data } = await api.get("/user/me");
-    dispatch({
-      type: types.GET_CURRENT_USER_SUCCESS,
-      payload: data.data.user,
-    });
-  } catch (error) {
-    console.error(error);
-    dispatch({
-      type: types.GET_CURRENT_USER_FAIL,
-      payload:
-        error && error.errors && error.errors.message
-          ? error.errors.message
-          : error,
-    });
-    if (error.errors.message === "Token expired") {
-      localStorage.removeItem("token");
-      toast.error("Token expired, please log in again");
-    }
-  }
-};
-
 userActions.getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: types.GET_USERS_REQUEST });

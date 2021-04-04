@@ -15,7 +15,13 @@ authActions.login = (values) => async (dispatch) => {
     // dispatch(userActions.getCurrentUser());
   } catch (error) {
     console.error(error);
-    dispatch({ type: types.LOGIN_USER_FAIL, payload: error.errors.message });
+    dispatch({
+      type: types.LOGIN_USER_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
     toast.error(error.errors.message);
   }
 };
@@ -38,7 +44,13 @@ authActions.loginFacebook = (user) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    dispatch({ type: types.LOGIN_FACEBOOK_FAIL, payload: error });
+    dispatch({
+      type: types.LOGIN_FACEBOOK_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
   }
 };
 
@@ -60,7 +72,37 @@ authActions.loginGoogle = (user) => async (dispatch) => {
       payload: res.data.accessToken,
     });
   } catch (error) {
-    dispatch({ type: types.LOGIN_GOOGLE_FAIL, payload: error });
+    dispatch({
+      type: types.LOGIN_GOOGLE_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
+authActions.getCurrentUser = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: types.GET_CURRENT_USER_REQUEST });
+    console.log("HERE", getState().auth.token);
+    const { data } = await api.get("/user/me");
+    dispatch({
+      type: types.GET_CURRENT_USER_SUCCESS,
+      payload: data.data.user,
+    });
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.GET_CURRENT_USER_FAIL,
+      payload:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+    if (error.errors.message === "Token expired") {
+      localStorage.removeItem("token");
+      toast.error("Token expired, please log in again");
+    }
   }
 };
 
@@ -70,4 +112,5 @@ authActions.logout = () => async (dispatch) => {
   dispatch({ type: "CLEAR_USER" });
   toast.dark("See you soon!");
 };
+
 export default authActions;
