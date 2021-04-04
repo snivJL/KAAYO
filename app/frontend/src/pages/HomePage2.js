@@ -152,7 +152,9 @@ const HomePage2 = () => {
           <h2 className="text-gray-700 uppercase mb-8 font-extralight text-5xl text-center">
             clients about us
           </h2>
-          <ReviewsCarousel />
+          <div>
+            <ReviewsCarousel />
+          </div>
         </div>
       </section>
     </div>
