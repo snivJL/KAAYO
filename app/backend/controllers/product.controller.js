@@ -8,7 +8,7 @@ let productController = {};
 
 productController.getAllProducts = async (req, res, next) => {
   try {
-    let { page, limit, sortBy, search, cat, ...filter } = req.query;
+    let { page, limit, sortBy, orderBy, search, cat, ...filter } = req.query;
 
     const keywords = search
       ? {
@@ -23,9 +23,13 @@ productController.getAllProducts = async (req, res, next) => {
         ? { category: { $regex: cat, $options: "i" } }
         : { category: { $in: [cat] } }
       : {};
+    let sort = {};
+    if (req.query.sortBy && req.query.orderBy) {
+      sort[req.query.sortBy] = req.query.orderBy === "desc" ? -1 : 1;
+    }
     page = parseInt(page) || 1;
-    limit = parseInt(limit) || 12;
-
+    limit = parseInt(limit) || 9;
+    console.log("page", page);
     const totalProducts = await Product.countDocuments({
       ...filter,
       ...keywords,
@@ -34,7 +38,7 @@ productController.getAllProducts = async (req, res, next) => {
     });
     console.log("totalproducts", totalProducts);
 
-    const totalPages = Math.floor(totalProducts / limit);
+    const totalPages = Math.ceil(totalProducts / limit);
     console.log("totalpages", totalPages);
 
     const offset = limit * (page - 1);
@@ -45,14 +49,16 @@ productController.getAllProducts = async (req, res, next) => {
       ...keywords,
       ...category,
     })
-      .sort({ createdAt: -1 })
+      .sort(sort)
       .skip(offset)
       .limit(limit);
+    // .sort({ createdAt: -1 })
+
     utilsHelper.sendResponse(
       res,
       200,
       true,
-      { products, page, totalPages },
+      { products, page, totalPages, totalProducts },
       null,
       "List of products"
     );

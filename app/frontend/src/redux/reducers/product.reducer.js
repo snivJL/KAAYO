@@ -6,7 +6,9 @@ const initialState = {
   products: [],
   filteredProducts: [],
   pageCount: 0,
+  filterFlag: false,
   filteredPageCount: 0,
+  numProducts: 0,
   deletedProducts: [],
   selectedProduct: {
     images: [{}],
@@ -33,6 +35,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         products: payload.products,
         pageCount: payload.totalPages,
+        numProducts: payload.totalProducts,
         loading: "succeeded",
       };
     case types.GET_FILTERED_PRODUCTS_SUCCESS:
@@ -40,6 +43,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         filteredProducts: payload.products,
         filteredPageCount: payload.totalPages,
+        filterFlag: true,
         loading: "succeeded",
       };
     case types.GET_DELETED_PRODUCTS_SUCCESS:

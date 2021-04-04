@@ -40,6 +40,11 @@ code {
     monospace;
 }
 
+h2 {
+  font-size: 3rem;
+  padding: 0;
+  margin: 0;
+}
 .navbar-nav-link::after {
   content: "";
   display: block;
@@ -293,21 +298,29 @@ main {
 .pagination .active {
   background-color: #dee5c5;
   padding: 0.5rem;
-  color: #374151;
-  border-radius: 10px;
+  color: white;
   margin: 0 0.2rem;
 }
 
 .pagination > li {
+  border: 1px solid #dee5c5;
   padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  transition: all 0.3s linear;
+  margin: 0 0.2rem;
 }
 a {
   outline: none;
 }
-.pagination > li:hover {
+.pagination > li:hover,
+.previous:hover,
+.next:hover {
   background-color: #dee5c5;
-  color: #374151;
-  border-radius: 10px;
+  color: white;
 }
 
 .previous,
@@ -410,6 +423,14 @@ li .next {
   width: 44%;
   right: 0;
   bottom: 0px;
+}
+
+.hero-shop {
+  background-image: url(https://savon.wpengine.com/wp-content/uploads/2020/12/breadcrumb.jpg);
+  background-attachment: inherit;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: repeat;
 }
 @media only screen and (min-width: 768px) {
   .carousel .slide .legend-custom {

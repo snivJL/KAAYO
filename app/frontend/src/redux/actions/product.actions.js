@@ -4,13 +4,17 @@ import { toast } from "react-toastify";
 
 const productActions = {};
 
-productActions.getAllProducts = (keywords = "", page = 1, cat = "") => async (
-  dispatch
-) => {
+productActions.getAllProducts = (
+  keywords = "",
+  page = 1,
+  cat = "",
+  sortBy = "",
+  orderBy = ""
+) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_PRODUCTS_REQUEST });
     const { data } = await api.get(
-      `/product?search=${keywords}&page=${page}&cat=${cat}`
+      `/product?search=${keywords}&page=${page}&cat=${cat}&sortBy=${sortBy}&orderBy=${orderBy}`
     );
     dispatch({
       type: types.GET_PRODUCTS_SUCCESS,
@@ -31,12 +35,14 @@ productActions.getAllProducts = (keywords = "", page = 1, cat = "") => async (
 productActions.getFilteredProducts = (
   keywords = "",
   page = 1,
-  cat = ""
+  cat = "",
+  sortBy = "",
+  orderBy = ""
 ) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_FILTERED_PRODUCTS_REQUEST });
     const { data } = await api.get(
-      `/product?search=${keywords}&page=${page}&cat=${cat}`
+      `/product?search=${keywords}&page=${page}&cat=${cat}&sortBy=${sortBy}&orderBy=${orderBy}`
     );
     dispatch({
       type: types.GET_FILTERED_PRODUCTS_SUCCESS,

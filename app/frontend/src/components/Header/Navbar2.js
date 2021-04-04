@@ -79,7 +79,7 @@ const Navbar2 = (props) => {
             </Nav.Link>
             <Nav.Link>
               <NavDropdown
-                title={<i class="fas fa-user"></i>}
+                title={<i className="fas fa-user"></i>}
                 id="basic-nav-dropdown"
               >
                 <NavDropdown.Item href="#action/3.1">Login</NavDropdown.Item>
