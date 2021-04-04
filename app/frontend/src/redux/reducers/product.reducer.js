@@ -36,6 +36,7 @@ const productReducer = (state = initialState, action) => {
         products: payload.products,
         pageCount: payload.totalPages,
         numProducts: payload.totalProducts,
+        filterFlag: false,
         loading: "succeeded",
       };
     case types.GET_FILTERED_PRODUCTS_SUCCESS:
@@ -43,6 +44,7 @@ const productReducer = (state = initialState, action) => {
         ...state,
         filteredProducts: payload.products,
         filteredPageCount: payload.totalPages,
+        numProducts: payload.totalProducts,
         filterFlag: true,
         loading: "succeeded",
       };

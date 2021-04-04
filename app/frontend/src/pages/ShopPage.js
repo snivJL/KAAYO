@@ -23,9 +23,10 @@ const ShopPage = () => {
     dispatch(productActions.getAllProducts(undefined, selectedPage + 1));
   };
   useEffect(() => {
-    if (keywords) dispatch(productActions.getFilteredProducts(keywords));
-    else if (!cat) dispatch(productActions.getAllProducts());
-  }, [dispatch, cat, keywords]);
+    // if (keywords) dispatch(productActions.getFilteredProducts(keywords));
+    // else if (!cat) dispatch(productActions.getAllProducts());
+    dispatch(productActions.getAllProducts());
+  }, [dispatch]);
   return (
     <>
       {/* <CategoriesPanel /> */}
@@ -57,7 +58,7 @@ const ShopPage = () => {
         </div>
       </div>
       <div className="container-md mx-auto bg-white ">
-        <FilterBar />
+        <FilterBar currentPage={currentPage} />
         {loading === "loading" ? (
           <Loader size={"w-56"} caption={true} />
         ) : (
