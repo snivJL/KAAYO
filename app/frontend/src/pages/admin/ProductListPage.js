@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import { Link, useParams } from "react-router-dom";
 import productActions from "../../redux/actions/product.actions";
-import { Breadcrumb } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import Pagination from "../../components/Pagination";
 // import Searchbar from "../../components/layout/SearchBar";
 
 const ProductListPage = () => {
   const keywords = useParams().keywords;
+  const [currentPage, setCurrentPage] = useState(0);
+  const handlePageClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+    dispatch(productActions.getAllProducts(undefined, selectedPage + 1));
+  };
   const products = useSelector((state) => state.product.products);
   // const deletedProducts = useSelector((state) => state.product.deletedProducts);
   const loading = useSelector((state) => state.product.loading);
@@ -136,7 +139,7 @@ const ProductListPage = () => {
                               </svg>
                             </div>
                           </Link>
-                          <Link to={`/admin/product/${p._id}/edit`}>
+                          <Link to={`/products/${p._id}/edit`}>
                             <div
                               onClick={() =>
                                 dispatch(productActions.getSingleProduct(p._id))
@@ -185,7 +188,7 @@ const ProductListPage = () => {
                   ))}
                 </tbody>
               </table>
-              <Pagination />
+              <Pagination handlePageClick={handlePageClick} />
             </div>
           </div>
         </div>

@@ -52,7 +52,7 @@ const Navbar2 = () => {
           </Nav>
           <SearchBar />
 
-          <Nav.Link>
+          <Nav.Link className="text-gray-700">
             <NavDropdown
               title={<i className="fas fa-user"></i>}
               id="basic-nav-dropdown"
@@ -87,13 +87,8 @@ const Navbar2 = () => {
             </NavDropdown>
           </Nav.Link>
           <Nav className="text-sm">
-            <Nav.Link
-              as={Link}
-              to="/cart"
-              style={{ alignSelf: "center" }}
-              className="flex"
-            >
-              <i className="fas fa-shopping-bag relative mr-1"></i>
+            <Nav.Link as={Link} to="/cart" className=" navbar-cart">
+              <i className="fas fa-shopping-bag mr-1"></i>
               <div className="relative">
                 My bag
                 <div className="flex items-center justify-center bg-green-500  text-white p-2 text-xs border border-white h-5 w-5 rounded-full absolute -right-5 -top-3">

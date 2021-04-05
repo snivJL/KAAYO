@@ -44,7 +44,7 @@ userSchema.methods.toJSON = function () {
   delete obj.__v;
   delete obj.googleId;
   delete obj.password;
-  delete obj.createdAt;
+  // delete obj.createdAt;
   delete obj.updatedAt;
   delete obj.facebookId;
   return obj;

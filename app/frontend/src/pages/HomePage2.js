@@ -14,7 +14,7 @@ const HomePage2 = () => {
     dispatch(productActions.getAllProducts());
   }, [dispatch]);
   return (
-    <div>
+    <div className="bg-white">
       <section>
         <ImagesCarousel />
       </section>
@@ -147,9 +147,9 @@ const HomePage2 = () => {
           </div>
         </div>
       </section>
-      <section className="review-section w-full h-auto">
+      <section className="review-section w-full h-auto text-gray-700">
         <div className="w-5/6 mx-auto py-24 ">
-          <h2 className="text-gray-700 uppercase mb-8 font-extralight text-5xl text-center">
+          <h2 className="uppercase mb-8 font-extralight text-5xl text-center">
             clients about us
           </h2>
           <div>

@@ -31,6 +31,7 @@ import authActions from "./redux/actions/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import UserListPage from "./pages/admin/UserListPage";
 import AboutPage from "./pages/AboutPage";
+import "./index.css";
 function App() {
   const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
@@ -49,14 +50,13 @@ function App() {
           hideProgressBar={false}
           autoClose={1500}
         />
-        <Switch>
-          <PrivateRoute path="/admin/dashboard" component={Dashboard} />
-        </Switch>
+        <Switch></Switch>
         <header>
           <Navbar2 />
         </header>
         <main>
           <Switch>
+            <PrivateRoute path="/admin/dashboard" component={Dashboard} />
             <Route path="/" exact component={HomePage2} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />

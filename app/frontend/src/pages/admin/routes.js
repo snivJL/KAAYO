@@ -59,6 +59,8 @@ const Typography = React.lazy(() =>
 const Widgets = React.lazy(() => import("./views/widgets/Widgets"));
 const Users = React.lazy(() => import("./UserListPage"));
 const Products = React.lazy(() => import("./ProductListPage"));
+const EditProduct = React.lazy(() => import("./EditProductPage"));
+const CreateProduct = React.lazy(() => import("./CreateProductPage"));
 const Orders = React.lazy(() => import("./OrderListPage"));
 const User = React.lazy(() => import("./views/users/User"));
 
@@ -120,6 +122,18 @@ const routes = [
   { path: "/widgets", name: "Widgets", component: Widgets },
   { path: "/users", exact: true, name: "Users", component: Users },
   { path: "/products", exact: true, name: "Products", component: Products },
+  {
+    path: "/products/create",
+    exact: true,
+    name: "Create Product",
+    component: CreateProduct,
+  },
+  {
+    path: "/products/:id/edit",
+    exact: true,
+    name: "Edit Product",
+    component: EditProduct,
+  },
   { path: "/orders", exact: true, name: "Orders", component: Orders },
   { path: "/users/:id", exact: true, name: "User Details", component: User },
 ];

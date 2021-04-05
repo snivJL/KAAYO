@@ -14,13 +14,13 @@ const CartPage = () => {
     history.push("/order/shipping");
   };
   return (
-    <div className="flex w-10/12 mx-auto ">
+    <div className="flex w-10/12 mx-auto bg-white">
       {cart.length === 0 ? (
         <Alert>
           Your cart is empty! <Link to="/shop">Shop Now</Link>
         </Alert>
       ) : (
-        <div className="flex flex-col w-full p-8 text-gray-800  pin-r pin-y ">
+        <div className="flex flex-col w-full p-8 text-gray-800 bg-white pin-r pin-y ">
           <div className="flex-1">
             <table className="w-full text-sm lg:text-base" cellspacing="0">
               <thead>
