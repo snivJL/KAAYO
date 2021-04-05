@@ -24,8 +24,8 @@ const ProductListPage = () => {
         <Loader />
       ) : (
         <div className="min-w-screen bg-gray-100 flex items-center justify-center font-sans ">
-          <div className="w-full lg:w-11/12">
-            <Breadcrumb
+          <div className="w-full ">
+            {/* <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"
             >
@@ -33,7 +33,7 @@ const ProductListPage = () => {
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
               <Breadcrumb.Item active>Manage Products</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             <div className="bg-white shadow-md rounded mb-4">
               <table className="min-w-max w-full table-auto">
                 <thead>

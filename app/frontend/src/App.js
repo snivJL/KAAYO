@@ -21,6 +21,7 @@ import ContactPage from "./pages/ContactPage";
 import ProductListPage from "./pages/admin/ProductListPage";
 import MessagePage from "./pages/admin/MessagePage";
 import OrderListPage from "./pages/admin/OrderListPage";
+import Dashboard from "./pages/admin/Dashboard";
 import "react-toastify/dist/ReactToastify.css";
 import MyOrdersPage from "./pages/order/MyOrdersPage";
 import MessengerChat from "./components/MessengerChat";
@@ -48,6 +49,9 @@ function App() {
           hideProgressBar={false}
           autoClose={1500}
         />
+        <Switch>
+          <PrivateRoute path="/admin/dashboard" component={Dashboard} />
+        </Switch>
         <header>
           <Navbar2 />
         </header>
@@ -77,6 +81,7 @@ function App() {
               path="/admin/product/list"
               component={ProductListPage}
             />
+
             <PrivateRoute path="/admin/message/list" component={MessagePage} />
             <PrivateRoute path="/admin/user/list" component={UserListPage} />
             <PrivateRoute

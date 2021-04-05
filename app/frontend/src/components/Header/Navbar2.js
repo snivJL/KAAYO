@@ -50,6 +50,7 @@ const Navbar2 = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
+          <SearchBar />
 
           <Nav.Link>
             <NavDropdown
@@ -59,7 +60,7 @@ const Navbar2 = () => {
               {isAuthenticated ? (
                 <>
                   {userInfo.role === "admin" ? (
-                    <NavDropdown.Item as={Link} to="/myorders">
+                    <NavDropdown.Item as={Link} to="/admin/dashboard">
                       Admin Dashboard
                     </NavDropdown.Item>
                   ) : (
@@ -85,7 +86,6 @@ const Navbar2 = () => {
               )}
             </NavDropdown>
           </Nav.Link>
-          <SearchBar />
           <Nav className="text-sm">
             <Nav.Link
               as={Link}
