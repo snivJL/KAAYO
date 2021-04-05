@@ -1,15 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import { Link, useParams } from "react-router-dom";
 import productActions from "../../redux/actions/product.actions";
-import { Breadcrumb } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
 import Pagination from "../../components/Pagination";
 // import Searchbar from "../../components/layout/SearchBar";
 
 const ProductListPage = () => {
   const keywords = useParams().keywords;
+  const [currentPage, setCurrentPage] = useState(0);
+  const handlePageClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+    dispatch(productActions.getAllProducts(undefined, selectedPage + 1));
+  };
   const products = useSelector((state) => state.product.products);
   // const deletedProducts = useSelector((state) => state.product.deletedProducts);
   const loading = useSelector((state) => state.product.loading);
@@ -24,8 +27,8 @@ const ProductListPage = () => {
         <Loader />
       ) : (
         <div className="min-w-screen bg-gray-100 flex items-center justify-center font-sans ">
-          <div className="w-full lg:w-11/12">
-            <Breadcrumb
+          <div className="w-full ">
+            {/* <Breadcrumb
               className="mr-auto max-w-max bg-transparent py-2"
               bsPrefix="breadcrumb-item"
             >
@@ -33,7 +36,7 @@ const ProductListPage = () => {
                 <Breadcrumb.Item>Home</Breadcrumb.Item>
               </LinkContainer>
               <Breadcrumb.Item active>Manage Products</Breadcrumb.Item>
-            </Breadcrumb>
+            </Breadcrumb> */}
             <div className="bg-white shadow-md rounded mb-4">
               <table className="min-w-max w-full table-auto">
                 <thead>
@@ -136,7 +139,7 @@ const ProductListPage = () => {
                               </svg>
                             </div>
                           </Link>
-                          <Link to={`/admin/product/${p._id}/edit`}>
+                          <Link to={`/products/${p._id}/edit`}>
                             <div
                               onClick={() =>
                                 dispatch(productActions.getSingleProduct(p._id))
@@ -185,7 +188,7 @@ const ProductListPage = () => {
                   ))}
                 </tbody>
               </table>
-              <Pagination />
+              <Pagination handlePageClick={handlePageClick} />
             </div>
           </div>
         </div>

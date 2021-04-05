@@ -50,23 +50,13 @@ const CreateProductPage = () => {
         validationSchema={ProductSchema}
         onSubmit={async (values) => {
           !Object.keys(images[0]).length ? images.shift() : console.log("");
-          console.log("FDP", images, Object.keys(images[0]).length);
           values.images = images;
           dispatch(productActions.createProduct(values));
           setImages([{}]);
         }}
       >
         {({ touched, errors }) => (
-          <div className="container mx-auto">
-            <Breadcrumb
-              className="mr-auto max-w-max bg-transparent py-2"
-              bsPrefix="breadcrumb-item"
-            >
-              <LinkContainer to="/">
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-              </LinkContainer>
-              <Breadcrumb.Item active>Create Product</Breadcrumb.Item>
-            </Breadcrumb>
+          <div className="w-full mx-auto">
             <div className="max-w-xl mx-auto bg-white pb-6 rounded-md shadow-sm">
               <div className="text-center">
                 <h1 className="my-2 text-3xl font-semibold text-gray-700 dark:text-gray-200">

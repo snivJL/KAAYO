@@ -21,6 +21,7 @@ import ContactPage from "./pages/ContactPage";
 import ProductListPage from "./pages/admin/ProductListPage";
 import MessagePage from "./pages/admin/MessagePage";
 import OrderListPage from "./pages/admin/OrderListPage";
+import Dashboard from "./pages/admin/Dashboard";
 import "react-toastify/dist/ReactToastify.css";
 import MyOrdersPage from "./pages/order/MyOrdersPage";
 import MessengerChat from "./components/MessengerChat";
@@ -30,6 +31,7 @@ import authActions from "./redux/actions/auth.actions";
 import { useDispatch, useSelector } from "react-redux";
 import UserListPage from "./pages/admin/UserListPage";
 import AboutPage from "./pages/AboutPage";
+import "./index.css";
 function App() {
   const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
@@ -48,11 +50,13 @@ function App() {
           hideProgressBar={false}
           autoClose={1500}
         />
+        <Switch></Switch>
         <header>
           <Navbar2 />
         </header>
         <main>
           <Switch>
+            <PrivateRoute path="/admin/dashboard" component={Dashboard} />
             <Route path="/" exact component={HomePage2} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
@@ -77,6 +81,7 @@ function App() {
               path="/admin/product/list"
               component={ProductListPage}
             />
+
             <PrivateRoute path="/admin/message/list" component={MessagePage} />
             <PrivateRoute path="/admin/user/list" component={UserListPage} />
             <PrivateRoute

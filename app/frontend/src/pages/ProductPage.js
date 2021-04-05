@@ -55,7 +55,7 @@ const ProductPage = () => {
             </LinkContainer>
             <Breadcrumb.Item active>{category[0]}</Breadcrumb.Item>
           </Breadcrumb>
-          <div className="flex flex-col items-center w-full md:flex-row md:items-start md:space-x-12">
+          <div className="flex flex-col items-center w-full md:flex-row md:items-start md:space-x-12 text-gray-700">
             <div className="md:w-1/2">
               <img src={product.images[0].imageUrl} alt="" />
             </div>

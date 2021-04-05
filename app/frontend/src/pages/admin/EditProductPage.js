@@ -54,8 +54,8 @@ const CreateProductPage = () => {
             {loading === "loading" ? (
               <Loader />
             ) : (
-              <div className="bg-white md:px-12 min-w-screen w-11/12 mx-auto pb-6">
-                <Breadcrumb
+              <div className="bg-white  md:px-12 min-w-screen w-11/12 mx-auto pb-6">
+                {/* <Breadcrumb
                   className="mr-auto max-w-max bg-transparent py-2"
                   bsPrefix="breadcrumb-item"
                 >
@@ -63,7 +63,7 @@ const CreateProductPage = () => {
                     <Breadcrumb.Item>Home</Breadcrumb.Item>
                   </LinkContainer>
                   <Breadcrumb.Item active>Edit Product</Breadcrumb.Item>
-                </Breadcrumb>
+                </Breadcrumb> */}
                 <div className="max-w-xl mx-auto bg-white p-5 rounded-md shadow-sm">
                   <div className="text-center">
                     <h1 className="mb-2 text-3xl font-semibold text-gray-700 dark:text-gray-200">
@@ -79,7 +79,7 @@ const CreateProductPage = () => {
                         name="name"
                         type="text"
                         placeholder="name.."
-                        className="w-full px-3 py-2 mb-3 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
+                        className="w-full px-3 py-2 mb-3 text-gray-700 placeholder-gray-300 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-indigo-100 focus:border-indigo-300 dark:bg-gray-700 dark:text-white dark:placeholder-gray-500 dark:border-gray-600 dark:focus:ring-gray-900 dark:focus:border-gray-500"
                       />
                       {errors.name && touched.name ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -93,7 +93,7 @@ const CreateProductPage = () => {
                         name="shortDesc"
                         type="text"
                         placeholder="The fierce..."
-                        className="px-4 py-2 mb-3 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        className="px-4 py-2 mb-3 w-full rounded border border-gray-300 shadow-sm text-base text-gray-700 placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                       />
                       {errors.shortDesc && touched.shortDesc ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -108,14 +108,14 @@ const CreateProductPage = () => {
                         name="description"
                         type="text"
                         placeholder="description.."
-                        className="px-4 py-2 mb-3 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        className="px-4 py-2 mb-3 w-full rounded border border-gray-300 shadow-sm text-base text-gray-700 placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                       />
                       {errors.description && touched.description ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
                           {errors.description}
                         </div>
                       ) : null}
-                      <label className="block mb-2 text-lg text-gray-600">
+                      <label className="block mb-2 text-lg text-gray-700">
                         Price
                       </label>
                       <Field
@@ -123,7 +123,7 @@ const CreateProductPage = () => {
                         name="price"
                         type="text"
                         placeholder="120000"
-                        className=" px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        className=" px-4 py-2 w-full mb-3 rounded border text-gray-700 border-gray-300 shadow-sm text-base text-gray-700placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                       />
                       {errors.price && touched.price ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -137,7 +137,7 @@ const CreateProductPage = () => {
                         name="ingredients"
                         type="text"
                         placeholder="Cinnamon,ginger,coconut oil,..."
-                        className="px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        className="px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base text-gray-700 placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                       />
                       {errors.ingredients && touched.ingredients ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -152,11 +152,11 @@ const CreateProductPage = () => {
                         Categories
                       </div>
                       <div
-                        className="category-label mb-3 flex flex-wrap items-center"
+                        className="category-label mb-3 flex flex-wrap items-center text-gray-700"
                         role="group"
                         aria-labelledby="checkbox-group"
                       >
-                        <label>
+                        <label className="text-gray-700">
                           <Field
                             type="checkbox"
                             name="category"
@@ -244,7 +244,7 @@ const CreateProductPage = () => {
                         name="countInStock"
                         type="text"
                         placeholder="10"
-                        className=" px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        className=" px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base text-gray-700 placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                       />
                       {errors.countInStock && touched.countInStock ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -254,7 +254,11 @@ const CreateProductPage = () => {
                       <label className="block mb-2 text-lg text-gray-600">
                         Target
                       </label>
-                      <Field as="select" name="target" className="mb-3">
+                      <Field
+                        as="select"
+                        name="target"
+                        className="mb-3 border text-gray-700"
+                      >
                         <option value="Oily Skin">Oily Skin</option>
                         <option value="Dry Skin">Dry Skin</option>
                         <option value="Sensitive Skin">Sensitive Skin</option>
@@ -271,7 +275,7 @@ const CreateProductPage = () => {
                         name="productCollection"
                         type="text"
                         placeholder="Tet Collection"
-                        className="px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                        className="px-4 py-2 w-full mb-3 rounded border border-gray-300 shadow-sm text-base text-gray-700 placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                       />
                       {errors.productCollection && touched.productCollection ? (
                         <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -299,13 +303,13 @@ const CreateProductPage = () => {
 
                       <button
                         type="button"
-                        className="btn btn-block bg-green-300"
+                        className="py-2 font-bold btn-block bg-green-300"
                         onClick={() => widget.open()}
                       >
                         Upload images
                       </button>
                       <button
-                        className="btn btn-block bg-green-700 text-white"
+                        className="py-2 font-bold btn-block bg-green-700 text-white"
                         type="submit"
                       >
                         Edit

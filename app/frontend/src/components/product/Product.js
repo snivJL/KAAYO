@@ -35,7 +35,7 @@ const Product = ({ p }) => {
           <p className="hover:text-green-600">{p.name}</p>
         </h3>
         <h3 className=" text-center text-green-500 text-sm italic  truncate-2nd">
-          <p className="hover:text-green-600">{p.category}</p>
+          <p className="hover:text-green-600">{p.category[0]}</p>
         </h3>
         <p className="py-2 text-center text-gray-600">
           &#8363;
