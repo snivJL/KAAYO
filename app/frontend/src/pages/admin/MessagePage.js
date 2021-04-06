@@ -2,8 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import messageActions from "../../redux/actions/message.actions";
-import { Breadcrumb } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
+
 import Moment from "react-moment";
 import MessageDetailModal from "./MessageDetailModal";
 // import Searchbar from "../../components/layout/SearchBar";
@@ -21,17 +20,8 @@ const MessagePage = () => {
       {loading === "loading" || loading === "idle" ? (
         <Loader />
       ) : (
-        <div className="min-w-screen  bg-gray-100 flex items-center justify-center bg-gray-100 font-sans ">
-          <div className="w-full lg:w-11/12">
-            <Breadcrumb
-              className="mr-auto max-w-max bg-transparent py-2"
-              bsPrefix="breadcrumb-item"
-            >
-              <LinkContainer to="/">
-                <Breadcrumb.Item>Home</Breadcrumb.Item>
-              </LinkContainer>
-              <Breadcrumb.Item active>Message List</Breadcrumb.Item>
-            </Breadcrumb>
+        <div className="min-w-screen flex items-center justify-center bg-gray-100 font-sans ">
+          <div className="w-full">
             <div className="bg-white shadow-md rounded mb-6">
               <table className="min-w-max w-full table-auto">
                 <thead>

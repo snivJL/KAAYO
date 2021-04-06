@@ -13,7 +13,7 @@ const FilterBar = ({ currentPage }) => {
     <div className="container-md mx-auto bg-green-200 bg-opacity-60  p-2">
       <div className="flex items-center ">
         <NavDropdown
-          className="bg-white bg-green-300 px-2 ml-1 font-extra-light"
+          className="bg-white bg-green-300 px-2 ml-1 text-gray-700 font-extra-light"
           title={title}
           id="basic-nav-dropdown"
         >
@@ -77,7 +77,7 @@ const FilterBar = ({ currentPage }) => {
                   undefined,
                   1,
                   undefined,
-                  "ratings",
+                  "rating",
                   "desc"
                 )
               );
@@ -93,7 +93,7 @@ const FilterBar = ({ currentPage }) => {
         </NavDropdown>
 
         <NavDropdown
-          className="bg-white bg-green-300 px-2 ml-1 font-extra-light"
+          className="bg-white bg-green-300 px-2 ml-1 text-gray-700 font-extra-light"
           title={cat}
           id="basic-nav-dropdown"
         >

@@ -59,8 +59,11 @@ const Typography = React.lazy(() =>
 const Widgets = React.lazy(() => import("./views/widgets/Widgets"));
 const Users = React.lazy(() => import("./UserListPage"));
 const Products = React.lazy(() => import("./ProductListPage"));
+const Coupons = React.lazy(() => import("./CouponListPage"));
 const EditProduct = React.lazy(() => import("./EditProductPage"));
 const CreateProduct = React.lazy(() => import("./CreateProductPage"));
+const CreateCoupon = React.lazy(() => import("./CreateCouponPage"));
+const Messages = React.lazy(() => import("./MessagePage"));
 const Orders = React.lazy(() => import("./OrderListPage"));
 const User = React.lazy(() => import("./views/users/User"));
 
@@ -121,12 +124,20 @@ const routes = [
   { path: "/notifications/toaster", name: "Toaster", component: Toaster },
   { path: "/widgets", name: "Widgets", component: Widgets },
   { path: "/users", exact: true, name: "Users", component: Users },
+  { path: "/coupons", exact: true, name: "Coupons", component: Coupons },
   { path: "/products", exact: true, name: "Products", component: Products },
+  { path: "/messages", exact: true, name: "Messages", component: Messages },
   {
     path: "/products/create",
     exact: true,
     name: "Create Product",
     component: CreateProduct,
+  },
+  {
+    path: "/coupons/create",
+    exact: true,
+    name: "Create Coupon",
+    component: CreateCoupon,
   },
   {
     path: "/products/:id/edit",

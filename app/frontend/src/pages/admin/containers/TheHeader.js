@@ -71,15 +71,18 @@ const TheHeader = () => {
           <CHeaderNavLink to="/orders">Orders</CHeaderNavLink>
         </CHeaderNavItem>
         <CHeaderNavItem className="px-3">
+          <CHeaderNavLink to="/coupons">Coupons</CHeaderNavLink>
+        </CHeaderNavItem>
+        <CHeaderNavItem className="px-3">
           <CHeaderNavLink>Settings</CHeaderNavLink>
         </CHeaderNavItem>
       </CHeaderNav>
 
       <CHeaderNav className="px-3">
         <TheHeaderDropdownNotif />
-        <TheHeaderDropdownTasks />
+        {/* <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg />
-        <TheHeaderDropdown />
+        <TheHeaderDropdown /> */}
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">

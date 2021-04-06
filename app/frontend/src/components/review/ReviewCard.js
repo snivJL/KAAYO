@@ -39,7 +39,7 @@ const ReviewCard = ({ review }) => {
           <Rating value={review.rating} text={false} />
         </div>
 
-        <div className="mt-3">
+        <div className="mt-3 text-gray-700">
           <span className="font-bold">{review.title}</span>
           <p className="mt-1">{review.comment}</p>
         </div>

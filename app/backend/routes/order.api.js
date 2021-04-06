@@ -8,7 +8,7 @@ const { check } = require("express-validator");
 /**
  * @route POST api/order/add
  * @description User can create order
- * @access Login required
+ * @access Public
  */
 router.post(
   "/add",
@@ -69,4 +69,16 @@ router.delete(
  * @access Public
  */
 router.put("/:id/pay", orderController.updateOrderToPay);
+
+/**
+ * @route PUT api/order/:id/coupon
+ * @description Apply coupon to order
+ * @access Login required
+ */
+router.put(
+  "/coupon",
+  authMiddleware.loginRequired,
+  orderController.applyCoupon
+);
+
 module.exports = router;

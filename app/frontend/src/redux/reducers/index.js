@@ -4,6 +4,7 @@ import orderReducer from "./order.reducer";
 import authReducer from "./auth.reducer";
 import productReducer from "./product.reducer";
 import messageReducer from "./message.reducer";
+import couponReducer from "./coupon.reducer";
 
 export default combineReducers({
   user: userReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   order: orderReducer,
   auth: authReducer,
   message: messageReducer,
+  coupon: couponReducer,
 });

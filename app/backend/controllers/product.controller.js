@@ -239,7 +239,7 @@ productController.createReview = async (req, res, next) => {
       return next(new Error("Product not found"));
     } else {
       const alreadyReviewed = product.reviews.find((x) => x.userId);
-      // if (alreadyReviewed) return next(new Error("Product already reviewed"));
+      if (alreadyReviewed) return next(new Error("Product already reviewed"));
       const review = { name, comment, rating, title, userId };
 
       product.reviews.push(review);

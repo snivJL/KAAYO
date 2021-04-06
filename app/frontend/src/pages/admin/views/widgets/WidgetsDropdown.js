@@ -19,9 +19,11 @@ const WidgetsDropdown = () => {
   const user = useSelector((state) => state.user);
   const order = useSelector((state) => state.order);
   const product = useSelector((state) => state.product);
+  const message = useSelector((state) => state.message);
   const { users } = user;
-  const { products } = product;
-  const { orderList } = order;
+  const { numProducts } = product;
+  const { totalOrders } = order;
+  const { messages } = message;
   // let groupedResults = _.groupBy(users.createdAt, (result) =>
   //   console.log("HELLO", result)
   // );
@@ -63,7 +65,7 @@ const WidgetsDropdown = () => {
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-info"
-          header={orderList.length.toString()}
+          header={totalOrders.toString()}
           text="Orders"
           footerSlot={
             <ChartLineSimple
@@ -95,8 +97,8 @@ const WidgetsDropdown = () => {
       <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-warning"
-          header={products.length.toString()}
-          text="Products"
+          header={messages.length.toString()}
+          text="Messages"
           footerSlot={
             <ChartLineSimple
               className="mt-3"
@@ -124,11 +126,11 @@ const WidgetsDropdown = () => {
         </CWidgetDropdown>
       </CCol>
 
-      {/* <CCol sm="6" lg="3">
+      <CCol sm="6" lg="3">
         <CWidgetDropdown
           color="gradient-danger"
-          header="9.823"
-          text="Members online"
+          header={numProducts.toString()}
+          text="Active Products"
           footerSlot={
             <ChartBarSimple
               className="mt-3 mx-3"
@@ -151,7 +153,7 @@ const WidgetsDropdown = () => {
             </CDropdownMenu>
           </CDropdown>
         </CWidgetDropdown>
-      </CCol> */}
+      </CCol>
     </CRow>
   );
 };
