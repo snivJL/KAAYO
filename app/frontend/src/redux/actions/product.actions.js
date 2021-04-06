@@ -179,7 +179,6 @@ productActions.createReview = (review, productId) => async (dispatch) => {
   try {
     dispatch({ type: types.CREATE_REVIEW_REQUEST });
     const { data } = await api.post(`/product/${productId}/reviews`, review);
-    console.log("DATA", data);
     dispatch({ type: types.CREATE_REVIEW_SUCCESS, payload: data.data.product });
   } catch (error) {
     console.error(error);

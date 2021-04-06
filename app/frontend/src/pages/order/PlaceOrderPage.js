@@ -7,6 +7,7 @@ import CheckoutSteps from "../../components/CheckoutSteps";
 import SignUpNowModal from "./SignUpNowModal";
 import api from "../../redux/api";
 import { PayPalButton } from "react-paypal-button-v2";
+import { Spinner } from "react-bootstrap";
 
 const PlaceOrderPage = () => {
   const history = useHistory();
@@ -269,7 +270,20 @@ const PlaceOrderPage = () => {
                       />
                     </svg>
                     <span className="ml-2 mt-5px">
-                      {loading === "loading" ? "Loading" : "Place Order"}
+                      {loading === "loading" ? (
+                        <>
+                          <Spinner
+                            as="span"
+                            animation="border"
+                            size="sm"
+                            role="status"
+                            aria-hidden="true"
+                          />
+                          Processing
+                        </>
+                      ) : (
+                        "Place Order"
+                      )}
                     </span>
                   </button>
                 ) : (

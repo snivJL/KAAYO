@@ -11,9 +11,7 @@ const { Error } = require("mongoose");
 let orderController = {};
 
 const updateStock = async (p) => {
-  console.log("updating stock", p);
   const product = await Product.findById(p);
-  console.log("Product - stock", product.name, product.countInStock);
 
   // if (product) {
   const updatedProduct = await Product.findByIdAndUpdate(
@@ -21,9 +19,7 @@ const updateStock = async (p) => {
     { $inc: { countInStock: -1 } },
     { new: true }
   );
-  console.log(updatedProduct);
   // }
-  console.log("Product stock updated", product);
 };
 
 orderController.createOrder = async (req, res, next) => {
@@ -34,7 +30,6 @@ orderController.createOrder = async (req, res, next) => {
     if (couponId) validator.checkObjectId(couponId.toString());
 
     if (guestOrder) {
-      console.log("gusrt Order");
       const { products, shipping, total } = req.body;
       await products.map((p) => {
         updateStock(p);
@@ -54,8 +49,6 @@ orderController.createOrder = async (req, res, next) => {
         "Order created"
       );
     } else {
-      console.log("member Order");
-
       const { products, shipping, total, user } = req.body;
       validator.checkObjectId(userId);
       products.map((p) => validator.checkObjectId(p));

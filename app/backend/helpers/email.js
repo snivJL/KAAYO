@@ -22,7 +22,7 @@ const sendOrderConfirmation = (order, user) => {
   const data = {
     from:
       "Mailgun Sandbox <postmaster@sandboxc3756592e6204abf9e096e6740c1e39d.mailgun.org>",
-    to: user.email,
+    to: "julien.lejay@gmail.com",
     subject: "KA.A.YO Order Confirmation",
     template: "order_summary",
     "v:orderId": order._id,
@@ -34,10 +34,12 @@ const sendOrderConfirmation = (order, user) => {
 };
 
 const sendAlertEmail = (order, user) => {
+  console.log("user Alert", user, "ORDER alert", order);
+
   const data = {
     from:
       "Mailgun Sandbox <postmaster@sandboxc3756592e6204abf9e096e6740c1e39d.mailgun.org>",
-    to: "ka.a.yo.handmadesoaps@gmail.com",
+    to: "julien.lejay@gmail.com",
     subject: "New Order! (test)",
     template: "order_alert",
     "v:orderId": order._id,
