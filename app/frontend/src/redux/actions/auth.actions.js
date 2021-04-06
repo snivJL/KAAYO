@@ -7,7 +7,6 @@ authActions.login = (values) => async (dispatch) => {
   try {
     dispatch({ type: types.LOGIN_USER_REQUEST });
     const { data } = await api.post(`/auth`, values);
-    console.log("data aaa:", data);
     localStorage.setItem("token", data.data.token);
 
     dispatch({ type: types.LOGIN_USER_SUCCESS, payload: data.data });

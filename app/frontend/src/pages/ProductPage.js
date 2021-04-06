@@ -44,7 +44,7 @@ const ProductPage = () => {
       ) : (
         <div className="bg-white md:px-12 min-w-screen w-11/12 mx-auto pb-6">
           <Breadcrumb
-            className="mr-auto max-w-max bg-transparent py-2"
+            className="mr-auto max-w-max text-gray-700 bg-transparent py-2"
             bsPrefix="breadcrumb-item"
           >
             <LinkContainer to="/">
@@ -75,7 +75,10 @@ const ProductPage = () => {
                 }
                 className="pb-4"
               >
-                <Rating value={product.rating} text={product.numReviews} />
+                <Rating
+                  value={product.rating}
+                  numReviews={product.numReviews}
+                />
               </div>
               <div className="pb-4 font-bold">
                 {product.shortDesc ? product.shortDesc : "Short Description"}
@@ -123,11 +126,12 @@ const ProductPage = () => {
               </div>
 
               <div className="font-bold mb-2 ">Ingredients</div>
-              <ul className="flex flex-wrap items-center space-x-3 space-y-2 mb-4">
+              {/* <ul className="flex flex-wrap items-center space-x-3 space-y-2 mb-4"> */}
+              <ul className="grid grid-cols-3 gap-2 justify-center place-content-center	 items-center mb-4">
                 {/* <ul className="grid grid-cols-4 mb-4"> */}
                 {product.ingredients.map((i, index) => (
                   <li
-                    className="capitalize px-3 py-1 bg-green-200 text-green-800 rounded-full"
+                    className="capitalize text-center px-3 py-1 bg-green-200 text-green-800 rounded-full"
                     key={index}
                   >
                     {i}

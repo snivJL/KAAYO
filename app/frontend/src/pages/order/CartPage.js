@@ -1,14 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
 import { Button, ButtonGroup, Alert } from "react-bootstrap";
 import orderActions from "../../redux/actions/order.actions";
+import couponActions from "../../redux/actions/coupon.actions";
 
 const CartPage = () => {
+  const [couponName, setCouponName] = useState("");
   const history = useHistory();
   const cart = useSelector((state) => state.order.cart);
+  const validCoupon = useSelector((state) => state.order.validCoupon);
   const dispatch = useDispatch();
-
+  const orderPrice = cart.reduce(
+    (acc, item) => acc + item.qty * item.product.price,
+    0
+  );
+  const discount = (orderPrice * validCoupon.discount) / 100 || 0;
+  const handleCoupon = (e) => {
+    e.preventDefault();
+    dispatch(orderActions.applyCoupon(couponName, cart));
+  };
   const checkoutHandler = (e) => {
     e.preventDefault();
     history.push("/order/shipping");
@@ -128,14 +139,15 @@ const CartPage = () => {
                     If you have a coupon code, please enter it in the box below
                   </p>
                   <div className="justify-center md:flex">
-                    <form>
+                    <form onSubmit={handleCoupon}>
                       <div className="flex items-center w-full h-13 pl-3 bg-white bg-green-100 border rounded-full">
                         <input
                           type="coupon"
                           name="code"
+                          onChange={(e) => setCouponName(e.target.value)}
                           id="coupon"
                           placeholder="Apply coupon"
-                          value=""
+                          value={couponName}
                           className="w-full bg-green-100 outline-none appearance-none focus:outline-none active:outline-none"
                         />
                         <button
@@ -189,16 +201,17 @@ const CartPage = () => {
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-800">
                       &#8363;
-                      {cart.reduce(
-                        (acc, item) => acc + item.qty * item.product.price,
-                        0
-                      )}
+                      {orderPrice}
                     </div>
                   </div>
-                  {/* <div className="flex justify-between pt-4 border-b">
+                  <div className="flex justify-between pt-4 border-b">
                     <div className="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
                       <form>
-                        <button type="submit" className="mr-2 mt-1 lg:mt-2">
+                        <button
+                          type="button"
+                          onClick={() => dispatch(orderActions.clearCoupon())}
+                          className="mr-2 mt-1 lg:mt-2"
+                        >
                           <svg
                             aria-hidden="true"
                             data-prefix="far"
@@ -214,10 +227,12 @@ const CartPage = () => {
                           </svg>
                         </button>
                       </form>
-                      Coupon "90off"
+                      {validCoupon.name
+                        ? `Coupon "${validCoupon.name}"`
+                        : "No coupon"}
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
-                      &#8363;0
+                      -&#8363;{discount}
                     </div>
                   </div>
                   <div className="flex justify-between pt-4 border-b">
@@ -226,30 +241,24 @@ const CartPage = () => {
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
                       &#8363;
-                      {cart.reduce(
-                        (acc, item) => acc + item.qty * item.product.price,
-                        0
-                      )}
+                      {orderPrice - discount}
                     </div>
-                  </div> */}
-                  {/* <div className="flex justify-between pt-4 border-b">
+                  </div>
+                  <div className="flex justify-between pt-4 border-b">
                     <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
                       Shipping
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
                       &#8363; 40000
                     </div>
-                  </div> */}
+                  </div>
                   <div className="flex justify-between pt-4 border-b">
                     <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
                       Total
                     </div>
                     <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
                       &#8363;
-                      {cart.reduce(
-                        (acc, item) => acc + item.qty * item.product.price,
-                        0
-                      )}
+                      {orderPrice + 40000 - discount}
                     </div>
                   </div>
                   <a href="/">

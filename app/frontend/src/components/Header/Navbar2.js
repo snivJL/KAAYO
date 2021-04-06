@@ -33,8 +33,10 @@ const Navbar2 = () => {
             <Nav.Link className="navbar-nav-link" as={Link} to="/about">
               Ingredients
             </Nav.Link>
-
-            <NavDropdown
+            <Nav.Link className="navbar-nav-link" as={Link} to="/shop">
+              Shop
+            </Nav.Link>
+            {/* <NavDropdown
               className="navbar-nav-link"
               title="Shop"
               id="basic-nav-dropdown"
@@ -48,7 +50,7 @@ const Navbar2 = () => {
               <NavDropdown.Item href="#action/3.4">
                 Separated link
               </NavDropdown.Item>
-            </NavDropdown>
+            </NavDropdown> */}
           </Nav>
           <SearchBar />
 

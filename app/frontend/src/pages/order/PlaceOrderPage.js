@@ -15,13 +15,16 @@ const PlaceOrderPage = () => {
   const paymentMethod = useSelector((state) => state.order.paymentMethod);
   if (!paymentMethod) history.push("/payment");
   const order = useSelector((state) => state.order);
-  const { cart, orderCreated } = order;
-  const user = useSelector((state) => state.user.userInfo);
+  const { cart, orderCreated, loading } = order;
+  const user = useSelector((state) => state.auth.userInfo);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const validCoupon = useSelector((state) => state.order.validCoupon);
   const cartPrice = cart.reduce(
     (acc, item) => acc + item.product.price * item.qty,
     0
   );
+  const discount = (cartPrice * validCoupon.discount) / 100 || 0;
+
   const handleShow = () => setShow(true);
   const handleClose = () => setShow(false);
   const successPaymentHandler = (paymentResult) => {
@@ -175,16 +178,17 @@ const PlaceOrderPage = () => {
                   </div>
                   <div className="lg:px-4 lg:py-2 m-2 lg:text-xs font-bold text-center text-gray-900">
                     &#8363;
-                    {cart.reduce(
-                      (acc, item) => acc + item.qty * item.product.price,
-                      0
-                    )}
+                    {cartPrice}
                   </div>
                 </div>
                 <div className="flex justify-between pt-1 border-b">
                   <div className="flex lg:px-4 lg:py-2 m-2 text-xs lg:text-xs font-bold text-gray-800">
-                    <form action="" method="POST">
-                      <button type="submit" className="mr-2 mt-1 lg:mt-2">
+                    <form>
+                      <button
+                        type="button"
+                        onClick={() => dispatch(orderActions.clearCoupon())}
+                        className="mr-2 mt-1 lg:mt-2"
+                      >
                         <svg
                           aria-hidden="true"
                           data-prefix="far"
@@ -200,10 +204,12 @@ const PlaceOrderPage = () => {
                         </svg>
                       </button>
                     </form>
-                    Coupon "90off"
+                    {validCoupon.name
+                      ? `Coupon "${validCoupon.name}"`
+                      : "No coupon"}
                   </div>
                   <div className="lg:px-4 lg:py-2 m-2 lg:text-xs font-bold text-center text-green-700">
-                    &#8363;0
+                    -&#8363;{discount}
                   </div>
                 </div>
                 <div className="flex justify-between pt-1 border-b">
@@ -212,10 +218,7 @@ const PlaceOrderPage = () => {
                   </div>
                   <div className="lg:px-4 lg:py-2 m-2 lg:text-xs font-bold text-center text-gray-900">
                     &#8363;
-                    {cart.reduce(
-                      (acc, item) => acc + item.qty * item.product.price,
-                      0
-                    )}
+                    {cartPrice - discount}
                   </div>
                 </div>
                 <div className="flex justify-between pt-1 border-b">
@@ -232,10 +235,7 @@ const PlaceOrderPage = () => {
                   </div>
                   <div className="lg:px-4 lg:py-2 m-2 lg:text-xl font-bold text-red-600">
                     &#8363;
-                    {cart.reduce(
-                      (acc, item) => acc + item.qty * item.product.price,
-                      0
-                    ) + 40000}
+                    {cartPrice + 40000 - discount}
                   </div>
                 </div>
 
@@ -244,11 +244,16 @@ const PlaceOrderPage = () => {
                     onClick={(e) => {
                       e.preventDefault();
                       dispatch(
-                        orderActions.createOrder(order, cartPrice, user)
+                        orderActions.createOrder(
+                          order,
+                          cartPrice,
+                          user,
+                          validCoupon
+                        )
                       );
                     }}
                     disabled={cart.length === 0}
-                    className="flex justify-center w-full px-10 py-3 my-6 font-medium text-white uppercase bg-gray-800 rounded-full shadow item-center hover:bg-gray-700 focus:shadow-outline focus:outline-none"
+                    className="flex justify-center w-full px-10 py-3 my-6 font-medium text-white uppercase text-white bg-green-700 rounded-full outline-none md:px-4 hover:bg-green-500 shadow item-center focus:shadow-outline focus:outline-none"
                   >
                     <svg
                       aria-hidden="true"
@@ -263,7 +268,9 @@ const PlaceOrderPage = () => {
                         d="M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z"
                       />
                     </svg>
-                    <span className="ml-2 mt-5px">Place Order</span>
+                    <span className="ml-2 mt-5px">
+                      {loading === "loading" ? "Loading" : "Place Order"}
+                    </span>
                   </button>
                 ) : (
                   <PayPalButton

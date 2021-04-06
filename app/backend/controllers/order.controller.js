@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const Coupon = require("../models/Coupon");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 const utilsHelper = require("../helpers/utils.helper");
@@ -9,25 +10,40 @@ const { Error } = require("mongoose");
 
 let orderController = {};
 
-const updateStock = async (productId, qty) => {
-  const product = await Product.findById(productId);
-  if (product) {
-    product.update({ _id: productId }, { $inc: { countInStock: -qty } });
-  }
+const updateStock = async (p) => {
+  console.log("updating stock", p);
+  const product = await Product.findById(p);
+  console.log("Product - stock", product.name, product.countInStock);
+
+  // if (product) {
+  const updatedProduct = await Product.findByIdAndUpdate(
+    { _id: product._id },
+    { $inc: { countInStock: -1 } },
+    { new: true }
+  );
+  console.log(updatedProduct);
+  // }
+  console.log("Product stock updated", product);
 };
+
 orderController.createOrder = async (req, res, next) => {
   try {
-    const userId = req.userId;
+    const userId = req.body.user._id;
     const guestOrder = userId === undefined ? true : false;
-    console.log("GUEST??", guestOrder, userId);
+    const couponId = req.body.validCoupon ? req.body.validCoupon._id : null;
+    if (couponId) validator.checkObjectId(couponId.toString());
+
     if (guestOrder) {
+      console.log("gusrt Order");
       const { products, shipping, total } = req.body;
-      //remove duplicate
-      [...new Set(products)].map((p) => updateStock(p._id, p.qty));
+      await products.map((p) => {
+        updateStock(p);
+      });
       const order = await Order.create({
         products,
         shipping,
         total,
+        coupon: couponId,
       });
       utilsHelper.sendResponse(
         res,
@@ -38,16 +54,20 @@ orderController.createOrder = async (req, res, next) => {
         "Order created"
       );
     } else {
+      console.log("member Order");
+
       const { products, shipping, total, user } = req.body;
       validator.checkObjectId(userId);
       products.map((p) => validator.checkObjectId(p));
-      //remove duplicate
-      [...new Set(products)].map((p) => updateStock(p._id, p.qty));
+      await products.map((p) => {
+        updateStock(p);
+      });
       const order = await Order.create({
         userId,
         products,
         shipping,
         total,
+        coupon: couponId,
       });
 
       utilsHelper.sendResponse(
@@ -161,12 +181,36 @@ orderController.getSingleOrder = async (req, res, next) => {
 
 orderController.getAllOrders = async (req, res, next) => {
   try {
+    let { page } = req.query;
+    page = parseInt(page) || 1;
+    const limit = 10;
+    const totalOrders = await Order.countDocuments({
+      isDeleted: false,
+    });
+
+    console.log("total orders", totalOrders);
+
+    const totalPages = Math.ceil(totalOrders / limit);
+    console.log("totalpages", totalPages);
+
+    const offset = limit * (page - 1);
+    console.log("offset", offset);
+
     const order = await Order.find({})
       .populate("products")
       .populate("userId")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .skip(offset)
+      .limit(limit);
     if (!order) return next(new Error("401 - Order not found"));
-    utilsHelper.sendResponse(res, 200, true, { order }, null, "Get all orders");
+    utilsHelper.sendResponse(
+      res,
+      200,
+      true,
+      { order, page, totalPages, totalOrders },
+      null,
+      "Get all orders"
+    );
   } catch (error) {
     next(error);
   }
@@ -195,6 +239,27 @@ orderController.updateOrderToPay = async (req, res, next) => {
       null,
       "Order updated to paid"
     );
+  } catch (error) {
+    next(error);
+  }
+};
+
+orderController.applyCoupon = async (req, res, next) => {
+  try {
+    const { couponName, cart } = req.body;
+    const coupon = await Coupon.findOne({ name: couponName, isDeleted: false });
+    if (!coupon) return next(new Error("401 - Coupon does not exist"));
+    if (!coupon.categories.includes("All")) {
+      return;
+    }
+    const datetime = new Date();
+    if (
+      datetime.getTime() > coupon.validUntil.getTime() ||
+      datetime.getTime() < coupon.validFrom.getTime()
+    ) {
+      return next(new Error("401 - Coupon is not valid"));
+    }
+    utilsHelper.sendResponse(res, 200, true, { coupon }, null, "Coupon valid!");
   } catch (error) {
     next(error);
   }

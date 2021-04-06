@@ -30,6 +30,11 @@ const mailsApi = require("./mails.api");
 router.use("/email", mailsApi);
 
 // paypalApi
+const couponApi = require("./coupon.api");
+router.use("/coupon", couponApi);
+
+// paypalApi
 const paypalApi = require("./paypal.api");
 router.use("/config/paypal", paypalApi);
+
 module.exports = router;

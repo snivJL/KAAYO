@@ -58,6 +58,7 @@ const Rating = ({ value, numReviews }) => {
           }
         ></i>
       </span>
+      {console.log(numReviews)}
       {numReviews && (
         <div className="pl-2 ">
           ({numReviews > 0 ? numReviews : "0"})

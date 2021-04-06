@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Loader from "../../components/Loader";
 import orderActions from "../../redux/actions/order.actions";
+import Pagination from "../../components/Pagination";
 
 import Moment from "react-moment";
 import moment from "moment";
@@ -13,6 +14,11 @@ const OrderListPage = ({ isNew }) => {
   const { loading } = order;
   const { orderList } = order;
 
+  const [currentPage, setCurrentPage] = useState(0);
+  const handlePageClick = ({ selected: selectedPage }) => {
+    setCurrentPage(selectedPage);
+    dispatch(orderActions.getAllOrders(selectedPage + 1));
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     if (loading === "idle") dispatch(orderActions.getAllOrders());
@@ -391,6 +397,7 @@ const OrderListPage = ({ isNew }) => {
                         ))}
                   </tbody>
                 </table>
+                <Pagination handlePageClick={handlePageClick} type={"order"} />
               </div>
             </div>
           </div>

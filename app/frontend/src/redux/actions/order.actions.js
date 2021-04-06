@@ -28,11 +28,11 @@ orderActions.savePaymentMethod = (data) => (dispatch) => {
   localStorage.setItem("paymentMethod", JSON.stringify(data.paymentMethod));
 };
 
-orderActions.getAllOrders = () => async (dispatch) => {
+orderActions.getAllOrders = (page = 1) => async (dispatch) => {
   try {
     dispatch({ type: types.GET_ALL_ORDERS_REQUEST });
-    const { data } = await api.get("/order");
-    dispatch({ type: types.GET_ALL_ORDERS_SUCCESS, payload: data.data.order });
+    const { data } = await api.get(`/order?page=${page}`);
+    dispatch({ type: types.GET_ALL_ORDERS_SUCCESS, payload: data.data });
   } catch (error) {
     console.error(error);
     dispatch({
@@ -44,7 +44,9 @@ orderActions.getAllOrders = () => async (dispatch) => {
     });
   }
 };
-orderActions.createOrder = (order, cartPrice, user) => async (dispatch) => {
+orderActions.createOrder = (order, cartPrice, user, validCoupon) => async (
+  dispatch
+) => {
   try {
     //creates flattened array, 1 line per product per quantity to match server
     const productsArray = order.cart
@@ -58,15 +60,16 @@ orderActions.createOrder = (order, cartPrice, user) => async (dispatch) => {
     const formatOrder = {};
     formatOrder.products = productsArray;
     formatOrder.shipping = order.shippingAddress;
-    formatOrder.status = "paid";
+    formatOrder.status = "pending";
     formatOrder.total = cartPrice;
     formatOrder.user = user;
-
+    formatOrder.validCoupon = validCoupon;
+    console.log("action", formatOrder);
     dispatch({ type: types.CREATE_ORDER_REQUEST });
     const { data } = await api.post("/order/add", formatOrder);
 
     dispatch({ type: types.CREATE_ORDER_SUCCESS, payload: data });
-
+    localStorage.removeItem("validCoupon");
     localStorage.removeItem("cartItems");
   } catch (error) {
     console.error(error);
@@ -108,13 +111,49 @@ orderActions.payOrder = (orderId, paymentResult) => async (dispatch) => {
   try {
     dispatch({ type: types.ORDER_PAY_REQUEST });
     const { data } = await api.put(`/order/${orderId}/pay`, paymentResult);
-    console.log("FDP", data);
     dispatch({ type: types.ORDER_PAY_SUCCESS });
     toast.info("Order paid!");
   } catch (error) {
     console.error(error);
     dispatch({
       type: types.ORDER_PAY_FAIL,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
+
+orderActions.applyCoupon = (couponName, cart) => async (dispatch) => {
+  try {
+    dispatch({ type: types.APPLY_COUPON_REQUEST });
+    const { data } = await api.put(`/order/coupon`, { couponName, cart });
+    console.log("FDP", data.data.coupon);
+    dispatch({ type: types.APPLY_COUPON_SUCCESS, payload: data.data.coupon });
+    localStorage.setItem("validCoupon", JSON.stringify(data.data.coupon));
+    toast.info("Coupon applied!");
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.APPLY_COUPON_FAIL,
+      error:
+        error && error.errors && error.errors.message
+          ? error.errors.message
+          : error,
+    });
+  }
+};
+
+orderActions.clearCoupon = () => (dispatch) => {
+  try {
+    dispatch({ type: types.CLEAR_COUPON_SUCCESS });
+    toast.info("Coupon removed!");
+    localStorage.removeItem("validCoupon");
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: types.CLEAR_COUPON_FAIL,
       error:
         error && error.errors && error.errors.message
           ? error.errors.message

@@ -21,6 +21,7 @@ const orderSchema = mongoose.Schema(
       email: { type: String },
     },
     shippingPrice: { type: Number, default: 0 },
+    coupon: { type: mongoose.Schema.Types.ObjectId, ref: "Coupon" },
     isPaid: { type: Boolean, required: true, default: false },
     paidAt: { type: Date },
     isSent: { type: Boolean, required: true, default: false },
