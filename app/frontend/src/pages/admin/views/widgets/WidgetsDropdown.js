@@ -12,6 +12,7 @@ import CIcon from "@coreui/icons-react";
 import ChartLineSimple from "../charts/ChartLineSimple";
 import ChartBarSimple from "../charts/ChartBarSimple";
 import { useSelector } from "react-redux";
+import moment from "moment";
 // import userActions from "../../../../redux/actions/user.actions";
 // import Moment from "react-moment";
 // import _ from "lodash";
@@ -24,6 +25,12 @@ const WidgetsDropdown = () => {
   const { numProducts } = product;
   const { totalOrders } = order;
   const { messages } = message;
+  let newData = {};
+  users.forEach((item) => {
+    newData[moment(item.createdAt).format("DD-MM-YYYY")] =
+      (newData[moment(item.createdAt).format("DD-MM-YYYY")] || 0) + 1;
+  });
+  console.log("NEWDATA", newData);
   // let groupedResults = _.groupBy(users.createdAt, (result) =>
   //   console.log("HELLO", result)
   // );

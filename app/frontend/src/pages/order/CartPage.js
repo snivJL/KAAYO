@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, Link } from "react-router-dom";
-import { Button, ButtonGroup, Alert } from "react-bootstrap";
+import { Button, ButtonGroup, Alert, Breadcrumb } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
+
 import orderActions from "../../redux/actions/order.actions";
 import { Spinner } from "react-bootstrap";
 const CartPage = () => {
@@ -25,15 +27,24 @@ const CartPage = () => {
     history.push("/order/shipping");
   };
   return (
-    <div className="flex w-10/12 mx-auto bg-white">
+    <div className="flex w-10/12 md:w-3/4 mx-auto bg-white">
+      <Breadcrumb
+        className="mr-auto max-w-max text-gray-700 bg-transparent py-2"
+        bsPrefix="breadcrumb-item"
+      >
+        <LinkContainer to="/">
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+        </LinkContainer>
+        <Breadcrumb.Item active>Cart</Breadcrumb.Item>
+      </Breadcrumb>
       {cart.length === 0 ? (
         <Alert>
           Your cart is empty! <Link to="/shop">Shop Now</Link>
         </Alert>
       ) : (
-        <div className="flex flex-col w-full p-8 text-gray-800 bg-white pin-r pin-y ">
+        <div className="mt-8 flex flex-col w-full p-8 text-gray-800 bg-white pin-r pin-y ">
           <div className="flex-1">
-            <table className="w-full text-sm lg:text-base" cellspacing="0">
+            <table className="w-full text-sm lg:text-base" cellSpacing="0">
               <thead>
                 <tr className="h-12 uppercase">
                   <th className="hidden md:table-cell"></th>
@@ -61,23 +72,25 @@ const CartPage = () => {
                       </a>
                     </td>
                     <td>
-                      <a href="/">
+                      <Link to={`/product/${item.product._id}`}>
                         <p className="mb-2 md:ml-4">{item.product.name}</p>
-                        <form action="" method="POST">
-                          <button
-                            type="button"
-                            onClick={(e) => {
-                              e.preventDefault();
-                              dispatch(
-                                orderActions.deleteFromCart(item.product._id)
-                              );
-                            }}
-                            className="text-gray-700 md:ml-4"
-                          >
-                            <small>(Remove item)</small>
-                          </button>
-                        </form>
-                      </a>
+                        {cart.length > 1 && (
+                          <form action="" method="POST">
+                            <button
+                              type="button"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                dispatch(
+                                  orderActions.deleteFromCart(item.product._id)
+                                );
+                              }}
+                              className="text-gray-700 md:ml-4"
+                            >
+                              <small>(Remove item)</small>
+                            </button>
+                          </form>
+                        )}
+                      </Link>
                     </td>
                     <td className="text-left">
                       <ButtonGroup>
@@ -131,7 +144,7 @@ const CartPage = () => {
             <hr className="pb-6 mt-6" />
             <div className="my-4 mt-6 -mx-2 lg:flex">
               <div className="lg:px-2 lg:w-1/2">
-                <div className="p-4 bg-green-100 rounded-full">
+                <div className="p-4 bg-green-100 rounded-lg text-center">
                   <h1 className="ml-2 font-bold uppercase">Coupon Code</h1>
                 </div>
                 <div className="p-4">
@@ -188,7 +201,7 @@ const CartPage = () => {
                     </form>
                   </div>
                 </div>
-                <div className="p-4 mt-6 bg-green-100 rounded-full">
+                <div className="p-4 mt-6 bg-green-100 rounded-lg text-center">
                   <h1 className="ml-2 font-bold uppercase">
                     Instruction for seller
                   </h1>
@@ -202,7 +215,7 @@ const CartPage = () => {
                 </div>
               </div>
               <div className="lg:px-2 lg:w-1/2">
-                <div className="p-4 bg-green-100 rounded-full">
+                <div className="p-4 bg-green-100 rounded-lg text-center">
                   <h1 className="ml-2 font-bold uppercase">Order Details</h1>
                 </div>
                 <div className="p-4">
@@ -211,16 +224,16 @@ const CartPage = () => {
                     values you have entered
                   </p>
                   <div className="flex justify-between border-b">
-                    <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-700">
+                    <div className="lg:px-4  m-1 text-md lg:text-lg font-bold text-center text-gray-700">
                       Subtotal
                     </div>
-                    <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-800">
+                    <div className="lg:px-4  m-1 lg:text-lg font-bold text-center text-gray-800">
                       &#8363;
                       {orderPrice}
                     </div>
                   </div>
                   <div className="flex justify-between pt-4 border-b">
-                    <div className="flex lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-gray-800">
+                    <div className="flex lg:px-4  m-1 text-md lg:text-lg font-bold text-gray-800">
                       <form>
                         <button
                           type="button"
@@ -246,32 +259,32 @@ const CartPage = () => {
                         ? `Coupon "${validCoupon.name}"`
                         : "No coupon"}
                     </div>
-                    <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-green-700">
+                    <div className="lg:px-4  m-1 lg:text-lg font-bold text-center text-green-700">
                       -&#8363;{discount}
                     </div>
                   </div>
                   <div className="flex justify-between pt-4 border-b">
-                    <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                    <div className="lg:px-4  m-1 text-md lg:text-lg font-bold text-center text-gray-800">
                       New Subtotal
                     </div>
-                    <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                    <div className="lg:px-4  m-1 lg:text-lg font-bold text-center text-gray-900">
                       &#8363;
                       {orderPrice - discount}
                     </div>
                   </div>
                   <div className="flex justify-between pt-4 border-b">
-                    <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                    <div className="lg:px-4  m-1 text-md lg:text-lg font-bold text-center text-gray-800">
                       Shipping
                     </div>
-                    <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                    <div className="lg:px-4  m-1 lg:text-lg font-bold text-center text-gray-900">
                       &#8363; 40000
                     </div>
                   </div>
                   <div className="flex justify-between pt-4 border-b">
-                    <div className="lg:px-4 lg:py-2 m-2 text-lg lg:text-xl font-bold text-center text-gray-800">
+                    <div className="lg:px-4  m-1 text-md lg:text-lg font-bold text-center text-gray-800">
                       Total
                     </div>
-                    <div className="lg:px-4 lg:py-2 m-2 lg:text-lg font-bold text-center text-gray-900">
+                    <div className="lg:px-4  m-1 lg:text-lg font-bold text-center text-gray-900">
                       &#8363;
                       {orderPrice + 40000 - discount}
                     </div>
@@ -280,7 +293,7 @@ const CartPage = () => {
                     <button
                       onClick={(e) => checkoutHandler(e)}
                       disabled={cart.length === 0}
-                      className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-green-700 rounded-full shadow item-center hover:bg-green-500 focus:shadow-outline focus:outline-none"
+                      className="flex justify-center w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-green-700 rounded-lg shadow item-center hover:bg-green-500 focus:shadow-outline focus:outline-none"
                     >
                       <svg
                         aria-hidden="true"

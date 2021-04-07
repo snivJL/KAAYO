@@ -9,7 +9,9 @@ const Navbar2 = () => {
   const auth = useSelector((state) => state.auth);
   const order = useSelector((state) => state.order);
   const { cart } = order;
-  const { isAuthenticated, userInfo } = auth;
+  const { isAuthenticated } = auth;
+  const { userInfo } = auth;
+
   return (
     <Navbar expand="lg" className="font-semibold	bg-white uppercase">
       <Container>
@@ -62,7 +64,11 @@ const Navbar2 = () => {
               {isAuthenticated ? (
                 <>
                   {userInfo.role === "admin" ? (
-                    <NavDropdown.Item as={Link} to="/admin/dashboard">
+                    <NavDropdown.Item
+                      as={Link}
+                      onClick={() => dispatch(authActions.setAdminMode())}
+                      to="/admin/dashboard"
+                    >
                       Admin Dashboard
                     </NavDropdown.Item>
                   ) : (

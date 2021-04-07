@@ -22,7 +22,7 @@ const HomePage2 = () => {
         <ul className="w-4/6 h-full gap-x-6 gap-y-5 mx-auto text-white items-center grid grid-cols-1 md:w-5/6 md:grid-cols-3 md:gap-y-0">
           <li className="h-5/6 pt-2 px-16 flex flex-col space-y-3 items-center">
             <i className="fas fa-gift text-opacity-70 rounded-full p-3 fa-2x bg-green-100 text-green-600"></i>
-            <p className="text-md uppercase hero-panel-title">
+            <p className="text-lg uppercase hero-panel-title">
               Beautifully packed
             </p>
             <p className="px-4 break-words text-center font-light text-sm">
@@ -69,8 +69,8 @@ const HomePage2 = () => {
             className="bg-opacity-50 flex"
           >
             <div className="flex flex-col justify-around items-center p-4 w-10/12 md-w-3/4 mx-auto">
-              <h2 className="text-gray-600 font-extralight text-5xl	 text-center">
-                THE BEST OF CLEANSKIN
+              <h2 className="text-gray-600 font-extralight text-5xl px-2	 text-center">
+                THE BEST OF KA.A.YO
               </h2>
               <p className="text-center text-gray-600">
                 Handmade soap is exactly that made by hand. They are made with

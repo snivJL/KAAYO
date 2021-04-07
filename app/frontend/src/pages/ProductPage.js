@@ -17,6 +17,7 @@ import ReviewInput from "../components/review/ReviewInput";
 const ProductPage = () => {
   const reviewsRef = useRef();
   const [showReviews, setShowReviews] = useState(false);
+  const [showReviewForm, setShowReviewForm] = useState(false);
   const [qty, setQty] = useState(1);
   const productId = useParams().id;
   const dispatch = useDispatch();
@@ -182,32 +183,39 @@ const ProductPage = () => {
               </Card>
             </div>
           </div>
-          {product.reviews.length ? (
-            <div className="flex justify-center py-5">
-              <button
-                ref={reviewsRef}
-                onClick={() => setShowReviews(!showReviews)}
-                className="border-2 border-green-500 rounded-full font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white"
-              >
-                {showReviews ? "Hide Reviews" : "Show reviews"}
-              </button>
-            </div>
-          ) : (
-            <ReviewInput productId={product._id} />
-          )}
-          <div className={!showReviews ? "d-none" : ""}>
-            <ReviewList reviews={product.reviews} />
-            {isAuthenticated ? (
-              <ReviewInput productId={product._id} />
+          <div className="flex justify-between w-full">
+            {product.reviews.length ? (
+              <div className="flex  py-5">
+                <button
+                  ref={reviewsRef}
+                  onClick={() => setShowReviews(!showReviews)}
+                  className="border-b-2 border-green-500  font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white"
+                >
+                  Reviews {product.reviews.length}{" "}
+                  {showReviews ? "(hide)" : "(show)"}
+                </button>
+              </div>
             ) : (
-              <p className="my-3">
-                Please{" "}
-                <Link to="/login" className="font-bold underline">
-                  Log in
-                </Link>
-                to post a review
+              <p className="border-b-2 border-green-500  font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white">
+                No reviews Yet
               </p>
             )}
+            <div className="flex  py-5">
+              <button
+                ref={reviewsRef}
+                onClick={() => setShowReviewForm(!showReviewForm)}
+                className="border-b-2 border-green-500  font-bold text-green-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-green-500 hover:text-white"
+              >
+                Write review
+              </button>
+            </div>
+          </div>
+
+          <div className={!showReviews ? "d-none" : ""}>
+            <ReviewList reviews={product.reviews} />
+          </div>
+          <div className={!showReviewForm ? "d-none" : "pt-8"}>
+            <ReviewInput reviews={product.reviews} />
           </div>
         </div>
       )}

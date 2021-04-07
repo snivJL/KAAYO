@@ -135,7 +135,7 @@ const ShippingPage = () => {
             </Form.Group>
             <button
               type="submit"
-              className="uppercase text-sm font-bold tracking-wide bg-green-300 text-gray-700 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline"
+              className="uppercase text-sm w-full px-10 py-3 mt-6 font-medium text-white uppercase bg-green-700 rounded-lg shadow item-center hover:bg-green-500 focus:shadow-outline focus:outline-none"
             >
               Continue
             </button>

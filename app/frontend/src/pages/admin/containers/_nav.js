@@ -7,11 +7,13 @@ const _nav = [
     name: "Dashboard",
     to: "/dashboard",
     icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
-    badge: {
-      color: "info",
-      text: "NEW",
-    },
   },
+  // {
+  //   _tag: "CSidebarNavItem",
+  //   name: "Back To User Mode",
+  //   to: "/dashboard",
+  //   icon: <CIcon name="cil-speedometer" customClasses="c-sidebar-nav-icon" />,
+  // },
   {
     _tag: "CSidebarNavTitle",
     _children: ["Products"],

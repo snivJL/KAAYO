@@ -232,15 +232,15 @@ productController.restoreProduct = async (req, res, next) => {
 
 productController.createReview = async (req, res, next) => {
   try {
-    const { rating, comment, name, title } = req.body;
+    const { rating, comment, name, title, email } = req.body;
     const userId = req.userId;
     const product = await Product.findById(req.params.id);
     if (!product) {
       return next(new Error("Product not found"));
     } else {
-      const alreadyReviewed = product.reviews.find((x) => x.userId);
+      const alreadyReviewed = product.reviews.find((x) => x.email === email);
       if (alreadyReviewed) return next(new Error("Product already reviewed"));
-      const review = { name, comment, rating, title, userId };
+      const review = { name, comment, rating, title, userId, email };
 
       product.reviews.push(review);
       product.numReviews = product.reviews.length;

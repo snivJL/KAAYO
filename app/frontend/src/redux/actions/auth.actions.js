@@ -111,5 +111,8 @@ authActions.logout = () => async (dispatch) => {
   dispatch({ type: "CLEAR_USER" });
   toast.dark("See you soon!");
 };
-
+authActions.setAdminMode = () => (dispatch) => {
+  dispatch({ type: types.SET_ADMIN_MODE });
+  toast.dark("Entering admin mode..");
+};
 export default authActions;

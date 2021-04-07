@@ -2,7 +2,7 @@ import React from "react";
 
 const Rating = ({ handleInput, rating }) => {
   return (
-    <div className="rating flex px-2 py-8 border rounded-l-lg border-r-none">
+    <div className="rating flex py-2">
       <span style={{ color: "#FFE234" }}>
         <i
           onClick={() => handleInput(1)}

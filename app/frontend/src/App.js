@@ -36,6 +36,7 @@ function App() {
   const dispatch = useDispatch();
   // const token = localStorage.getItem("token");
   const token = useSelector((state) => state.auth.token);
+  const adminMode = useSelector((state) => state.auth.adminMode);
 
   useEffect(() => {
     if (token) dispatch(authActions.getCurrentUser());
@@ -50,10 +51,7 @@ function App() {
           hideProgressBar={false}
           autoClose={1500}
         />
-        <Switch></Switch>
-        <header>
-          <Navbar2 />
-        </header>
+        <header>{!adminMode && <Navbar2 />}</header>
         <main>
           <Switch>
             <PrivateRoute path="/admin/dashboard" component={Dashboard} />
@@ -92,9 +90,7 @@ function App() {
           </Switch>
           {/* <MessengerChat /> */}
         </main>
-        <footer>
-          <Footer />
-        </footer>
+        <footer>{!adminMode && <Footer />}</footer>
       </div>
     </Router>
   );
