@@ -11,6 +11,7 @@ const SearchBar = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(productActions.getFilteredProducts(keyword));
+    setKeyword("");
   };
   return (
     // <form onSubmit={handleSubmit}>
@@ -29,6 +30,7 @@ const SearchBar = () => {
       <FormControl
         type="text"
         placeholder="Search"
+        value={keyword}
         onChange={(e) => setKeyword(e.target.value)}
         className="mr-sm-2 border-green-300 focus:outline-green-300 focus:ring-green-300 focus:shadow"
       />

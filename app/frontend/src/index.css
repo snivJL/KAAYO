@@ -42,7 +42,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
+.add-cart-button:active {
+  transform: translateY(-2px);
+}
 h2 {
   font-size: 3rem;
   padding: 0;
@@ -454,10 +456,16 @@ li .next {
 #commentform textarea {
   outline: none;
 }
-
+/* a:active {
+  background-color: yellow;
+} */
 @media only screen and (max-width: 768px) {
   .carousel .slide .legend-custom {
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: 1.8rem;
+    line-height: 1.5rem;
+  }
+  .slider-wrapper {
+    display: flex;
+    align-items: center;
   }
 }

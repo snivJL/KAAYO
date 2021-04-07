@@ -63,7 +63,7 @@ const ShopPage = () => {
           <Loader size={"w-56"} caption={true} />
         ) : (
           <>
-            <div className="pt-4 grid md:grid-cols-2 lg:grid-cols-3 ">
+            <div className="pt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-y-4">
               {filterFlag ? (
                 filteredProducts && filteredProducts.length > 0 ? (
                   filteredProducts.map((p, i) => <Product key={i} p={p} />)

@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 const FilterBar = ({ currentPage }) => {
   const dispatch = useDispatch();
-  const [title, setTitle] = useState("Default sorting");
+  const [title, setTitle] = useState("Latest");
   const [cat, setCat] = useState("All");
   const product = useSelector((state) => state.product);
   const { numProducts, pageCount } = product;
@@ -88,8 +88,6 @@ const FilterBar = ({ currentPage }) => {
           <NavDropdown.Item name="Sort by popularity">
             Sort by popularity
           </NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item>Separated link</NavDropdown.Item>
         </NavDropdown>
 
         <NavDropdown
@@ -162,7 +160,7 @@ const FilterBar = ({ currentPage }) => {
             Shampoo Bar
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item>Separated link</NavDropdown.Item>
+          {/* <NavDropdown.Item>Separated link</NavDropdown.Item> */}
         </NavDropdown>
         {/* {console.log(numProducts - currentPage * 9, numProducts, currentPage)} */}
         <div className="ml-auto text-gray-700 text-sm pr-1">

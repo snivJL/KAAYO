@@ -14,7 +14,7 @@ const AddToCartButton = ({ qty = 1, product }) => {
         product.countInStock !== 0
           ? "add-cart-button hover:text-white"
           : "opacity-60"
-      }  uppercase block py-2 w-full border-2 bg-white border-green-500 font-bold text-green-800 `}
+      }  uppercase block py-2 w-full border-2 bg-white border-green-500 font-bold text-green-800 duration-100 transform 	`}
       type="button"
       disabled={product.countInStock === 0}
     >

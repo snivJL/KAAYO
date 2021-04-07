@@ -140,7 +140,7 @@ const ProductPage = () => {
                 ))}
               </ul>
               <Card className="w-full pb-4 md:w-5/6">
-                <ListGroup>
+                <ListGroup flush>
                   <ListGroup.Item>
                     <Row>
                       <Col>Price:</Col>
