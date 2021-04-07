@@ -56,7 +56,7 @@ const LoginPage = () => {
                   name="email"
                   type="email"
                   placeholder="email.."
-                  className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                  className="px-4 py-2 w-full rounded border text-gray-700 border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                 />
                 {errors.email && touched.email ? (
                   <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">

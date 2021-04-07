@@ -61,7 +61,7 @@ const RegisterPage = () => {
                   name="name"
                   type="text"
                   placeholder="name.."
-                  className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                  className="px-4 py-2 w-full text-gray-700 rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                 />
                 {errors.name && touched.name ? (
                   <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
@@ -83,7 +83,7 @@ const RegisterPage = () => {
                   name="password"
                   type="password"
                   placeholder="password.."
-                  className="px-4 py-2 w-full rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
+                  className="px-4 py-2 w-full text-gray-700  rounded border border-gray-300 shadow-sm text-base placeholder-gray-500 placeholder-opacity-50 focus:outline-none focus:border-blue-500"
                 />
                 {errors.password && touched.password ? (
                   <div className="bg-red-200 rounded-lg py-1 px-2 text-sm">
