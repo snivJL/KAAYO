@@ -226,9 +226,8 @@ footer {
   width: fit-content;
 }
 
-.carousel-root,
 .slider-wrapper,
-.carousel-root > * {
+#hero-homepage .carousel-root > * {
   height: calc(100vh - 127px) !important;
 }
 .carousel {

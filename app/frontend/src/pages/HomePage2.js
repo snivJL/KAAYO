@@ -15,7 +15,7 @@ const HomePage2 = () => {
   }, [dispatch]);
   return (
     <div className="bg-white">
-      <section>
+      <section id="hero-homepage">
         <ImagesCarousel />
       </section>
       <section className="pb-10 h-auto bg-green-600 bg-opacity-80">
@@ -148,7 +148,7 @@ const HomePage2 = () => {
         </div>
       </section>
       <section className="review-section w-full h-auto text-gray-700">
-        <div className="w-5/6 mx-auto py-24 ">
+        <div className="w-5/6 mx-auto py-12 ">
           <h2 className="uppercase mb-8 font-extralight text-5xl text-center">
             clients about us
           </h2>
