@@ -59,7 +59,7 @@ const Rating = ({ value, numReviews }) => {
         ></i>
       </span>
       {console.log(numReviews)}
-      {numReviews && (
+      {numReviews ? (
         <div className="pl-2 ">
           ({numReviews > 0 ? numReviews : "0"})
           {/* {numReviews > 0
@@ -68,6 +68,8 @@ const Rating = ({ value, numReviews }) => {
             : " review"
           : "No reviews yet"} */}
         </div>
+      ) : (
+        ""
       )}
     </div>
   );

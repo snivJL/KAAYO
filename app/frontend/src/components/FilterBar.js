@@ -106,16 +106,17 @@ const FilterBar = ({ currentPage }) => {
           </NavDropdown.Item>
           <NavDropdown.Item
             name="Soaps"
-            onClick={() =>
+            onClick={(e) => {
+              setCat(e.target.name);
               dispatch(
                 productActions.getFilteredProducts(undefined, undefined, "soap")
-              )
-            }
+              );
+            }}
           >
             Soaps
           </NavDropdown.Item>
           <NavDropdown.Item
-            name="Boby Butter"
+            name="Body Butter"
             onClick={(e) => {
               setCat(e.target.name);
               dispatch(
