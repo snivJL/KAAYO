@@ -1,6 +1,6 @@
-# Project Brief: KA.A.YO E.C
+# Project Brief: KA.A.YO eCommerce
 
-KA.A.YO E.C is an e-commerce site for the start-up KA.A.YO Handcrafted. This project will help the brand to simplify the order process and reach more potential customers. 
+KA.A.YO ECommerce is an e-commerce site for the start-up KA.A.YO Handcrafted. This project will help the brand to simplify the order process and reach more potential customers. 
 
 
 ### Motivations + Problems
